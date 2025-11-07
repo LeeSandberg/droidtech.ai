@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Embedded Debugger - Pricing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            margin-bottom: 60px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.popular {
+            border: 3px solid #667eea;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .tier-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .tier-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .billing-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .billing-toggle button {
+            padding: 8px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .billing-toggle button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .price {
+            font-size: 3em;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .price-period {
+            font-size: 0.4em;
+            color: #999;
+            font-weight: normal;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features li {
+            padding: 12px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .features li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .buy-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .buy-button:active {
+            transform: scale(0.98);
+        }
+
+        .save-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agentic Embedded Debugger</h1>
+        <p class="subtitle">Choose the perfect plan for your debugging needs</p>
+
+        <div class="billing-toggle">
+            <button id="monthlyBtn" class="active" onclick="toggleBilling('monthly')">Monthly</button>
+            <button id="yearlyBtn" onclick="toggleBilling('yearly')">Yearly <span class="save-badge">Save 17%</span></button>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+                <div class="tier-name">Basic</div>
+                <div class="tier-description">Perfect for individual developers</div>
+                <div class="price">
+                    <span data-monthly="9" data-yearly="90">$9</span>
+                    <span class="price-period">/<span class="period-text">month</span></span>
+                </div>
+                <ul class="features">
+                    <li>Single user license</li>
+                    <li>Core debugging features</li>
+                    <li>Email support</li>
+                    <li>Community access</li>
+                </ul>
+                <button class="buy-button" onclick="checkout('basic', 'monthly')">
+                    Get Started
+                </button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">POPULAR</div>
+                <div class="tier-name">Pro</div>
+                <div class="tier-description">Advanced features for professionals</div>
+                <div class="price">
+                    <span data-monthly="29" data-yearly="290">$29</span>
+                    <span class="price-period">/<span class="period-text">month</span></span>
+                </div>
+                <ul class="features">
+                    <li>Everything in Basic</li>
+                    <li>Advanced debugging tools</li>
+                    <li>Priority support</li>
+                    <li>API access</li>
+                    <li>Custom integrations</li>
+                </ul>
+                <button class="buy-button" onclick="checkout('pro', 'monthly')">
+                    Get Started
+                </button>
+            </div>
+
+            <!-- Team Plan -->
+            <div class="pricing-card">
+                <div class="tier-name">Team</div>
+                <div class="tier-description">Collaborative development power</div>
+                <div class="price">
+                    <span data-monthly="990" data-yearly="9900">$990</span>
+                    <span class="price-period">/<span class="period-text">month</span></span>
+                </div>
+                <ul class="features">
+                    <li>Everything in Pro</li>
+                    <li>Unlimited team members</li>
+                    <li>Team collaboration tools</li>
+                    <li>Advanced analytics</li>
+                    <li>Dedicated support</li>
+                    <li>Custom training</li>
+                </ul>
+                <button class="buy-button" onclick="checkout('team', 'monthly')">
+                    Get Started
+                </button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <div class="tier-name">Enterprise</div>
+                <div class="tier-description">Premium support & custom solutions</div>
+                <div class="price">
+                    <span data-monthly="9990" data-yearly="99900">$9,990</span>
+                    <span class="price-period">/<span class="period-text">month</span></span>
+                </div>
+                <ul class="features">
+                    <li>Everything in Team</li>
+                    <li>Unlimited usage</li>
+                    <li>Custom development</li>
+                    <li>24/7 premium support</li>
+                    <li>SLA guarantee</li>
+                    <li>On-premise deployment</li>
+                    <li>Security audit</li>
+                </ul>
+                <button class="buy-button" onclick="checkout('enterprise', 'monthly')">
+                    Contact Sales
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Price IDs from Stripe
+        const PRICE_IDS = {
+            basic: {
+                monthly: 'price_1SQm2iK8fR3b1Znbs2lJHrNb',
+                yearly: 'price_1SQm2pK8fR3b1ZnbzXMNfSIp'
+            },
+            pro: {
+                monthly: 'price_1SQm2wK8fR3b1Znb4Rf0FCFW',
+                yearly: 'price_1SQm34K8fR3b1ZnbvSLhSZuA'
+            },
+            team: {
+                monthly: 'price_1SQm3AK8fR3b1ZnbJWSOqTgA',
+                yearly: 'price_1SQm3JK8fR3b1ZnbYqzordzx'
+            },
+            enterprise: {
+                monthly: 'price_1SQm3OK8fR3b1ZnbceOmlm9b',
+                yearly: 'price_1SQm3XK8fR3b1Znb8s2D6UJ2'
+            }
+        };
+
+        let currentBilling = 'monthly';
+
+        function toggleBilling(billing) {
+            currentBilling = billing;
+
+            // Update button states
+            document.getElementById('monthlyBtn').classList.toggle('active', billing === 'monthly');
+            document.getElementById('yearlyBtn').classList.toggle('active', billing === 'yearly');
+
+            // Update prices
+            const priceElements = document.querySelectorAll('.price span[data-monthly]');
+            priceElements.forEach(elem => {
+                const price = billing === 'monthly' ? elem.dataset.monthly : elem.dataset.yearly;
+                elem.textContent = '$' + parseInt(price).toLocaleString();
+            });
+
+            // Update period text
+            const periodText = billing === 'monthly' ? 'month' : 'year';
+            document.querySelectorAll('.period-text').forEach(elem => {
+                elem.textContent = periodText;
+            });
+
+            // Update button onclick handlers
+            document.querySelectorAll('.buy-button').forEach((button, index) => {
+                const tiers = ['basic', 'pro', 'team', 'enterprise'];
+                const tier = tiers[index];
+                button.setAttribute('onclick', `checkout('${tier}', '${billing}')`);
+            });
+        }
+
+        async function checkout(tier, billing) {
+            const priceId = PRICE_IDS[tier][billing];
+
+            try {
+                // Call your backend to create a Checkout Session
+                const response = await fetch('YOUR_BACKEND_URL/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        priceId: priceId,
+                        tier: tier,
+                        billing: billing
+                    })
+                });
+
+                const session = await response.json();
+
+                // Redirect to Stripe Checkout
+                window.location.href = session.url;
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
