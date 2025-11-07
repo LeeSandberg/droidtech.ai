@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payment Successful — Droidtech 42 AI Labs</title>
+  <meta name="description" content="Your payment was successful. Your license key will be sent to your email shortly.">
+  <meta property="og:title" content="Payment Successful">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%96%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg:#0b1020;--panel:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--accent:#22d3ee;--stroke:#1f2a44;
+      --success:#10b981;--radius:22px;--shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;background:linear-gradient(180deg,var(--bg),#020617);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;line-height:1.6;letter-spacing:.1px;display:flex;align-items:center;justify-content:center;padding:20px}
+    a{color:var(--accent);text-decoration:none}a:hover{filter:brightness(1.1)}
+    .container{max-width:700px;width:100%;background:linear-gradient(180deg,var(--panel),#0b1224);padding:50px 40px;border-radius:var(--radius);border:1px solid var(--stroke);box-shadow:var(--shadow);text-align:center}
+    .success-icon{width:80px;height:80px;margin:0 auto 30px;background:linear-gradient(135deg,var(--success),#059669);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 8px rgba(16,185,129,.1);animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 8px rgba(16,185,129,.1)}50%{box-shadow:0 0 0 16px rgba(16,185,129,0)}}
+    .success-icon svg{width:45px;height:45px;stroke:#fff;stroke-width:3;fill:none}
+    h1{font-size:clamp(28px,4vw,38px);margin:0 0 15px;color:var(--text)}
+    .lead{font-size:18px;color:var(--muted);margin:0 0 30px}
+    .info-box{background:#0b1224;border:1px solid var(--stroke);border-left:4px solid var(--accent);padding:20px;border-radius:14px;margin:30px 0;text-align:left}
+    .info-box h2{font-size:18px;margin:0 0 12px;color:var(--text)}
+    .info-box p{margin:8px 0;color:var(--muted);font-size:15px}
+    .info-box strong{color:var(--text)}
+    .steps{text-align:left;margin:30px 0}
+    .steps h3{font-size:20px;margin:0 0 15px}
+    .steps ol{margin:0;padding-left:25px;color:var(--muted)}
+    .steps li{margin:10px 0;line-height:1.7}
+    .btn-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:35px}
+    .btn{padding:14px 28px;border-radius:14px;border:1px solid var(--stroke);background:#0b1224;color:var(--text);box-shadow:var(--shadow);font-weight:600;font-size:15px;transition:all .2s;cursor:pointer;text-decoration:none;display:inline-block}
+    .btn.primary{background:linear-gradient(135deg,#0891b2,#06b6d4);color:#00131a;border:none}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(0,0,0,.5)}
+    .loading{display:none;align-items:center;justify-content:center;gap:10px;margin-top:20px;color:var(--muted);font-size:14px}
+    .loading.show{display:flex}
+    .spinner{width:16px;height:16px;border:2px solid var(--stroke);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:13px;background:#050a18;padding:8px 12px;border-radius:8px;border:1px solid var(--stroke);word-break:break-all}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="success-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <h1>Payment Successful!</h1>
+    <p class="lead">Thank you for your purchase of Agentic Embedded Debugger</p>
+
+    <div id="sessionInfo" class="info-box" style="display:none">
+      <h2>Order Details</h2>
+      <p><strong>Plan:</strong> <span id="planTier">Loading...</span></p>
+      <p><strong>Email:</strong> <span id="customerEmail">Loading...</span></p>
+      <p><strong>Session ID:</strong> <span class="mono" id="sessionId" style="font-size:11px"></span></p>
+    </div>
+
+    <div class="steps">
+      <h3>What happens next?</h3>
+      <ol>
+        <li><strong>License Generation:</strong> Your unique license key is being generated automatically</li>
+        <li><strong>Email Delivery:</strong> You'll receive an email within 5 minutes with your license key</li>
+        <li><strong>Download & Install:</strong> Download the Agentic Embedded Debugger and activate your license</li>
+        <li><strong>Get Started:</strong> Begin debugging with AI-powered insights</li>
+      </ol>
+    </div>
+
+    <div class="loading show" id="loading">
+      <div class="spinner"></div>
+      <span>Processing your order...</span>
+    </div>
+
+    <div class="info-box" style="background:rgba(16,185,129,.05);border-left-color:var(--success)">
+      <p style="margin:0"><strong>📧 Check your email</strong><br>
+      Your license key will arrive shortly. If you don't see it, check your spam folder.</p>
+    </div>
+
+    <div class="btn-group">
+      <a class="btn ghost" href="/">Return to Homepage</a>
+      <a class="btn primary" href="#" id="downloadBtn">Download Software</a>
+    </div>
+  </div>
+
+  <script>
+    // Get session ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+
+    if (sessionId) {
+      document.getElementById('sessionId').textContent = sessionId;
+      document.getElementById('sessionInfo').style.display = 'block';
+
+      // Fetch session details from backend
+      fetch(`https://api.droidtech.ai/success?session_id=${sessionId}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('loading').classList.remove('show');
+
+          if (data.email) {
+            document.getElementById('customerEmail').textContent = data.email;
+          }
+          if (data.tier) {
+            const tierName = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
+            const billing = data.billing === 'yearly' ? 'Annual' : 'Monthly';
+            document.getElementById('planTier').textContent = `${tierName} - ${billing}`;
+          }
+        })
+        .catch(err => {
+          console.error('Error fetching session:', err);
+          document.getElementById('loading').classList.remove('show');
+          document.getElementById('customerEmail').textContent = 'Will be sent to your email';
+          document.getElementById('planTier').textContent = 'Agentic Embedded Debugger';
+        });
+    } else {
+      // No session ID, hide loading
+      document.getElementById('loading').classList.remove('show');
+      document.getElementById('customerEmail').textContent = 'Will be sent to your email';
+      document.getElementById('planTier').textContent = 'Agentic Embedded Debugger';
+    }
+
+    // Download button (customize URL as needed)
+    document.getElementById('downloadBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      // TODO: Replace with actual download link
+      alert('Download link will be provided in your confirmation email.');
+    });
+  </script>
+</body>
+</html>
