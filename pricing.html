@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agentic Embedded Debugger - Pricing</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+
+        // Track pricing page view
+        gtag('event', 'page_view', {
+            page_title: 'Pricing',
+            page_location: window.location.href
+        });
+    </script>
     <style>
         * {
             margin: 0;
@@ -324,6 +338,24 @@
 
         async function checkout(tier, billing) {
             const priceId = PRICE_IDS[tier][billing];
+
+            // Track checkout initiation
+            const prices = {basic: {monthly: 9, yearly: 90}, pro: {monthly: 29, yearly: 290}, team: {monthly: 990, yearly: 9900}, enterprise: {monthly: 9990, yearly: 99900}};
+            const price = prices[tier][billing];
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'USD',
+                    value: price,
+                    items: [{
+                        item_id: `${tier}_${billing}`,
+                        item_name: `${tier.charAt(0).toUpperCase() + tier.slice(1)} Plan`,
+                        price: price,
+                        item_category: billing === 'monthly' ? 'Monthly Subscription' : 'Yearly Subscription',
+                        quantity: 1
+                    }]
+                });
+            }
 
             try {
                 // Call your backend to create a Checkout Session

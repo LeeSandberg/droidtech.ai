@@ -8,6 +8,14 @@
   <meta property="og:title" content="Payment Successful">
   <meta name="theme-color" content="#0f172a">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%96%3C/text%3E%3C/svg%3E">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <style>
     :root{
       --bg:#0b1020;--panel:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--accent:#22d3ee;--stroke:#1f2a44;
@@ -106,6 +114,25 @@
             const tierName = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
             const billing = data.billing === 'yearly' ? 'Annual' : 'Monthly';
             document.getElementById('planTier').textContent = `${tierName} - ${billing}`;
+
+            // Track purchase in Google Analytics
+            const prices = {basic: {monthly: 9, yearly: 90}, pro: {monthly: 29, yearly: 290}, team: {monthly: 990, yearly: 9900}, enterprise: {monthly: 9990, yearly: 99900}};
+            const price = prices[data.tier]?.[data.billing] || 0;
+
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'purchase', {
+                transaction_id: sessionId,
+                value: price,
+                currency: 'USD',
+                items: [{
+                  item_id: `${data.tier}_${data.billing}`,
+                  item_name: `${tierName} Plan`,
+                  price: price,
+                  item_category: billing === 'Monthly' ? 'Monthly Subscription' : 'Yearly Subscription',
+                  quantity: 1
+                }]
+              });
+            }
           }
         })
         .catch(err => {
