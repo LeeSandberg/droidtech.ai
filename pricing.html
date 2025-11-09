@@ -228,10 +228,11 @@
                 <div class="tier-name">Basic</div>
                 <div class="tier-description">Perfect for individual developers</div>
                 <div class="price">
-                    <span data-monthly="9" data-yearly="90">$9</span>
+                    <span data-monthly="29" data-yearly="290">$29</span>
                     <span class="price-period">/<span class="period-text">month</span></span>
                 </div>
                 <ul class="features">
+                    <li>1 machine activation</li>
                     <li>Single user license</li>
                     <li>Core debugging features</li>
                     <li>Email support</li>
@@ -248,15 +249,16 @@
                 <div class="tier-name">Pro</div>
                 <div class="tier-description">Advanced features for professionals</div>
                 <div class="price">
-                    <span data-monthly="29" data-yearly="290">$29</span>
+                    <span data-monthly="99" data-yearly="990">$99</span>
                     <span class="price-period">/<span class="period-text">month</span></span>
                 </div>
                 <ul class="features">
+                    <li>3 machine activations</li>
+                    <li>Floating licenses</li>
                     <li>Everything in Basic</li>
                     <li>Advanced debugging tools</li>
                     <li>Priority support</li>
                     <li>API access</li>
-                    <li>Custom integrations</li>
                 </ul>
                 <button class="buy-button" onclick="checkout('pro', 'monthly')">
                     Get Started
@@ -268,16 +270,16 @@
                 <div class="tier-name">Team</div>
                 <div class="tier-description">Collaborative development power</div>
                 <div class="price">
-                    <span data-monthly="990" data-yearly="9900">$990</span>
+                    <span data-monthly="299" data-yearly="2990">$299</span>
                     <span class="price-period">/<span class="period-text">month</span></span>
                 </div>
                 <ul class="features">
+                    <li>10 machine activations</li>
+                    <li>Floating licenses</li>
+                    <li>Heartbeat monitoring</li>
                     <li>Everything in Pro</li>
-                    <li>Unlimited team members</li>
                     <li>Team collaboration tools</li>
-                    <li>Advanced analytics</li>
                     <li>Dedicated support</li>
-                    <li>Custom training</li>
                 </ul>
                 <button class="buy-button" onclick="checkout('team', 'monthly')">
                     Get Started
@@ -289,20 +291,20 @@
                 <div class="tier-name">Enterprise</div>
                 <div class="tier-description">Premium support & custom solutions</div>
                 <div class="price">
-                    <span data-monthly="9990" data-yearly="99900">$9,990</span>
+                    <span data-monthly="999" data-yearly="9990">$999</span>
                     <span class="price-period">/<span class="period-text">month</span></span>
                 </div>
                 <ul class="features">
+                    <li>Unlimited machine activations</li>
+                    <li>Floating licenses</li>
+                    <li>Optional heartbeat monitoring</li>
                     <li>Everything in Team</li>
-                    <li>Unlimited usage</li>
-                    <li>Custom development</li>
                     <li>24/7 premium support</li>
                     <li>SLA guarantee</li>
-                    <li>On-premise deployment</li>
-                    <li>Security audit</li>
+                    <li>Custom solutions</li>
                 </ul>
                 <button class="buy-button" onclick="checkout('enterprise', 'monthly')">
-                    Contact Sales
+                    Get Started
                 </button>
             </div>
         </div>
@@ -312,20 +314,20 @@
         // Price IDs from Stripe
         const PRICE_IDS = {
             basic: {
-                monthly: 'price_1SQm2iK8fR3b1Znbs2lJHrNb',
-                yearly: 'price_1SQm2pK8fR3b1ZnbzXMNfSIp'
+                monthly: 'price_1SRS52GzwNaSmb3CntQtF47N',
+                yearly: 'price_1SRS57GzwNaSmb3CHZm6L2f0'
             },
             pro: {
-                monthly: 'price_1SQm2wK8fR3b1Znb4Rf0FCFW',
-                yearly: 'price_1SQm34K8fR3b1ZnbvSLhSZuA'
+                monthly: 'price_1SRS5gGzwNaSmb3C40I5FDHR',
+                yearly: 'price_1SRS5mGzwNaSmb3CEeVwm98p'
             },
             team: {
-                monthly: 'price_1SQm3AK8fR3b1ZnbJWSOqTgA',
-                yearly: 'price_1SQm3JK8fR3b1ZnbYqzordzx'
+                monthly: 'price_1SRS6IGzwNaSmb3Cb9wGxQXS',
+                yearly: 'price_1SRS6LGzwNaSmb3C4fUc21rW'
             },
             enterprise: {
-                monthly: 'price_1SQm3OK8fR3b1ZnbceOmlm9b',
-                yearly: 'price_1SQm3XK8fR3b1Znb8s2D6UJ2'
+                monthly: 'price_1SRXAiGzwNaSmb3CubZ1EZXq',
+                yearly: 'price_1SRXAvGzwNaSmb3CkCXMniAr'
             }
         };
 
@@ -363,7 +365,7 @@
             const priceId = PRICE_IDS[tier][billing];
 
             // Track checkout initiation
-            const prices = {basic: {monthly: 9, yearly: 90}, pro: {monthly: 29, yearly: 290}, team: {monthly: 990, yearly: 9900}, enterprise: {monthly: 9990, yearly: 99900}};
+            const prices = {basic: {monthly: 29, yearly: 290}, pro: {monthly: 99, yearly: 990}, team: {monthly: 299, yearly: 2990}, enterprise: {monthly: 999, yearly: 9990}};
             const price = prices[tier][billing];
 
             if (typeof gtag !== 'undefined') {
