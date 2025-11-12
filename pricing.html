@@ -4,40 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agentic Embedded Debugger - Pricing</title>
-
-    <!-- Hide from search engines -->
-    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
-
-    <!-- Simple token gate -->
-    <script>
-      (function () {
-        // Change this to your private key
-        const REQUIRED = "d42-beta-2025";          // <-- set your secret
-        const COOKIE   = "beta_key";
-    
-        // If cookie already set and valid → allow
-        const c = document.cookie.split("; ").find(x => x.startsWith(COOKIE+"="));
-        if (c && decodeURIComponent(c.split("=")[1]) === REQUIRED) return;
-    
-        // Else check ?key=... once
-        const url = new URL(window.location.href);
-        const key = url.searchParams.get("key");
-        if (key === REQUIRED) {
-          // 8-hour cookie
-          const exp = new Date(Date.now() + 8*60*60*1000).toUTCString();
-          document.cookie = COOKIE+"="+encodeURIComponent(key)+"; path=/; SameSite=Lax; expires="+exp;
-          // Clean URL
-          url.searchParams.delete("key");
-          window.history.replaceState({}, "", url.toString());
-          return;
-        }
-    
-        // Not authorized → send to gate page
-        window.location.replace("/beta-gate.html");
-      })();
-    </script>
-
-    
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
