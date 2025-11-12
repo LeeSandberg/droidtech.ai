@@ -203,10 +203,9 @@
         <span class="pill">Automated Testing</span>
       </div>
       <div style="margin-top:20px">
-        <!-- Hide public purchase until GA -->
-        <!-- <a class="btn primary" href="pricing.html" rel="nofollow">View Pricing & Plans</a> -->
-        <a class="btn primary" href="#contact">Request Private Beta</a>
-        <a class="btn ghost" href="#contact">Request Demo</a>
+        <!-- One pair only, with data-intent -->
+        <a class="btn primary" href="#contact" data-intent="Private Beta">Request Private Beta</a>
+        <a class="btn ghost"   href="#contact" data-intent="Demo">Request Demo</a>
       </div>
     </section>
 
@@ -233,6 +232,7 @@
       <h2>Get in touch</h2>
       <p>Tell us about your project. We usually reply within one business day.</p>
       <form id="contactForm">
+        <input type="hidden" id="intent" value="">
         <input type="email" id="email" placeholder="Your email (e.g., you@company.com)" required>
         <button class="btn primary" type="submit">Request intro</button>
       </form>
