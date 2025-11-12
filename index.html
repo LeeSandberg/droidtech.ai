@@ -10,70 +10,21 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://droidtech.ai/">
   <meta name="theme-color" content="#0f172a">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%96%3C/text%3E%3C/svg%3E">
-
-  <!-- Beta gate (runs before anything else) -->
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
-    (function(){
-      const COOKIE = "beta_key";
-      const REQUIRED = "d42-beta-2025"; // <-- set your secret
-
-      function hasCookie(){
-        return document.cookie.split("; ").some(
-          c => c.startsWith(COOKIE+"=") && decodeURIComponent(c.split("=")[1]) === REQUIRED
-        );
-      }
-
-      // Accept ?key=... once and remember for 8h
-      const url = new URL(window.location.href);
-      const k = url.searchParams.get("key");
-      if (k === REQUIRED) {
-        const exp = new Date(Date.now() + 8*60*60*1000).toUTCString();
-        document.cookie = COOKIE + "=" + encodeURIComponent(k) + "; path=/; SameSite=Lax; expires=" + exp;
-        url.searchParams.delete("key");
-        window.history.replaceState({}, "", url.toString());
-      }
-
-      // Apply css class immediately to avoid flicker
-      if (hasCookie()) {
-        document.documentElement.classList.add("beta-unlocked");
-      }
-    })();
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
   </script>
-
-  <!-- Google Analytics (public index: track everyone, but tag beta state) -->
-  <script>
-    (function(){
-      var unlocked = document.cookie.includes("beta_key=d42-beta-2025");
-
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-      document.head.appendChild(s);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      window.gtag = gtag;
-
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-      gtag('set', 'user_properties', { beta_unlocked: unlocked ? 'yes' : 'no' });
-    })();
-  </script>
-
   <style>
-    /* hidden until beta is unlocked via cookie/key; revealed when html.beta-unlocked is present */
-    .beta-only{ display:none !important; }
-    html.beta-unlocked .beta-only{ display:initial !important; }
-    .beta-badge{ border:1px solid var(--stroke); padding:3px 8px; border-radius:999px; font-size:12px; color:var(--muted); }
-
     :root{
       --bg:#0b1020;--panel:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--accent:#22d3ee;--stroke:#1f2a44;
       --radius:22px;--shadow:0 10px 30px rgba(0,0,0,.4);
     }
-    *{box-sizing:border-box}html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,var(--bg),#020617);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;line-height:1.6;letter-spacing:.1px}
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;background:linear-gradient(180deg,var(--bg),#020617);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;line-height:1.6;letter-spacing:.1px}
     a{color:var(--accent);text-decoration:none}a:hover{filter:brightness(1.1)}
     .wrap{max-width:1100px;margin:0 auto;padding:clamp(16px,3vw,28px)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
@@ -120,7 +71,6 @@
       form .btn{width:100%}
     }
   </style>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -143,21 +93,22 @@
         </div>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
       <div class="cta" id="menu">
         <a class="btn ghost" href="#contact">Contact</a>
-        <a class="btn ghost beta-only" href="/pricing.html" rel="nofollow noopener">Pricing</a>
+        <a class="btn ghost" href="pricing.html">Pricing</a>
         <a class="btn primary" href="#projects">See Projects</a>
-        <span class="beta-only beta-badge">Private beta</span>
       </div>
     </nav>
 
     <header class="hero">
       <h1>We build intelligent systems — from firmware to fleets.</h1>
       <p class="lead">
-        Swedish engineering studio delivering <strong>AI-powered robotics</strong>, <strong>embedded firmware</strong>, and <strong>energy systems</strong>.
-        We partner with industry to ship production-grade software & hardware—fast, safe, and measurable.
+        Swedish engineering studio delivering <strong>AI‑powered robotics</strong>, <strong>embedded firmware</strong>, and <strong>energy systems</strong>.
+        We partner with industry to ship production‑grade software & hardware—fast, safe, and measurable.
       </p>
       <div class="grid">
         <section class="card span-8">
@@ -165,7 +116,7 @@
           <ul class="clean">
             <li><strong>Embedded & firmware:</strong> ARM/Nuvoton, FreeRTOS, I²C/SPI/CAN, SD logging, bootloaders, safety.</li>
             <li><strong>Robotics & mechatronics:</strong> perception, control, actuator design, UAV/UGV, simulation.</li>
-            <li><strong>AI systems:</strong> on-device inference, tool-using agents, data pipelines, observability.</li>
+            <li><strong>AI systems:</strong> on‑device inference, tool‑using agents, data pipelines, observability.</li>
             <li><strong>Energy tech:</strong> solar, storage, BMS, telemetry, dashboards, predictive maintenance.</li>
           </ul>
           <div style="margin-top:10px" class="logo-grid">
@@ -180,8 +131,8 @@
         <section class="card span-4">
           <h2>Currently</h2>
           <ul class="clean">
-            <li>Optimizing battery-management firmware for mobile & industrial use.</li>
-            <li>Prototyping UAV autonomy and ultra-light actuator concepts.</li>
+            <li>Optimizing battery‑management firmware for mobile & industrial use.</li>
+            <li>Prototyping UAV autonomy and ultra‑light actuator concepts.</li>
             <li>Building AI assistants for testing, logging, and anomaly detection.</li>
           </ul>
           <p class="note">Stockholm, Sweden · Remote friendly</p>
@@ -190,10 +141,9 @@
     </header>
 
     <section id="product" class="card" style="margin-top:28px;background:linear-gradient(135deg,#0b1224,#0f172a);border:2px solid var(--accent)">
-      <h2>🚀 Agentic Embedded Debugger <span style="font-size:.8em;color:#94a3b8;">(Private beta)</span></h2>
+      <h2>🚀 Agentic Embedded Debugger</h2>
       <p class="lead" style="max-width:100%">
         Next-generation debugging tool for embedded systems. AI-powered analysis, real-time monitoring, and automated test generation.
-        <br><strong>Invite-only design partner program.</strong>
       </p>
       <div style="margin-top:16px">
         <span class="pill">ARM Cortex-M</span>
@@ -203,9 +153,8 @@
         <span class="pill">Automated Testing</span>
       </div>
       <div style="margin-top:20px">
-        <!-- One pair only, with data-intent -->
-        <a class="btn primary" href="#contact" data-intent="Private Beta">Request Private Beta</a>
-        <a class="btn ghost"   href="#contact" data-intent="Demo">Request Demo</a>
+        <a class="btn primary" href="pricing.html">View Pricing & Plans</a>
+        <a class="btn ghost" href="#contact">Request Demo</a>
       </div>
     </section>
 
@@ -213,15 +162,15 @@
       <div class="card span-6">
         <h2>Selected work</h2>
         <ul class="clean">
-          <li><strong>Front-panel firmware:</strong> dual-stream SD logger, daily rotation, queue-based buffering, metrics.</li>
-          <li><strong>I²C master/target stack:</strong> ISR-driven, robust error handling, modbus-like state machines.</li>
-          <li><strong>Safety review:</strong> fault detection/handling, graceful hard-off sequencing, test benches.</li>
+          <li><strong>Front‑panel firmware:</strong> dual‑stream SD logger, daily rotation, queue‑based buffering, metrics.</li>
+          <li><strong>I²C master/target stack:</strong> ISR‑driven, robust error handling, modbus‑like state machines.</li>
+          <li><strong>Safety review:</strong> fault detection/handling, graceful hard‑off sequencing, test benches.</li>
         </ul>
       </div>
       <div class="card span-6">
         <h2>Engagement models</h2>
         <ul class="clean">
-          <li>Pilot sprint: 2–4 weeks to de-risk a core problem.</li>
+          <li>Pilot sprint: 2–4 weeks to de‑risk a core problem.</li>
           <li>Dedicated team: embedded + AI + frontend for productization.</li>
           <li>Advisory: architecture, performance, CI/CD, incident review.</li>
         </ul>
@@ -232,18 +181,19 @@
       <h2>Get in touch</h2>
       <p>Tell us about your project. We usually reply within one business day.</p>
       <form id="contactForm">
-        <input type="hidden" id="intent" value="">
         <input type="email" id="email" placeholder="Your email (e.g., you@company.com)" required>
         <button class="btn primary" type="submit">Request intro</button>
       </form>
       <p class="mono" id="status"></p>
     </section>
 
-    <section id="support" class="card" style="margin-top:18px">
-      <h2>Support</h2>
-      <ul class="clean">
-        <li>+46 (0)762981255</li>
-      </ul>
+    <section id="contact" class="card" style="margin-top:18px">
+      <div class="card span-6">
+        <h2>Support</h2>
+        <ul class="clean">
+          <li>+46 (0)762981255</li>
+        </ul>      
+      </div>
     </section>
 
     <footer>
@@ -255,17 +205,20 @@
     // Hamburger menu toggle
     const hamburger = document.getElementById("hamburger");
     const menu = document.getElementById("menu");
+
     hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active");
       menu.classList.toggle("active");
     });
-    // Close menu on link click
+
+    // Close menu when clicking on a link
     menu.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         hamburger.classList.remove("active");
         menu.classList.remove("active");
       });
     });
+
     // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
@@ -274,7 +227,7 @@
       }
     });
 
-    // Contact form (mailto fallback)
+    // --- Minimal inbox hook: replace CONTACT_TO with your real address or a form backend ---
     const CONTACT_TO = "lee@droidtech.ai"; // TODO: set to your real inbox or a form endpoint
     const form = document.getElementById("contactForm");
     const status = document.getElementById("status");
@@ -283,6 +236,7 @@
       const email = document.getElementById("email").value.trim();
       status.textContent = "";
       if(!email) return;
+      // Option A: simple mailto
       window.location.href = `mailto:${CONTACT_TO}?subject=Intro%20request%20from%20${encodeURIComponent(email)}&body=Hi%20Droidtech%2C%0A%0AI'm%20interested%20in...%0A%0A—%20${encodeURIComponent(email)}`;
       status.textContent = "Opening your mail app…";
     });
