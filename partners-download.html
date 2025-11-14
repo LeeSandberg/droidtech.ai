@@ -79,28 +79,28 @@
         <div class="download-card">
           <h3><span class="icon">🪟</span> Windows</h3>
           <div class="version" id="version-win">Loading...</div>
-          <a class="btn" id="dl-win" href="#" onclick="downloadFile(event, 'windows')">Download for Windows</a>
+          <a class="btn" id="dl-win" href="#" download>Download for Windows</a>
         </div>
 
         <!-- macOS Apple Silicon -->
         <div class="download-card">
           <h3><span class="icon">🍎</span> macOS (ARM)</h3>
           <div class="version" id="version-mac-arm">Loading...</div>
-          <a class="btn" id="dl-mac-arm" href="#" onclick="downloadFile(event, 'macos-arm64')">Download for M1/M2/M3</a>
+          <a class="btn" id="dl-mac-arm" href="#" download>Download for M1/M2/M3</a>
         </div>
 
         <!-- macOS Intel -->
         <div class="download-card">
           <h3><span class="icon">🍎</span> macOS (Intel)</h3>
           <div class="version" id="version-mac-x64">Loading...</div>
-          <a class="btn" id="dl-mac-x64" href="#" onclick="downloadFile(event, 'macos-x64')">Download for Intel Mac</a>
+          <a class="btn" id="dl-mac-x64" href="#" download>Download for Intel Mac</a>
         </div>
 
         <!-- Linux -->
         <div class="download-card">
           <h3><span class="icon">🐧</span> Linux</h3>
           <div class="version" id="version-linux">Loading...</div>
-          <a class="btn" id="dl-linux" href="#" onclick="downloadFile(event, 'linux')">Download for Linux</a>
+          <a class="btn" id="dl-linux" href="#" download>Download for Linux</a>
         </div>
       </div>
 
@@ -221,17 +221,6 @@
       }
     }
 
-    function downloadFile(event, platform) {
-      // Track download
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'partner_download', {
-          event_category: 'embedded-ai-debugger-partner',
-          event_label: platform
-        });
-      }
-      // Let the href handle the actual download
-      return true;
-    }
   </script>
 </body>
 </html>
