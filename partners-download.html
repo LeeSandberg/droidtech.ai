@@ -206,11 +206,11 @@
             el.textContent = `${version} • Latest Alpha`;
           });
 
-          // Update download links
-          document.getElementById('dl-win').href = `https://github.com/LeeSandberg/mcp-arm-debug/releases/download/${version}/mcp-arm-debug-win-x64.exe`;
-          document.getElementById('dl-mac-arm').href = `https://github.com/LeeSandberg/mcp-arm-debug/releases/download/${version}/mcp-arm-debug-macos-arm64`;
-          document.getElementById('dl-mac-x64').href = `https://github.com/LeeSandberg/mcp-arm-debug/releases/download/${version}/mcp-arm-debug-macos-x64`;
-          document.getElementById('dl-linux').href = `https://github.com/LeeSandberg/mcp-arm-debug/releases/download/${version}/mcp-arm-debug-linux-x64`;
+          // Update download links (hosted on public droidtech.ai repo)
+          document.getElementById('dl-win').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-win-x64.exe`;
+          document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-arm64`;
+          document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-x64`;
+          document.getElementById('dl-linux').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-linux-x64`;
 
           // Update changelog
           document.getElementById('changelog').innerHTML = latestAlpha.body.replace(/\n/g, '<br>');
