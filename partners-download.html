@@ -191,34 +191,34 @@
     });
 
     async function loadLatestRelease() {
-      try {
-        const response = await fetch('https://api.github.com/repos/LeeSandberg/mcp-arm-debug/releases');
-        const releases = await response.json();
+      // Latest alpha version (update this manually after each release)
+      const version = 'v0.1.2-alpha';
 
-        // Get latest prerelease
-        const latestAlpha = releases.find(r => r.prerelease && r.tag_name.includes('alpha'));
+      // Update version labels
+      document.querySelectorAll('[id^="version-"]').forEach(el => {
+        el.textContent = `${version} • Latest Alpha`;
+      });
 
-        if (latestAlpha) {
-          const version = latestAlpha.tag_name;
+      // Update download links (hosted on public droidtech.ai repo)
+      document.getElementById('dl-win').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-win-x64.exe`;
+      document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-arm64`;
+      document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-x64`;
+      document.getElementById('dl-linux').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-linux-x64`;
 
-          // Update version labels
-          document.querySelectorAll('[id^="version-"]').forEach(el => {
-            el.textContent = `${version} • Latest Alpha`;
-          });
-
-          // Update download links (hosted on public droidtech.ai repo)
-          document.getElementById('dl-win').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-win-x64.exe`;
-          document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-arm64`;
-          document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-x64`;
-          document.getElementById('dl-linux').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-linux-x64`;
-
-          // Update changelog
-          document.getElementById('changelog').innerHTML = latestAlpha.body.replace(/\n/g, '<br>');
-        }
-      } catch (error) {
-        console.error('Failed to load releases:', error);
-        document.getElementById('changelog').textContent = 'Failed to load changelog. Contact support@droidtech.ai';
-      }
+      // Update changelog
+      document.getElementById('changelog').innerHTML = `
+        <strong>${version}</strong><br><br>
+        AI-powered ARM Cortex-M debugging for Claude Code.<br><br>
+        <strong>Features:</strong><br>
+        • GDB/MI integration for ARM Cortex-M debugging<br>
+        • FreeRTOS task introspection<br>
+        • Memory and register reading<br>
+        • Flash programming support<br>
+        • ITM/SWO trace capture<br>
+        • J-Link RTT support<br>
+        • SVD peripheral register access<br>
+        • 50+ MCP tools for comprehensive debugging
+      `;
     }
 
   </script>
