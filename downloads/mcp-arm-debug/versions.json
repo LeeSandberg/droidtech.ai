@@ -1,12 +1,12 @@
 {
   "latest": "v0.1.10-alpha",
   "latestStable": "",
-  "updated": "2025-11-16T15:33:19Z",
+  "updated": "2025-11-16T16:13:21Z",
   "repository": "https://github.com/LeeSandberg/mcp-arm-debug",
   "versions": [
     {
       "tag": "v0.1.10-alpha",
-      "date": "2025-11-16T15:33:19Z",
+      "date": "2025-11-16T16:13:21Z",
       "prerelease": true,
       "downloads": {
         "windows": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.10-alpha/mcp-arm-debug-win-x64.exe",
