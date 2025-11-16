@@ -1,19 +1,19 @@
 {
-  "latest": "v0.1.11-alpha",
+  "latest": "v0.1.12-alpha",
   "latestStable": "",
-  "updated": "2025-11-16T16:16:18Z",
+  "updated": "2025-11-16T17:23:18Z",
   "repository": "https://github.com/LeeSandberg/mcp-arm-debug",
   "versions": [
     {
-      "tag": "v0.1.11-alpha",
-      "date": "2025-11-16T16:16:18Z",
+      "tag": "v0.1.12-alpha",
+      "date": "2025-11-16T17:23:18Z",
       "prerelease": true,
       "downloads": {
-        "windows": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.11-alpha/mcp-arm-debug-win-x64.exe",
-        "macosArm64": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.11-alpha/mcp-arm-debug-macos-arm64",
-        "macosX64": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.11-alpha/mcp-arm-debug-macos-x64",
-        "linux": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.11-alpha/mcp-arm-debug-linux-x64",
-        "checksums": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.11-alpha/SHA256SUMS.txt"
+        "windows": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.12-alpha/mcp-arm-debug-win-x64.exe",
+        "macosArm64": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.12-alpha/mcp-arm-debug-macos-arm64",
+        "macosX64": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.12-alpha/mcp-arm-debug-macos-x64",
+        "linux": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.12-alpha/mcp-arm-debug-linux-x64",
+        "checksums": "https://droidtech.ai/downloads/mcp-arm-debug/v0.1.12-alpha/SHA256SUMS.txt"
       }
     }
   ]
