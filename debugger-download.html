@@ -160,6 +160,30 @@
       </div>
     </div>
 
+    <div class="info-box" style="background:rgba(34,211,238,.05);border-left-color:var(--accent)">
+      <h2>🔒 Verify Your Download</h2>
+      <p>For security, verify the integrity of your downloaded binary using SHA-256 checksums:</p>
+      <p style="margin-top:15px"><strong>Download checksums file:</strong> <a href="CHECKSUMS_URL_PLACEHOLDER" target="_blank" style="color:var(--accent);text-decoration:underline">SHA256SUMS.txt</a></p>
+
+      <p style="margin-top:20px"><strong>Verification commands:</strong></p>
+      <p><strong>macOS/Linux:</strong></p>
+      <pre class="mono"># Download checksums file
+curl -O CHECKSUMS_URL_PLACEHOLDER
+
+# Verify the binary
+shasum -a 256 -c SHA256SUMS.txt</pre>
+
+      <p style="margin-top:15px"><strong>Windows PowerShell:</strong></p>
+      <pre class="mono"># Download checksums file
+curl -O CHECKSUMS_URL_PLACEHOLDER
+
+# Calculate hash of downloaded binary
+Get-FileHash mcp-arm-debug-win-x64.exe -Algorithm SHA256
+
+# Compare output with SHA256SUMS.txt</pre>
+      <p style="margin-top:15px;color:var(--muted);font-size:14px">Checksum verification ensures your download is authentic and hasn't been tampered with.</p>
+    </div>
+
     <h2 style="text-align:center;margin:60px 0 30px">Getting Started with Claude Code</h2>
     <div class="steps">
       <div class="step">
