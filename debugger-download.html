@@ -178,7 +178,7 @@ shasum -a 256 -c SHA256SUMS.txt</pre>
 curl -O CHECKSUMS_URL_PLACEHOLDER
 
 # Calculate hash of downloaded binary
-Get-FileHash mcp-arm-debug-win-x64.exe -Algorithm SHA256
+Get-FileHash mcp-ai-embedded-debug-win-x64.exe -Algorithm SHA256
 
 # Compare output with SHA256SUMS.txt</pre>
       <p style="margin-top:15px;color:var(--muted);font-size:14px">Checksum verification ensures your download is authentic and hasn't been tampered with.</p>
@@ -194,7 +194,7 @@ Get-FileHash mcp-arm-debug-win-x64.exe -Algorithm SHA256
       <div class="step">
         <div class="number">2</div>
         <h3>Make Executable</h3>
-        <p>On macOS/Linux, run: <code style="font-size:11px;background:#050a18;padding:2px 6px;border-radius:4px;white-space:nowrap">chmod +x mcp-arm-debug-*</code></p>
+        <p>On macOS/Linux, run: <code style="font-size:11px;background:#050a18;padding:2px 6px;border-radius:4px;white-space:nowrap">chmod +x mcp-ai-embedded-debug-*</code></p>
       </div>
       <div class="step">
         <div class="number">3</div>
@@ -210,33 +210,41 @@ Get-FileHash mcp-arm-debug-win-x64.exe -Algorithm SHA256
 
     <div class="info-box">
       <h2>⚙️ Claude Code Configuration</h2>
-      <p>Add the Embedded AI Debugger to your Claude Code configuration file:</p>
+      <p>Create a <code style="display:inline;background:#050a18;padding:2px 6px;border-radius:4px">.mcp.json</code> file in your project folder:</p>
 
-      <p><strong>Linux/macOS:</strong> Edit <code style="display:inline;background:#050a18;padding:2px 6px;border-radius:4px">~/.config/claude-code/mcp.json</code></p>
+      <p><strong>macOS/Linux Example:</strong></p>
       <pre class="mono">{
   "mcpServers": {
-    "arm-debug": {
-      "command": "/path/to/mcp-arm-debug-linux-x64",
+    "ai-embedded-debug": {
+      "command": "/usr/local/bin/mcp-ai-embedded-debug-macos-arm64",
       "args": [],
       "env": {
-        "OPENOCD_PATH": "/usr/bin/openocd"
+        "OPENOCD_PATH": "/opt/homebrew/bin/openocd",
+        "GDB_HOST": "localhost",
+        "GDB_PORT": "3333",
+        "ELF": "./build/firmware.elf"
       }
     }
   }
 }</pre>
 
-      <p style="margin-top:20px"><strong>Windows:</strong> Edit <code style="display:inline;background:#050a18;padding:2px 6px;border-radius:4px">%APPDATA%\claude-code\mcp.json</code></p>
+      <p style="margin-top:20px"><strong>Windows Example:</strong></p>
       <pre class="mono">{
   "mcpServers": {
-    "arm-debug": {
-      "command": "C:\\\\Tools\\\\mcp-arm-debug-win-x64.exe",
+    "ai-embedded-debug": {
+      "command": "C:\\\\Tools\\\\mcp-ai-embedded-debug-win-x64.exe",
       "args": [],
       "env": {
-        "OPENOCD_PATH": "C:\\\\OpenOCD\\\\bin\\\\openocd.exe"
+        "OPENOCD_PATH": "C:\\\\OpenOCD\\\\bin\\\\openocd.exe",
+        "GDB_HOST": "localhost",
+        "GDB_PORT": "3333",
+        "ELF": ".\\\\build\\\\firmware.elf"
       }
     }
   }
 }</pre>
+
+      <p style="margin-top:15px;font-size:14px;color:var(--muted)">Place this file in your firmware project root directory (same folder as your build scripts). Claude Code will automatically detect and load it when you open the project.</p>
 
       <p style="margin-top:20px"><strong>Supported debuggers:</strong> J-Link, ST-Link, CMSIS-DAP, Nu-Link, Black Magic Probe</p>
     </div>
@@ -244,8 +252,8 @@ Get-FileHash mcp-arm-debug-win-x64.exe -Algorithm SHA256
     <div class="info-box" style="background:rgba(34,211,238,.05);border-left-color:var(--accent)">
       <h2>📚 Documentation & Resources</h2>
       <ul>
-        <li><a href="https://github.com/LeeSandberg/mcp-arm-debug" target="_blank">GitHub Repository</a> - Source code and issue tracker</li>
-        <li><a href="https://github.com/LeeSandberg/mcp-arm-debug/releases" target="_blank">Release Notes</a> - View changelog and version history</li>
+        <li><a href="https://github.com/LeeSandberg/mcp-ai-embedded-debug" target="_blank">GitHub Repository</a> - Source code and issue tracker</li>
+        <li><a href="https://github.com/LeeSandberg/mcp-ai-embedded-debug/releases" target="_blank">Release Notes</a> - View changelog and version history</li>
         <li><a href="https://modelcontextprotocol.io" target="_blank">Model Context Protocol</a> - Learn about the protocol</li>
         <li><a href="https://openocd.org" target="_blank">OpenOCD Docs</a> - Setup debugging tools</li>
       </ul>
@@ -273,7 +281,7 @@ Get-FileHash mcp-arm-debug-win-x64.exe -Algorithm SHA256
 
       <p><strong>Hardware Risks:</strong> Debugging embedded systems involves direct hardware interaction. Improper use may damage your development boards, debuggers, or connected equipment. Always verify configurations before connecting hardware.</p>
 
-      <p><strong>Open Source:</strong> This software includes open-source components. See the <a href="https://github.com/LeeSandberg/mcp-arm-debug" target="_blank">GitHub repository</a> for license information.</p>
+      <p><strong>Open Source:</strong> This software includes open-source components. See the <a href="https://github.com/LeeSandberg/mcp-ai-embedded-debug" target="_blank">GitHub repository</a> for license information.</p>
     </div>
 
     <footer>

@@ -108,12 +108,12 @@
         <h3>⚙️ Installation Instructions</h3>
         <p><strong>1. Download</strong> the binary for your platform above.</p>
         <p><strong>2. Make executable</strong> (macOS/Linux):</p>
-        <pre class="mono">chmod +x mcp-arm-debug-*</pre>
+        <pre class="mono">chmod +x mcp-ai-embedded-debug-*</pre>
         <p><strong>3. Configure Claude Code</strong> — Edit <code style="background:#050a18;padding:2px 6px;border-radius:4px">~/.config/claude-code/mcp.json</code>:</p>
         <pre class="mono">{
   "mcpServers": {
     "arm-debug": {
-      "command": "/path/to/mcp-arm-debug-linux-x64",
+      "command": "/path/to/mcp-ai-embedded-debug-linux-x64",
       "args": [],
       "env": {
         "OPENOCD_PATH": "/usr/bin/openocd"
@@ -200,10 +200,10 @@
       });
 
       // Update download links (hosted on public droidtech.ai repo)
-      document.getElementById('dl-win').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-win-x64.exe`;
-      document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-arm64`;
-      document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-macos-x64`;
-      document.getElementById('dl-linux').href = `https://droidtech.ai/downloads/mcp-arm-debug/${version}/mcp-arm-debug-linux-x64`;
+      document.getElementById('dl-win').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-win-x64.exe`;
+      document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-macos-arm64`;
+      document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-macos-x64`;
+      document.getElementById('dl-linux').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-linux-x64`;
 
       // Update changelog
       document.getElementById('changelog').innerHTML = `
