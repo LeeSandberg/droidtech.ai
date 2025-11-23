@@ -109,18 +109,41 @@
         <p><strong>1. Download</strong> the binary for your platform above.</p>
         <p><strong>2. Make executable</strong> (macOS/Linux):</p>
         <pre class="mono">chmod +x mcp-ai-embedded-debug-*</pre>
-        <p><strong>3. Configure Claude Code</strong> — Edit <code style="background:#050a18;padding:2px 6px;border-radius:4px">~/.config/claude-code/mcp.json</code>:</p>
+        <p><strong>3. Configure Claude Code</strong> — Create <code style="background:#050a18;padding:2px 6px;border-radius:4px">.mcp.json</code> in your project folder:</p>
+
+        <p style="margin-top:15px"><strong>macOS/Linux Example:</strong></p>
         <pre class="mono">{
   "mcpServers": {
-    "arm-debug": {
-      "command": "/path/to/mcp-ai-embedded-debug-linux-x64",
+    "ai-embedded-debug": {
+      "command": "/usr/local/bin/mcp-ai-embedded-debug-macos-arm64",
       "args": [],
       "env": {
-        "OPENOCD_PATH": "/usr/bin/openocd"
+        "OPENOCD_PATH": "/opt/homebrew/bin/openocd",
+        "GDB_HOST": "localhost",
+        "GDB_PORT": "3333",
+        "ELF": "./build/firmware.elf"
       }
     }
   }
 }</pre>
+
+        <p style="margin-top:15px"><strong>Windows Example:</strong></p>
+        <pre class="mono">{
+  "mcpServers": {
+    "ai-embedded-debug": {
+      "command": "C:\\\\Tools\\\\mcp-ai-embedded-debug-win-x64.exe",
+      "args": [],
+      "env": {
+        "OPENOCD_PATH": "C:\\\\OpenOCD\\\\bin\\\\openocd.exe",
+        "GDB_HOST": "localhost",
+        "GDB_PORT": "3333",
+        "ELF": ".\\\\build\\\\firmware.elf"
+      }
+    }
+  }
+}</pre>
+
+        <p style="margin-top:15px;font-size:14px;color:var(--muted)">Place this file in your firmware project root directory (same folder as your build scripts). Claude Code will automatically detect and load it when you open the project.</p>
       </div>
 
       <div class="info-box" style="background:rgba(239,68,68,.05);border-left-color:#ef4444">
