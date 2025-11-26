@@ -1,0 +1,4 @@
+574088455bf63e7a904c8f5a086b128ef501755c4ad11d181691157895045355  mcp-arm-debug-linux-x64
+160b04827b7b3f82fabafdfe5a63bec1c07a3d573bae8e5573c117da50ce352d  mcp-arm-debug-macos-arm64
+0a7e08a3ad4de340d07f617e4c90b0d3714acebdfa0950fa7eec1e7965a3e458  mcp-arm-debug-macos-x64
+f9cc550fa449bcd8d9763b11f7edfd1d52aa838951e060bb4e388cf0f778bb8d  mcp-arm-debug-win-x64.exe

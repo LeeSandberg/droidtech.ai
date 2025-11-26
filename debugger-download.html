@@ -88,7 +88,7 @@
     </nav>
 
     <div style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:14px;padding:15px 20px;margin-bottom:30px;text-align:center">
-      <strong style="color:#fbbf24">⚠️ ALPHA RELEASE</strong> <span style="color:var(--muted)">— VERSION_PLACEHOLDER · Early testing version · Expect bugs</span>
+      <strong style="color:#fbbf24">⚠️ ALPHA RELEASE</strong> <span style="color:var(--muted)">— v0.1.16 · Early testing version · Expect bugs</span>
     </div>
 
     <h1>🔌 Embedded AI Debugger</h1>
@@ -98,8 +98,8 @@
       <!-- Windows -->
       <div class="download-card">
         <h2><span class="icon">🪟</span> Windows</h2>
-        <div class="version">VERSION_PLACEHOLDER • x64</div>
-        <a class="btn primary" href="DOWNLOAD_URL_WINDOWS" style="width:100%;text-align:center;margin-bottom:15px" download>Download for Windows</a>
+        <div class="version">v0.1.16 • x64</div>
+        <a class="btn primary" href="https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-win-x64.exe" style="width:100%;text-align:center;margin-bottom:15px" download>Download for Windows</a>
         <div class="requirements">
           <h3>Requirements</h3>
           <ul>
@@ -114,8 +114,8 @@
       <!-- macOS Apple Silicon -->
       <div class="download-card">
         <h2><span class="icon">🍎</span> macOS (ARM)</h2>
-        <div class="version">VERSION_PLACEHOLDER • Apple Silicon</div>
-        <a class="btn primary" href="DOWNLOAD_URL_MACOS_ARM64" style="width:100%;text-align:center;margin-bottom:15px" download>Download for M1/M2/M3</a>
+        <div class="version">v0.1.16 • Apple Silicon</div>
+        <a class="btn primary" href="https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-macos-arm64" style="width:100%;text-align:center;margin-bottom:15px" download>Download for M1/M2/M3</a>
         <div class="requirements">
           <h3>Requirements</h3>
           <ul>
@@ -130,8 +130,8 @@
       <!-- macOS Intel -->
       <div class="download-card">
         <h2><span class="icon">🍎</span> macOS (Intel)</h2>
-        <div class="version">VERSION_PLACEHOLDER • x86_64</div>
-        <a class="btn primary" href="DOWNLOAD_URL_MACOS_X64" style="width:100%;text-align:center;margin-bottom:15px" download>Download for Intel Mac</a>
+        <div class="version">v0.1.16 • x86_64</div>
+        <a class="btn primary" href="https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-macos-x64" style="width:100%;text-align:center;margin-bottom:15px" download>Download for Intel Mac</a>
         <div class="requirements">
           <h3>Requirements</h3>
           <ul>
@@ -146,8 +146,8 @@
       <!-- Linux -->
       <div class="download-card">
         <h2><span class="icon">🐧</span> Linux</h2>
-        <div class="version">VERSION_PLACEHOLDER • x86_64</div>
-        <a class="btn primary" href="DOWNLOAD_URL_LINUX" style="width:100%;text-align:center;margin-bottom:15px" download>Download for Linux</a>
+        <div class="version">v0.1.16 • x86_64</div>
+        <a class="btn primary" href="https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-linux-x64" style="width:100%;text-align:center;margin-bottom:15px" download>Download for Linux</a>
         <div class="requirements">
           <h3>Requirements</h3>
           <ul>
@@ -163,19 +163,19 @@
     <div class="info-box" style="background:rgba(34,211,238,.05);border-left-color:var(--accent)">
       <h2>🔒 Verify Your Download</h2>
       <p>For security, verify the integrity of your downloaded binary using SHA-256 checksums:</p>
-      <p style="margin-top:15px"><strong>Download checksums file:</strong> <a href="CHECKSUMS_URL_PLACEHOLDER" target="_blank" style="color:var(--accent);text-decoration:underline">SHA256SUMS.txt</a></p>
+      <p style="margin-top:15px"><strong>Download checksums file:</strong> <a href="https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/SHA256SUMS.txt" target="_blank" style="color:var(--accent);text-decoration:underline">SHA256SUMS.txt</a></p>
 
       <p style="margin-top:20px"><strong>Verification commands:</strong></p>
       <p><strong>macOS/Linux:</strong></p>
       <pre class="mono"># Download checksums file
-curl -O CHECKSUMS_URL_PLACEHOLDER
+curl -O https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/SHA256SUMS.txt
 
 # Verify the binary
 shasum -a 256 -c SHA256SUMS.txt</pre>
 
       <p style="margin-top:15px"><strong>Windows PowerShell:</strong></p>
       <pre class="mono"># Download checksums file
-curl -O CHECKSUMS_URL_PLACEHOLDER
+curl -O https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/SHA256SUMS.txt
 
 # Calculate hash of downloaded binary
 Get-FileHash mcp-ai-embedded-debug-win-x64.exe -Algorithm SHA256
@@ -310,12 +310,12 @@ Get-FileHash mcp-ai-embedded-debug-win-x64.exe -Algorithm SHA256
         const version = data.latestStable || data.latest;
         const versionInfo = data.versions.find(v => v.tag === version) || data.versions[0];
 
-        // Update all VERSION_PLACEHOLDER instances
+        // Update all v0.1.16 instances
         document.querySelectorAll('body *').forEach(el => {
           if (el.childNodes.length > 0) {
             el.childNodes.forEach(node => {
-              if (node.nodeType === Node.TEXT_NODE && node.textContent.includes('VERSION_PLACEHOLDER')) {
-                node.textContent = node.textContent.replace(/VERSION_PLACEHOLDER/g, version);
+              if (node.nodeType === Node.TEXT_NODE && node.textContent.includes('v0.1.16')) {
+                node.textContent = node.textContent.replace(/v0.1.16/g, version);
               }
             });
           }
@@ -323,11 +323,11 @@ Get-FileHash mcp-ai-embedded-debug-win-x64.exe -Algorithm SHA256
 
         // Update download links
         const links = {
-          'DOWNLOAD_URL_WINDOWS': versionInfo.downloads.windows,
-          'DOWNLOAD_URL_MACOS_ARM64': versionInfo.downloads.macosArm64,
-          'DOWNLOAD_URL_MACOS_X64': versionInfo.downloads.macosX64,
-          'DOWNLOAD_URL_LINUX': versionInfo.downloads.linux,
-          'CHECKSUMS_URL_PLACEHOLDER': versionInfo.downloads.checksums
+          'https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-win-x64.exe': versionInfo.downloads.windows,
+          'https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-macos-arm64': versionInfo.downloads.macosArm64,
+          'https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-macos-x64': versionInfo.downloads.macosX64,
+          'https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/mcp-ai-embedded-debug-linux-x64': versionInfo.downloads.linux,
+          'https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.16/SHA256SUMS.txt': versionInfo.downloads.checksums
         };
 
         document.querySelectorAll('a[href], pre').forEach(el => {
