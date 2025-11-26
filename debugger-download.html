@@ -300,6 +300,59 @@ Get-FileHash mcp-ai-embedded-debug-win-x64.exe -Algorithm SHA256
       }
     }
 
+    // Load latest stable version from versions.json
+    async function loadLatestVersion() {
+      try {
+        const response = await fetch('https://droidtech.ai/downloads/mcp-ai-embedded-debug/versions.json');
+        const data = await response.json();
+
+        // Use latestStable if available, otherwise use latest
+        const version = data.latestStable || data.latest;
+        const versionInfo = data.versions.find(v => v.tag === version) || data.versions[0];
+
+        // Update all VERSION_PLACEHOLDER instances
+        document.querySelectorAll('body *').forEach(el => {
+          if (el.childNodes.length > 0) {
+            el.childNodes.forEach(node => {
+              if (node.nodeType === Node.TEXT_NODE && node.textContent.includes('VERSION_PLACEHOLDER')) {
+                node.textContent = node.textContent.replace(/VERSION_PLACEHOLDER/g, version);
+              }
+            });
+          }
+        });
+
+        // Update download links
+        const links = {
+          'DOWNLOAD_URL_WINDOWS': versionInfo.downloads.windows,
+          'DOWNLOAD_URL_MACOS_ARM64': versionInfo.downloads.macosArm64,
+          'DOWNLOAD_URL_MACOS_X64': versionInfo.downloads.macosX64,
+          'DOWNLOAD_URL_LINUX': versionInfo.downloads.linux,
+          'CHECKSUMS_URL_PLACEHOLDER': versionInfo.downloads.checksums
+        };
+
+        document.querySelectorAll('a[href], pre').forEach(el => {
+          let modified = false;
+          Object.entries(links).forEach(([placeholder, url]) => {
+            if (el.href && el.href.includes(placeholder)) {
+              el.href = url;
+              modified = true;
+            }
+            if (el.textContent && el.textContent.includes(placeholder)) {
+              el.textContent = el.textContent.replace(new RegExp(placeholder, 'g'), url);
+              modified = true;
+            }
+          });
+        });
+
+      } catch (error) {
+        console.error('Failed to load version info:', error);
+        // Fallback: keep placeholders or use hardcoded latest version
+      }
+    }
+
+    // Load version on page load
+    window.addEventListener('DOMContentLoaded', loadLatestVersion);
+
     // Support form handling
     const form = document.getElementById('supportForm');
     form.addEventListener('submit', function(e) {
