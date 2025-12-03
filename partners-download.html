@@ -221,6 +221,11 @@
       try {
         // Fetch latest version from versions.json
         const response = await fetch('https://droidtech.ai/downloads/mcp-ai-embedded-debug/versions.json');
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
         const data = await response.json();
         const version = data.latest;
         const versionInfo = data.versions[0]; // Latest version is first
