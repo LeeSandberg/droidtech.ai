@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MCP Tools Documentation — Embedded AI Debugger</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg:#0b1020;--panel:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--accent:#22d3ee;--stroke:#1f2a44;
+      --radius:22px;--shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;background:linear-gradient(180deg,var(--bg),#020617);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;line-height:1.6;letter-spacing:.1px}
+    .wrap{max-width:1200px;margin:0 auto;padding:clamp(16px,3vw,28px);min-height:100vh}
+    .login-box{max-width:450px;margin:100px auto;background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow)}
+    .login-box h1{font-size:28px;margin:0 0 10px;text-align:center}
+    .login-box .subtitle{color:var(--muted);text-align:center;margin-bottom:30px;font-size:14px}
+    .login-box input{width:100%;background:#0b1224;border:1px solid var(--stroke);color:var(--text);padding:14px 16px;border-radius:10px;font-family:inherit;font-size:15px;margin-bottom:15px;transition:border-color .2s}
+    .login-box input:focus{outline:none;border-color:var(--accent)}
+    .btn{padding:14px 18px;border-radius:12px;border:none;background:linear-gradient(135deg,#0891b2,#06b6d4);color:#00131a;box-shadow:var(--shadow);font-weight:600;transition:all .2s;text-decoration:none;display:inline-block;cursor:pointer;font-size:15px}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(0,0,0,.5)}
+    .btn-full{width:100%}
+    .error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;padding:12px;border-radius:8px;margin-bottom:15px;font-size:14px;display:none}
+    .error.show{display:block}
+    .docs-content{display:none;padding:20px 0}
+    .docs-content.show{display:block}
+    .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:15px}
+    .header h1{font-size:clamp(24px,4vw,36px);margin:0}
+    .logout-btn{background:transparent;border:1px solid var(--stroke);color:var(--text);padding:10px 20px;font-size:14px}
+    .logout-btn:hover{background:#0b1224;transform:translateY(0)}
+    .search-box{background:var(--panel);border:1px solid var(--stroke);border-radius:12px;padding:15px 20px;margin-bottom:30px;display:flex;align-items:center;gap:12px}
+    .search-box input{flex:1;background:transparent;border:none;color:var(--text);font-size:15px;outline:none}
+    .search-box input::placeholder{color:var(--muted)}
+    .category{margin-bottom:50px}
+    .category-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--stroke)}
+    .category-header h2{font-size:clamp(18px,3vw,24px);margin:0}
+    .category-header .count{background:var(--stroke);color:var(--muted);padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600}
+    .tool{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:20px;margin-bottom:15px;transition:all .2s}
+    .tool:hover{border-color:var(--accent);transform:translateX(5px)}
+    .tool-name{font-size:16px;font-weight:600;color:var(--accent);font-family:ui-monospace,monospace;margin-bottom:8px}
+    .tool-desc{color:var(--muted);font-size:14px;margin-bottom:12px;line-height:1.6}
+    .tool-params{background:#050a18;border:1px solid var(--stroke);border-radius:8px;padding:12px;font-family:ui-monospace,monospace;font-size:13px;color:#64748b;overflow-x:auto}
+    .tool-params .param{margin:4px 0}
+    .tool-params .param-name{color:#60a5fa}
+    .tool-params .param-type{color:#fbbf24}
+    .tool-params .param-optional{color:#64748b}
+    .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);text-decoration:none;font-size:14px;margin-bottom:20px}
+    .back-link:hover{text-decoration:underline}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;margin-bottom:30px}
+    .stat-card{background:var(--panel);border:1px solid var(--stroke);border-radius:12px;padding:20px;text-align:center}
+    .stat-card .number{font-size:32px;font-weight:700;color:var(--accent);margin-bottom:5px}
+    .stat-card .label{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Login Form -->
+    <div class="login-box" id="loginBox">
+      <h1>📚 Documentation Access</h1>
+      <p class="subtitle">MCP Tools Reference — Embedded AI Debugger</p>
+
+      <div class="error" id="errorMsg">Invalid access code. Please contact support@droidtech.ai</div>
+
+      <form id="loginForm">
+        <input type="password" id="accessCode" placeholder="Enter partner access code" required autofocus>
+        <button type="submit" class="btn btn-full">View Documentation</button>
+      </form>
+
+      <p style="margin-top:25px;text-align:center;font-size:13px;color:var(--muted)">
+        Need access? Contact <a href="mailto:support@droidtech.ai" style="color:var(--accent)">support@droidtech.ai</a>
+      </p>
+    </div>
+
+    <!-- Documentation Content (hidden until logged in) -->
+    <div class="docs-content" id="docsContent">
+      <a href="partners-download.html" class="back-link">← Back to Downloads</a>
+
+      <div class="header">
+        <h1>📚 MCP Tools Documentation</h1>
+        <button class="btn logout-btn" onclick="logout()">Logout</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="number">79</div>
+          <div class="label">Total Tools</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">11</div>
+          <div class="label">Categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">v0.1.18</div>
+          <div class="label">Latest Alpha</div>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <span style="font-size:18px">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search tools by name or description..." onkeyup="searchTools()">
+      </div>
+
+      <!-- Target Connection & Control -->
+      <div class="category" data-category="target">
+        <div class="category-header">
+          <h2>🎯 Target Connection & Control</h2>
+          <span class="count">6 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.connect</div>
+          <div class="tool-desc">Connect to target via GDB remote protocol</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">host</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">attach_only</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.connect_auto</div>
+          <div class="tool-desc">Auto-connect with ELF offset correction for bootloader scenarios</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">host</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">expectedOffset</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">attach_only</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.detect_backend</div>
+          <div class="tool-desc">Detect which debug backend is running (OpenOCD, PyOCD, QEMU, J-Link, etc.)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.detect_hardware</div>
+          <div class="tool-desc">Auto-detect connected debug probes and target hardware</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.check_port</div>
+          <div class="tool-desc">Check if a TCP port is available or in use</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">host</span>: <span class="param-type">string</span> <span class="param-optional">(optional, default: localhost)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.check_chip_needs_nuvoton_openocd</div>
+          <div class="tool-desc">Check if chip requires Nuvoton-patched OpenOCD (M467, M487, etc.)</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">chipName</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Control -->
+      <div class="category" data-category="core">
+        <div class="category-header">
+          <h2>⚙️ Core Control</h2>
+          <span class="count">3 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">core.reset</div>
+          <div class="tool-desc">Reset the target MCU</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">core.halt</div>
+          <div class="tool-desc">Halt (pause) the target MCU execution</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">core.run</div>
+          <div class="tool-desc">Resume target MCU execution</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+      </div>
+
+      <!-- Memory & Registers -->
+      <div class="category" data-category="memory">
+        <div class="category-header">
+          <h2>💾 Memory & Registers</h2>
+          <span class="count">4 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">mem.read</div>
+          <div class="tool-desc">Read memory from target at specified address</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">addr</span>: <span class="param-type">string</span> (hex address)</div>
+            <div class="param"><span class="param-name">len</span>: <span class="param-type">number</span> (bytes to read)</div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">regs.read</div>
+          <div class="tool-desc">Read all CPU registers (R0-R15, PC, SP, etc.)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">regs.read_named</div>
+          <div class="tool-desc">Read specific peripheral register by name (requires SVD file loaded)</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">peripheral</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">register</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">svd.load</div>
+          <div class="tool-desc">Load SVD (System View Description) file for peripheral register definitions</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">path</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flash Programming -->
+      <div class="category" data-category="flash">
+        <div class="category-header">
+          <h2>⚡ Flash Programming</h2>
+          <span class="count">10 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.flash_hex</div>
+          <div class="tool-desc">Flash Intel HEX file to target</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">hex</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">dry_run</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">method</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.flash_hex_auto</div>
+          <div class="tool-desc">Auto-detect and flash HEX with optimal backend</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">hex</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">dry_run</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">method</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.flash_incremental</div>
+          <div class="tool-desc">Incremental flash update (only changed pages)</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">page_size</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">sections</span>: <span class="param-type">string[]</span></div>
+            <div class="param"><span class="param-name">dry_run</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.flash_write_bin</div>
+          <div class="tool-desc">Write binary data to flash at specific address</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">addr</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">data_hex</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">backend</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.mass_erase</div>
+          <div class="tool-desc">Perform mass erase of entire flash memory</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">dry_run</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.openocd_m48x_mass_erase</div>
+          <div class="tool-desc">Nuvoton M48x-specific mass erase (unlocks protected chips)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.verify</div>
+          <div class="tool-desc">Verify flash contents match ELF/HEX file</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">hex</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">method</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">dry_run</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.crc32_range</div>
+          <div class="tool-desc">Calculate CRC32 checksum of memory range</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">addr</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">length</span>: <span class="param-type">number</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.verify_crc_sections</div>
+          <div class="tool-desc">Verify CRC32 of ELF sections against flash</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">sections</span>: <span class="param-type">string[]</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.verify_manifest_crc</div>
+          <div class="tool-desc">Verify firmware integrity using embedded CRC manifest</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">symbol</span>: <span class="param-type">string</span> <span class="param-optional">(optional, default: __crc_manifest)</span></div>
+            <div class="param"><span class="param-name">sections</span>: <span class="param-type">string[]</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RTOS Support -->
+      <div class="category" data-category="rtos">
+        <div class="category-header">
+          <h2>🧵 RTOS Support (FreeRTOS)</h2>
+          <span class="count">10 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.list_tasks</div>
+          <div class="tool-desc">List all FreeRTOS tasks (via OpenOCD if available)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.list_tasks_walk</div>
+          <div class="tool-desc">List tasks by manually walking FreeRTOS data structures</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.snapshot_tasks</div>
+          <div class="tool-desc">Capture complete task snapshot (all task details)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.snapshot_queues</div>
+          <div class="tool-desc">Capture FreeRTOS queue status snapshot</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.heap</div>
+          <div class="tool-desc">Show FreeRTOS heap usage</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.heap_stats</div>
+          <div class="tool-desc">Detailed heap statistics (free, used, high water mark)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.ptype_tcb</div>
+          <div class="tool-desc">Show FreeRTOS TCB (Task Control Block) structure definition</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.configure_offsets</div>
+          <div class="tool-desc">Manually configure FreeRTOS structure offsets for custom ports</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">cfg</span>: <span class="param-type">object</span> (offset configuration)</div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.auto_configure_offsets</div>
+          <div class="tool-desc">Auto-detect FreeRTOS offsets from debug symbols</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.derive_tcb_offsets</div>
+          <div class="tool-desc">Derive TCB offsets from memory inspection</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtos.threads_openocd</div>
+          <div class="tool-desc">Query OpenOCD for RTOS thread information</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">host</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">bt.current</div>
+          <div class="tool-desc">Show backtrace for current task/thread</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+      </div>
+
+      <!-- Trace & Debug -->
+      <div class="category" data-category="trace">
+        <div class="category-header">
+          <h2>📡 Trace & Debug Output</h2>
+          <span class="count">9 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">trace.itm_enable_openocd</div>
+          <div class="tool-desc">Enable ITM/SWO trace via OpenOCD</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">swo_freq</span>: <span class="param-type">number</span> (Hz)</div>
+            <div class="param"><span class="param-name">cpu_freq</span>: <span class="param-type">number</span> (Hz)</div>
+            <div class="param"><span class="param-name">host</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">trace.itm_write_marker</div>
+          <div class="tool-desc">Write marker text to ITM trace output</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">text</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">trace.itm_tail_start</div>
+          <div class="tool-desc">Start tailing ITM output from file</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">file</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">trace.itm_tail_read</div>
+          <div class="tool-desc">Read new ITM trace data from tailed file</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">max_bytes</span>: <span class="param-type">number</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">trace.itm_tail_stop</div>
+          <div class="tool-desc">Stop tailing ITM output</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtt.start</div>
+          <div class="tool-desc">Start J-Link RTT (Real-Time Transfer) capture</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">binary</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">args</span>: <span class="param-type">string[]</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtt.stop</div>
+          <div class="tool-desc">Stop RTT capture</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtt.read</div>
+          <div class="tool-desc">Read RTT output data</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">lines</span>: <span class="param-type">number</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">rtt.setup_openocd</div>
+          <div class="tool-desc">Configure RTT via OpenOCD (alternative to J-Link)</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">telnet_port</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">rtt_port</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">ram_start</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">ram_size</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">control_block_id</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backend Management -->
+      <div class="category" data-category="backend">
+        <div class="category-header">
+          <h2>🔧 Debug Backend Management</h2>
+          <span class="count">6 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.start_openocd</div>
+          <div class="tool-desc">Start OpenOCD debug server</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">telnet</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">extra_args</span>: <span class="param-type">string[]</span></div>
+            <div class="param"><span class="param-name">interface</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">target</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">config_file</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">rtos</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.start_pyocd</div>
+          <div class="tool-desc">Start PyOCD debug server</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">telnet</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">target</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">erase</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">adapter_speed</span>: <span class="param-type">number</span> <span class="param-optional">(optional, kHz)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.stop_openocd</div>
+          <div class="tool-desc">Stop running OpenOCD server</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.check_server_installed</div>
+          <div class="tool-desc">Check if debug server is installed (openocd, pyocd, jlink, qemu)</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">server</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.install_server</div>
+          <div class="tool-desc">Install debug server with platform-specific instructions</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">server</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.detect_openocd_variant</div>
+          <div class="tool-desc">Detect which OpenOCD variant is installed (official, Nuvoton, etc.)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">openocd.exec</div>
+          <div class="tool-desc">Execute arbitrary OpenOCD command via telnet</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">cmd</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">host</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">port</span>: <span class="param-type">number</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- License Management -->
+      <div class="category" data-category="license">
+        <div class="category-header">
+          <h2>🔐 License Management</h2>
+          <span class="count">9 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.activate</div>
+          <div class="tool-desc">Activate license with Keygen license key</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">license_key</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.deactivate</div>
+          <div class="tool-desc">Deactivate current machine from license</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.status</div>
+          <div class="tool-desc">Check current license status and tier</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.verify</div>
+          <div class="tool-desc">Verify license with Keygen server</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.features</div>
+          <div class="tool-desc">List available features for current license tier</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.check_feature</div>
+          <div class="tool-desc">Check if specific feature is available on current tier</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">feature</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.heartbeat</div>
+          <div class="tool-desc">Send license heartbeat to Keygen server</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.info</div>
+          <div class="tool-desc">Get detailed license information</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.check_out</div>
+          <div class="tool-desc">Check out floating license (for enterprise pools)</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">license.check_in</div>
+          <div class="tool-desc">Check in floating license back to pool</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+      </div>
+
+      <!-- Symbol & ELF Tools -->
+      <div class="category" data-category="symbols">
+        <div class="category-header">
+          <h2>🔣 Symbol & ELF Analysis</h2>
+          <span class="count">5 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">symbols.from_map</div>
+          <div class="tool-desc">Extract symbol addresses from .map file</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">path</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">names</span>: <span class="param-type">string[]</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">symbols.nm_list</div>
+          <div class="tool-desc">List all symbols in ELF file using nm</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">symbols.nm_find</div>
+          <div class="tool-desc">Find specific symbol in ELF file</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">name</span>: <span class="param-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.check_elf_alignment</div>
+          <div class="tool-desc">Verify ELF file has correct flash offset for bootloader</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elfPath</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">expectedOffset</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.write_symbol_u32</div>
+          <div class="tool-desc">Write uint32 value to memory location of symbol</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">symbol</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">value</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">verify</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">target.update_manifest_crc</div>
+          <div class="tool-desc">Update CRC manifest in ELF file before flashing</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">elf</span>: <span class="param-type">string</span></div>
+            <div class="param"><span class="param-name">sections</span>: <span class="param-type">string[]</span></div>
+            <div class="param"><span class="param-name">symbol</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">exclude_symbol_region</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- System Utilities -->
+      <div class="category" data-category="system">
+        <div class="category-header">
+          <h2>🖥️ System Utilities</h2>
+          <span class="count">7 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">system.check_disk_space</div>
+          <div class="tool-desc">Check available disk space at path</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">path</span>: <span class="param-type">string</span> <span class="param-optional">(optional, defaults to current dir)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">emulator.check_qemu_installed</div>
+          <div class="tool-desc">Check if QEMU ARM emulator is installed</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">emulator.install_qemu</div>
+          <div class="tool-desc">Install QEMU with platform-specific instructions</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">board.load</div>
+          <div class="tool-desc">Load board configuration file</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">name</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">path</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">config.reload</div>
+          <div class="tool-desc">Reload mcp.config.json configuration file</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">events.start_stream</div>
+          <div class="tool-desc">Start event streaming (ITM, RTT, EPD screen)</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">interval_ms</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">epdWidth</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">epdHeight</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">itm</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">rtt</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">epd</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">fbSymbol</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">events.stop_stream</div>
+          <div class="tool-desc">Stop event streaming</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">events.poll</div>
+          <div class="tool-desc">Poll for new events from stream</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">max</span>: <span class="param-type">number</span></div>
+          </div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">epd.screen_capture</div>
+          <div class="tool-desc">Capture e-paper display (EPD) screen from framebuffer</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">width</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">height</span>: <span class="param-type">number</span></div>
+            <div class="param"><span class="param-name">fbSymbol</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+            <div class="param"><span class="param-name">format</span>: <span class="param-type">string</span> <span class="param-optional">(optional)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCP Management -->
+      <div class="category" data-category="mcp">
+        <div class="category-header">
+          <h2>⚡ MCP Management</h2>
+          <span class="count">5 tools</span>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">mcp.version</div>
+          <div class="tool-desc">Get current MCP server version</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">mcp.check_updates</div>
+          <div class="tool-desc">Check for available MCP server updates</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">mcp.update</div>
+          <div class="tool-desc">Update MCP server to latest version</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">mcp.refresh_title</div>
+          <div class="tool-desc">Refresh terminal window title with status</div>
+          <div class="tool-params">No parameters</div>
+        </div>
+
+        <div class="tool">
+          <div class="tool-name">mcp.cleanup_stale_processes</div>
+          <div class="tool-desc">Clean up stale mcp-arm-debug processes</div>
+          <div class="tool-params">
+            <div class="param"><span class="param-name">auto_kill</span>: <span class="param-type">boolean</span> <span class="param-optional">(optional, default: false)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin:60px 0;padding:30px;background:var(--panel);border:1px solid var(--stroke);border-radius:14px;text-align:center">
+        <h3 style="margin:0 0 15px">Need Help?</h3>
+        <p style="color:var(--muted);margin-bottom:20px">Contact our support team for implementation assistance and technical support.</p>
+        <a href="mailto:support@droidtech.ai" class="btn">Contact Support</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Same password as partners-download.html
+    const VALID_CODES = [
+      'c67fc8b89a652cf6abf258f08ea0269132422c17fb80f7c47cbe05dfa18e643c' // "Dumbledore"
+    ];
+
+    async function sha256(str) {
+      const buffer = new TextEncoder().encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const code = document.getElementById('accessCode').value.trim();
+      const hash = await sha256(code);
+
+      if (VALID_CODES.includes(hash)) {
+        localStorage.setItem('partnerDocsAuth', hash);
+        showDocs();
+      } else {
+        document.getElementById('errorMsg').classList.add('show');
+      }
+    });
+
+    function showDocs() {
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('docsContent').classList.add('show');
+    }
+
+    function logout() {
+      localStorage.removeItem('partnerDocsAuth');
+      document.getElementById('loginBox').style.display = 'block';
+      document.getElementById('docsContent').classList.remove('show');
+      document.getElementById('accessCode').value = '';
+    }
+
+    function searchTools() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const tools = document.querySelectorAll('.tool');
+      const categories = document.querySelectorAll('.category');
+
+      tools.forEach(tool => {
+        const name = tool.querySelector('.tool-name').textContent.toLowerCase();
+        const desc = tool.querySelector('.tool-desc').textContent.toLowerCase();
+        const match = name.includes(query) || desc.includes(query);
+        tool.style.display = match ? 'block' : 'none';
+      });
+
+      // Hide categories with no visible tools
+      categories.forEach(category => {
+        const visibleTools = Array.from(category.querySelectorAll('.tool')).filter(t => t.style.display !== 'none');
+        category.style.display = visibleTools.length > 0 ? 'block' : 'none';
+      });
+    }
+
+    // Check if already logged in
+    if (localStorage.getItem('partnerDocsAuth') && VALID_CODES.includes(localStorage.getItem('partnerDocsAuth'))) {
+      showDocs();
+    }
+  </script>
+</body>
+</html>
