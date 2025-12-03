@@ -248,15 +248,15 @@
         `;
       } catch (error) {
         console.error('Failed to load version info:', error);
-        // Fallback to latest known version if fetch fails
-        const version = 'v0.1.18-alpha';
+        // Show error message instead of hardcoded fallback
         document.querySelectorAll('[id^="version-"]').forEach(el => {
-          el.textContent = `${version} • Latest Alpha`;
+          el.textContent = 'Loading failed - please refresh';
+          el.style.color = '#ff6b6b';
         });
-        document.getElementById('dl-win').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-win-x64.exe`;
-        document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-macos-arm64`;
-        document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-macos-x64`;
-        document.getElementById('dl-linux').href = `https://droidtech.ai/downloads/mcp-ai-embedded-debug/${version}/mcp-ai-embedded-debug-linux-x64`;
+        document.getElementById('changelog').innerHTML = `
+          <strong style="color: #ff6b6b;">⚠️ Unable to load version information</strong><br><br>
+          Please refresh the page or contact <a href="mailto:info@droidtech.ai" style="color: #4a9eff;">info@droidtech.ai</a> if the problem persists.
+        `;
       }
     }
 
