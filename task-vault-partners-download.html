@@ -123,7 +123,7 @@
 task-vault-mcp --version</pre>
 
         <p style="margin-top:15px"><strong>Windows PowerShell:</strong></p>
-        <pre class="mono">Move-Item task-vault-mcp-windows-x64.exe C:\Windows\System32\task-vault-mcp.exe
+        <pre class="mono">Move-Item task-vault-mcp-win-x64.exe C:\Windows\System32\task-vault-mcp.exe
 task-vault-mcp --version</pre>
 
         <p style="margin-top:15px"><strong>4. Configure Claude Desktop</strong></p>
@@ -274,7 +274,7 @@ task-vault-mcp --version</pre>
         document.querySelectorAll('[id^="version-"]').forEach(el => {
           el.textContent = `${version} • Latest Alpha`;
         });
-        document.getElementById('dl-win').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-windows-x64.exe`;
+        document.getElementById('dl-win').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-win-x64.exe`;
         document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-macos-arm64`;
         document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-macos-x64`;
         document.getElementById('dl-linux-x64').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-linux-x64`;
