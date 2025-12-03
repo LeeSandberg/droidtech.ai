@@ -1,0 +1,21 @@
+{
+  "latest": "v0.1.1-alpha",
+  "latestStable": "",
+  "updated": "2025-12-03T10:45:34Z",
+  "repository": "https://github.com/LeeSandberg/task-vault-mcp",
+  "versions": [
+    {
+      "tag": "v0.1.1-alpha",
+      "date": "2025-12-03T10:45:34Z",
+      "prerelease": true,
+      "downloads": {
+        "windows": "https://droidtech.ai/downloads/task-vault-mcp/v0.1.1-alpha/task-vault-mcp-win-x64.exe",
+        "macosArm64": "https://droidtech.ai/downloads/task-vault-mcp/v0.1.1-alpha/task-vault-mcp-macos-arm64",
+        "macosX64": "https://droidtech.ai/downloads/task-vault-mcp/v0.1.1-alpha/task-vault-mcp-macos-x64",
+        "linuxX64": "https://droidtech.ai/downloads/task-vault-mcp/v0.1.1-alpha/task-vault-mcp-linux-x64",
+        "linuxArm64": "https://droidtech.ai/downloads/task-vault-mcp/v0.1.1-alpha/task-vault-mcp-linux-arm64",
+        "checksums": "https://droidtech.ai/downloads/task-vault-mcp/v0.1.1-alpha/SHA256SUMS.txt"
+      }
+    }
+  ]
+}
