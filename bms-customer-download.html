@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Customer Downloads — BMS Front Panel Firmware</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8B%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg:#0b1020;--panel:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--accent:#22d3ee;--stroke:#1f2a44;
+      --radius:22px;--shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;background:linear-gradient(180deg,var(--bg),#020617);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;line-height:1.6;letter-spacing:.1px}
+    .wrap{max-width:1100px;margin:0 auto;padding:clamp(16px,3vw,28px);min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+    .login-box{max-width:450px;margin:0 auto;background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow)}
+    .login-box h1{font-size:28px;margin:0 0 10px;text-align:center}
+    .login-box .subtitle{color:var(--muted);text-align:center;margin-bottom:30px;font-size:14px}
+    .login-box input{width:100%;background:#0b1224;border:1px solid var(--stroke);color:var(--text);padding:14px 16px;border-radius:10px;font-family:inherit;font-size:15px;margin-bottom:15px;transition:border-color .2s}
+    .login-box input:focus{outline:none;border-color:var(--accent)}
+    .btn{padding:14px 18px;border-radius:12px;border:none;background:linear-gradient(135deg,#0891b2,#06b6d4);color:#00131a;box-shadow:var(--shadow);font-weight:600;transition:all .2s;text-decoration:none;display:inline-block;width:100%;cursor:pointer;font-size:15px;text-align:center}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(0,0,0,.5)}
+    .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+    .btn.secondary{background:var(--panel);border:1px solid var(--stroke);color:var(--text)}
+    .error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;padding:12px;border-radius:8px;margin-bottom:15px;font-size:14px;display:none}
+    .error.show{display:block}
+    .download-content{display:none}
+    .download-content.show{display:block}
+    h2{font-size:clamp(20px,3vw,28px);margin:40px 0 20px}
+    .file-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:20px 0}
+    .file-card{background:linear-gradient(180deg,var(--panel),#0b1224);padding:25px;border-radius:var(--radius);border:1px solid var(--stroke);box-shadow:var(--shadow);transition:all .3s}
+    .file-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+    .file-card h3{font-size:18px;margin:0 0 8px;display:flex;align-items:center;gap:10px}
+    .file-card .icon{font-size:28px}
+    .file-card .desc{font-size:13px;color:var(--muted);margin-bottom:15px;line-height:1.5}
+    .file-card .size{font-size:12px;color:var(--muted);margin-bottom:10px}
+    .file-card a{display:inline-block;width:100%;text-align:center;margin-bottom:8px}
+    .bundle-card{background:linear-gradient(135deg,#0891b2,#0e7490);border:2px solid var(--accent);padding:30px;border-radius:var(--radius);box-shadow:0 20px 40px rgba(0,0,0,.5);margin:30px 0;text-align:center}
+    .bundle-card h2{color:#00131a;margin:0 0 10px;font-size:24px}
+    .bundle-card .desc{color:#00131a;opacity:0.8;margin-bottom:20px;font-size:15px}
+    .bundle-card .btn{background:#00131a;color:#06b6d4;font-size:16px;padding:16px 24px;margin:0 auto;max-width:400px}
+    .bundle-card .btn:hover{background:#0a1929}
+    .info-box{background:var(--panel);border:1px solid var(--stroke);border-left:4px solid var(--accent);padding:25px;border-radius:14px;margin:30px 0}
+    .info-box h3{font-size:18px;margin:0 0 15px}
+    .info-box p{margin:10px 0;color:var(--muted);line-height:1.7;font-size:14px}
+    .info-box ul{margin:10px 0;padding-left:20px;color:var(--muted);font-size:14px}
+    .info-box li{margin:6px 0}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:12px;background:#050a18;padding:8px 12px;border-radius:6px;border:1px solid var(--stroke);display:block;margin:10px 0;overflow-x:auto}
+    .alert{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:15px 20px;margin-bottom:25px;color:#fbbf24;font-size:14px;text-align:center}
+    .logout-btn{background:transparent;border:1px solid var(--stroke);color:var(--text);float:right;padding:8px 16px;font-size:13px;width:auto}
+    .logout-btn:hover{background:#0b1224}
+    .version-badge{display:inline-block;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);color:var(--accent);padding:4px 12px;border-radius:8px;font-size:13px;font-weight:600;margin-left:10px}
+    .loading{text-align:center;padding:40px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Login Form -->
+    <div class="login-box" id="loginBox">
+      <h1>🔋 Customer Access</h1>
+      <p class="subtitle">BMS Front Panel Firmware — Customer Downloads</p>
+
+      <div class="error" id="errorMsg">Invalid access code. Please contact support@droidtech.ai</div>
+
+      <form id="loginForm">
+        <input type="password" id="accessCode" placeholder="Enter customer access code" required autofocus>
+        <button type="submit" class="btn">Access Downloads</button>
+      </form>
+
+      <p style="margin-top:25px;text-align:center;font-size:13px;color:var(--muted)">
+        Need access? Contact <a href="mailto:support@droidtech.ai" style="color:var(--accent)">support@droidtech.ai</a>
+      </p>
+    </div>
+
+    <!-- Download Content (hidden until logged in) -->
+    <div class="download-content" id="downloadContent">
+      <button class="btn logout-btn" onclick="logout()">Logout</button>
+      <h1 style="margin-top:20px">🔋 BMS Front Panel Firmware</h1>
+
+      <div class="alert">
+        <strong>📦 Latest Release:</strong> <span id="latestVersion">Loading...</span> — <span id="buildDate">Loading...</span>
+      </div>
+
+      <!-- Complete Bundle Download -->
+      <div class="bundle-card">
+        <h2>📦 Complete Firmware Bundle</h2>
+        <p class="desc">Download all firmware files in one convenient ZIP package</p>
+        <a class="btn" id="bundleDownload" href="#" download>
+          Download Complete Bundle
+        </a>
+        <p style="margin-top:15px;font-size:13px;opacity:0.7;color:#00131a">
+          Includes: ELF, BIN, HEX, ICP, checksums, and README
+        </p>
+      </div>
+
+      <h2>Individual Files</h2>
+      <div class="file-grid">
+        <!-- ELF File -->
+        <div class="file-card">
+          <h3><span class="icon">🔧</span> ELF</h3>
+          <p class="desc">Executable with debug symbols for GDB debugging</p>
+          <p class="size" id="sizeElf">Loading...</p>
+          <a class="btn secondary" id="dlElf" href="#" download>Download ELF</a>
+        </div>
+
+        <!-- BIN File -->
+        <div class="file-card">
+          <h3><span class="icon">📦</span> BIN</h3>
+          <p class="desc">Raw binary with bootloader padding</p>
+          <p class="size" id="sizeBin">Loading...</p>
+          <a class="btn secondary" id="dlBin" href="#" download>Download BIN</a>
+        </div>
+
+        <!-- HEX File -->
+        <div class="file-card">
+          <h3><span class="icon">📄</span> HEX</h3>
+          <p class="desc">Intel HEX format (recommended for production)</p>
+          <p class="size" id="sizeHex">Loading...</p>
+          <a class="btn secondary" id="dlHex" href="#" download>Download HEX</a>
+        </div>
+
+        <!-- ICP File -->
+        <div class="file-card">
+          <h3><span class="icon">⚡</span> ICP</h3>
+          <p class="desc">Nuvoton ICP programmer format</p>
+          <p class="size" id="sizeIcp">Loading...</p>
+          <a class="btn secondary" id="dlIcp" href="#" download>Download ICP</a>
+        </div>
+
+        <!-- Checksums -->
+        <div class="file-card">
+          <h3><span class="icon">🔒</span> Checksums</h3>
+          <p class="desc">SHA-256 checksums for file verification</p>
+          <p class="size">Text file</p>
+          <a class="btn secondary" id="dlChecksums" href="#" download>Download SHA256SUMS</a>
+        </div>
+
+        <!-- README -->
+        <div class="file-card">
+          <h3><span class="icon">📖</span> README</h3>
+          <p class="desc">Programming instructions and documentation</p>
+          <p class="size">Text file</p>
+          <a class="btn secondary" id="dlReadme" href="#" download>Download README</a>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h3>⚙️ Programming Instructions</h3>
+        <p><strong>Target Hardware:</strong> Nuvoton M483 MCP (ARM Cortex-M4F)</p>
+
+        <p style="margin-top:15px"><strong>Using Nu-Link Programmer:</strong></p>
+        <ol style="margin:10px 0;padding-left:20px;color:var(--muted);font-size:14px">
+          <li>Connect Nu-Link debugger to target board</li>
+          <li>Use Nuvoton ICP Tool to flash <code style="background:#050a18;padding:2px 6px;border-radius:4px">frontpanel_app.hex</code></li>
+          <li>Verify programming with device ID check</li>
+        </ol>
+
+        <p style="margin-top:15px"><strong>Using OpenOCD:</strong></p>
+        <pre class="mono">openocd -f interface/nulink.cfg -f target/nuvoton_m48x.cfg \
+  -c "init; reset halt; program frontpanel_app.hex verify; reset run; shutdown"</pre>
+
+        <p style="margin-top:15px"><strong>Verify Download Integrity:</strong></p>
+        <pre class="mono"># Download SHA256SUMS.txt and verify:
+sha256sum -c SHA256SUMS.txt</pre>
+      </div>
+
+      <div class="info-box" style="background:rgba(239,68,68,.05);border-left-color:#ef4444">
+        <h3>⚠️ Important Notes</h3>
+        <ul>
+          <li>Ensure bootloader is flashed before application firmware</li>
+          <li>Application starts at address 0x8200 (after bootloader)</li>
+          <li>Total flash usage must not exceed 220KB limit</li>
+          <li>Always verify checksums before flashing</li>
+          <li>Backup existing firmware before updating</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h3>📋 Build Information</h3>
+        <p><strong>Version:</strong> <span id="infoVersion">Loading...</span></p>
+        <p><strong>Build Date:</strong> <span id="infoBuildDate">Loading...</span></p>
+        <p><strong>Commit:</strong> <span id="infoCommit">Loading...</span></p>
+        <p><strong>Binary Size:</strong> <span id="infoBinSize">Loading...</span> KB</p>
+        <p><strong>Repository:</strong> <a href="https://github.com/LeeSandberg/BMS-front-panel" target="_blank" style="color:var(--accent)">GitHub</a></p>
+      </div>
+
+      <div class="info-box">
+        <h3>💬 Support</h3>
+        <p>Need help with programming or experiencing issues?</p>
+        <p>Email: <a href="mailto:support@droidtech.ai" style="color:var(--accent)">support@droidtech.ai</a></p>
+        <p>Include firmware version and error details in your message.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Customer access codes (SHA-256 hashed)
+    // You can add multiple customer passwords here
+    const VALID_CODES = [
+      'c67fc8b89a652cf6abf258f08ea0269132422c17fb80f7c47cbe05dfa18e643c' // Dumbledore (for testing)
+      // Add more hashed passwords as needed
+    ];
+
+    // Simple SHA-256 hash function
+    async function sha256(str) {
+      const buffer = new TextEncoder().encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const code = document.getElementById('accessCode').value.trim();
+      const hash = await sha256(code);
+
+      if (VALID_CODES.includes(hash)) {
+        localStorage.setItem('bmsAuth', hash);
+        showDownloads();
+      } else {
+        document.getElementById('errorMsg').classList.add('show');
+      }
+    });
+
+    function showDownloads() {
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('downloadContent').classList.add('show');
+      loadLatestRelease();
+    }
+
+    function logout() {
+      localStorage.removeItem('bmsAuth');
+      document.getElementById('loginBox').style.display = 'block';
+      document.getElementById('downloadContent').classList.remove('show');
+      document.getElementById('accessCode').value = '';
+    }
+
+    // Check if already logged in
+    window.addEventListener('load', async () => {
+      const stored = localStorage.getItem('bmsAuth');
+      if (stored && VALID_CODES.includes(stored)) {
+        showDownloads();
+      }
+    });
+
+    function formatBytes(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+    }
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    async function loadLatestRelease() {
+      try {
+        // Fetch latest version from versions.json
+        const response = await fetch('https://droidtech.ai/downloads/bms-frontpanel/versions.json');
+        const data = await response.json();
+
+        const version = data.latestStable || data.latest;
+        const versionInfo = data.versions[0];
+
+        if (!versionInfo) {
+          throw new Error('No version information available');
+        }
+
+        // Update header info
+        document.getElementById('latestVersion').textContent = version;
+        document.getElementById('buildDate').textContent = formatDate(versionInfo.date);
+
+        // Update bundle download
+        document.getElementById('bundleDownload').href = versionInfo.downloads.bundle;
+
+        // Update individual file downloads
+        document.getElementById('dlElf').href = versionInfo.downloads.elf;
+        document.getElementById('dlBin').href = versionInfo.downloads.bin;
+        document.getElementById('dlHex').href = versionInfo.downloads.hex;
+        document.getElementById('dlIcp').href = versionInfo.downloads.icp;
+        document.getElementById('dlChecksums').href = versionInfo.downloads.checksums;
+        document.getElementById('dlReadme').href = versionInfo.downloads.readme;
+
+        // Load manifest for detailed info
+        const manifestResponse = await fetch(versionInfo.downloads.manifest);
+        const manifest = await manifestResponse.json();
+
+        // Update build info
+        document.getElementById('infoVersion').textContent = version;
+        document.getElementById('infoBuildDate').textContent = formatDate(manifest.buildDate);
+        document.getElementById('infoCommit').textContent = manifest.shortCommit;
+        document.getElementById('infoBinSize').textContent = manifest.binarySizeKB;
+
+        // Estimate file sizes (could fetch actual sizes via HEAD requests if needed)
+        document.getElementById('sizeBin').textContent = `~${manifest.binarySizeKB} KB`;
+        document.getElementById('sizeElf').textContent = `~${Math.round(manifest.binarySizeKB * 1.5)} KB`;
+        document.getElementById('sizeHex').textContent = `~${Math.round(manifest.binarySizeKB * 1.2)} KB`;
+        document.getElementById('sizeIcp').textContent = `~${manifest.binarySizeKB} KB`;
+
+      } catch (error) {
+        console.error('Failed to load firmware info:', error);
+        document.querySelector('.alert').innerHTML =
+          '<strong style="color: #ff6b6b;">⚠️ Unable to load firmware information</strong><br>Please refresh the page or contact support@droidtech.ai';
+        document.getElementById('latestVersion').textContent = 'Error loading';
+        document.getElementById('buildDate').textContent = '';
+      }
+    }
+  </script>
+</body>
+</html>
