@@ -1,19 +1,19 @@
 {
-  "latest": "v0.1.15-final-js",
+  "latest": "v0.2.0-alpha",
   "latestStable": "v0.1.15-final-js",
-  "updated": "2025-12-06T12:22:47Z",
+  "updated": "2025-12-06T13:03:48Z",
   "repository": "https://github.com/LeeSandberg/mcp-arm-debug",
   "versions": [
     {
-      "tag": "v0.1.15-final-js",
-      "date": "2025-12-06T12:22:47Z",
-      "prerelease": false,
+      "tag": "v0.2.0-alpha",
+      "date": "2025-12-06T13:03:48Z",
+      "prerelease": true,
       "downloads": {
-        "windows": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.15-final-js/mcp-ai-embedded-debug-win-x64.exe",
-        "macosArm64": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.15-final-js/mcp-ai-embedded-debug-macos-arm64",
-        "macosX64": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.15-final-js/mcp-ai-embedded-debug-macos-x64",
-        "linux": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.15-final-js/mcp-ai-embedded-debug-linux-x64",
-        "checksums": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.1.15-final-js/SHA256SUMS.txt"
+        "windows": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.2.0-alpha/mcp-ai-embedded-debug-win-x64.exe",
+        "macosArm64": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.2.0-alpha/mcp-ai-embedded-debug-macos-arm64",
+        "macosX64": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.2.0-alpha/mcp-ai-embedded-debug-macos-x64",
+        "linux": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.2.0-alpha/mcp-ai-embedded-debug-linux-x64",
+        "checksums": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.2.0-alpha/SHA256SUMS.txt"
       }
     }
   ]
