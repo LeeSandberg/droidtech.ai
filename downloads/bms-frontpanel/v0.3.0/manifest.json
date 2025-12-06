@@ -1,9 +1,9 @@
 {
   "version": "v0.3.0",
-  "buildDate": "2025-12-06T20:30:40Z",
-  "commit": "eee4844afd3f40264ad593f0c911546b4029ee4a",
-  "shortCommit": "eee4844",
-  "binarySizeKB": ,
+  "buildDate": "2025-12-06T20:54:41Z",
+  "commit": "e89ff3b638539b46081a5cd7e084ebf1f5820ebc",
+  "shortCommit": "e89ff3b",
+  "binarySizeKB": 181,
   "target": "Nuvoton M483 MCP",
   "files": {
     "application": {
