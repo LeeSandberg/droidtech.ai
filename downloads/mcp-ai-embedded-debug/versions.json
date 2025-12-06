@@ -1,12 +1,12 @@
 {
   "latest": "v0.2.0-alpha",
   "latestStable": "v0.1.15-final-js",
-  "updated": "2025-12-06T13:03:48Z",
+  "updated": "2025-12-06T13:47:09Z",
   "repository": "https://github.com/LeeSandberg/mcp-arm-debug",
   "versions": [
     {
       "tag": "v0.2.0-alpha",
-      "date": "2025-12-06T13:03:48Z",
+      "date": "2025-12-06T13:47:09Z",
       "prerelease": true,
       "downloads": {
         "windows": "https://droidtech.ai/downloads/mcp-ai-embedded-debug/v0.2.0-alpha/mcp-ai-embedded-debug-win-x64.exe",
