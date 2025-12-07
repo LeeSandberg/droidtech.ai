@@ -82,14 +82,33 @@
         <strong>📦 Latest Release:</strong> <span id="latestVersion">Loading...</span> — <span id="buildDate">Loading...</span>
       </div>
 
+      <!-- Firmware Type Selector -->
+      <div style="text-align:center;margin:30px 0">
+        <div style="display:inline-flex;background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:6px;gap:8px">
+          <button class="btn" id="btnHardware" onclick="selectFirmwareType('hardware')" style="width:auto;padding:12px 28px;background:linear-gradient(135deg,#0891b2,#06b6d4);color:#00131a">
+            🔧 Hardware Firmware
+          </button>
+          <button class="btn secondary" id="btnQemu" onclick="selectFirmwareType('qemu')" style="width:auto;padding:12px 28px">
+            🧪 QEMU Emulation
+          </button>
+        </div>
+      </div>
+
+      <!-- QEMU Warning (shown only for QEMU build) -->
+      <div class="info-box" id="qemuWarning" style="display:none;background:rgba(251,191,36,.1);border-left-color:#fbbf24">
+        <h3>⚠️ QEMU Emulation Build</h3>
+        <p style="color:#fbbf24"><strong>This firmware is for testing and emulation only.</strong></p>
+        <p>Features injectable test data via HAL for automated testing. Not intended for production hardware. Use "Hardware Firmware" for real devices.</p>
+      </div>
+
       <!-- Complete Bundle Download -->
       <div class="bundle-card">
-        <h2>📦 Complete Firmware Bundle</h2>
-        <p class="desc">Download all firmware files in one convenient ZIP package</p>
+        <h2 id="bundleTitle">📦 Complete Firmware Bundle</h2>
+        <p class="desc" id="bundleDesc">Download all firmware files in one convenient ZIP package</p>
         <a class="btn" id="bundleDownload" href="#" download>
           Download Complete Bundle
         </a>
-        <p style="margin-top:15px;font-size:13px;opacity:0.7;color:#00131a">
+        <p style="margin-top:15px;font-size:13px;opacity:0.7;color:#00131a" id="bundleIncludes">
           Includes: ELF, BIN, HEX, ICP, checksums, and README
         </p>
       </div>
@@ -145,20 +164,39 @@
         </div>
       </div>
 
-      <div class="info-box">
-        <h3>⚙️ Programming Instructions</h3>
-        <p><strong>Target Hardware:</strong> Nuvoton M483 MCP (ARM Cortex-M4F)</p>
+      <div class="info-box" id="programmingInstructions">
+        <h3 id="progTitle">⚙️ Programming Instructions</h3>
+        <p id="targetHardware"><strong>Target Hardware:</strong> Nuvoton M483 MCP (ARM Cortex-M4F)</p>
 
-        <p style="margin-top:15px"><strong>Using Nu-Link Programmer:</strong></p>
-        <ol style="margin:10px 0;padding-left:20px;color:var(--muted);font-size:14px">
-          <li>Connect Nu-Link debugger to target board</li>
-          <li>Use Nuvoton ICP Tool to flash <code style="background:#050a18;padding:2px 6px;border-radius:4px">frontpanel_app.hex</code></li>
-          <li>Verify programming with device ID check</li>
-        </ol>
+        <div id="hardwareInstructions">
+          <p style="margin-top:15px"><strong>Using Nu-Link Programmer:</strong></p>
+          <ol style="margin:10px 0;padding-left:20px;color:var(--muted);font-size:14px">
+            <li>Connect Nu-Link debugger to target board</li>
+            <li>Use Nuvoton ICP Tool to flash <code style="background:#050a18;padding:2px 6px;border-radius:4px">frontpanel_app.hex</code></li>
+            <li>Verify programming with device ID check</li>
+          </ol>
 
-        <p style="margin-top:15px"><strong>Using OpenOCD:</strong></p>
-        <pre class="mono">openocd -f interface/nulink.cfg -f target/nuvoton_m48x.cfg \
+          <p style="margin-top:15px"><strong>Using OpenOCD:</strong></p>
+          <pre class="mono">openocd -f interface/nulink.cfg -f target/nuvoton_m48x.cfg \
   -c "init; reset halt; program frontpanel_app.hex verify; reset run; shutdown"</pre>
+        </div>
+
+        <div id="qemuInstructions" style="display:none">
+          <p style="margin-top:15px"><strong>Running in QEMU:</strong></p>
+          <pre class="mono">qemu-system-arm -M nuvoton-m480 -kernel frontpanel_app.elf -nographic</pre>
+
+          <p style="margin-top:15px"><strong>With GDB Debugging:</strong></p>
+          <pre class="mono">qemu-system-arm -M nuvoton-m480 -kernel frontpanel_app.elf -s -S
+# In another terminal:
+arm-none-eabi-gdb frontpanel_app.elf
+(gdb) target remote :1234
+(gdb) continue</pre>
+
+          <p style="margin-top:15px"><strong>Inject Test Data:</strong></p>
+          <pre class="mono">(gdb) call g_measurement_hal.inject_voltage(37000)    # 37.0V
+(gdb) call g_measurement_hal.inject_current(-5000)    # -5A discharge
+(gdb) call g_measurement_hal.inject_soc(75)           # 75% SoC</pre>
+        </div>
 
         <p style="margin-top:15px"><strong>Verify Download Integrity:</strong></p>
         <pre class="mono"># Download SHA256SUMS.txt and verify:
@@ -257,11 +295,54 @@ sha256sum -c SHA256SUMS.txt</pre>
       return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
+    let currentFirmwareType = 'hardware';  // Default to hardware
+    let versionData = null;
+
+    function selectFirmwareType(type) {
+      currentFirmwareType = type;
+
+      // Update button styles
+      const btnHardware = document.getElementById('btnHardware');
+      const btnQemu = document.getElementById('btnQemu');
+
+      if (type === 'hardware') {
+        btnHardware.style.background = 'linear-gradient(135deg,#0891b2,#06b6d4)';
+        btnHardware.style.color = '#00131a';
+        btnHardware.className = 'btn';
+        btnQemu.style.background = 'var(--panel)';
+        btnQemu.style.color = 'var(--text)';
+        btnQemu.className = 'btn secondary';
+        document.getElementById('qemuWarning').style.display = 'none';
+        document.getElementById('hardwareInstructions').style.display = 'block';
+        document.getElementById('qemuInstructions').style.display = 'none';
+        document.getElementById('targetHardware').innerHTML = '<strong>Target Hardware:</strong> Nuvoton M483 MCP (ARM Cortex-M4F)';
+        document.getElementById('progTitle').textContent = '⚙️ Programming Instructions';
+      } else {
+        btnQemu.style.background = 'linear-gradient(135deg,#0891b2,#06b6d4)';
+        btnQemu.style.color = '#00131a';
+        btnQemu.className = 'btn';
+        btnHardware.style.background = 'var(--panel)';
+        btnHardware.style.color = 'var(--text)';
+        btnHardware.className = 'btn secondary';
+        document.getElementById('qemuWarning').style.display = 'block';
+        document.getElementById('hardwareInstructions').style.display = 'none';
+        document.getElementById('qemuInstructions').style.display = 'block';
+        document.getElementById('targetHardware').innerHTML = '<strong>Target Platform:</strong> QEMU ARM Emulation (qemu-system-arm)';
+        document.getElementById('progTitle').textContent = '🧪 QEMU Usage Instructions';
+      }
+
+      // Reload with selected firmware type
+      if (versionData) {
+        updateDownloadLinks(versionData, type);
+      }
+    }
+
     async function loadLatestRelease() {
       try {
         // Fetch latest version from versions.json
         const response = await fetch('https://droidtech.ai/downloads/bms-frontpanel/versions.json');
         const data = await response.json();
+        versionData = data;
 
         const version = data.latestStable || data.latest;
         const versionInfo = data.versions[0];
@@ -274,32 +355,8 @@ sha256sum -c SHA256SUMS.txt</pre>
         document.getElementById('latestVersion').textContent = version;
         document.getElementById('buildDate').textContent = formatDate(versionInfo.date);
 
-        // Update bundle download
-        document.getElementById('bundleDownload').href = versionInfo.downloads.bundle;
-
-        // Update individual file downloads
-        document.getElementById('dlElf').href = versionInfo.downloads.elf;
-        document.getElementById('dlBin').href = versionInfo.downloads.bin;
-        document.getElementById('dlHex').href = versionInfo.downloads.hex;
-        document.getElementById('dlIcp').href = versionInfo.downloads.icp;
-        document.getElementById('dlChecksums').href = versionInfo.downloads.checksums;
-        document.getElementById('dlReadme').href = versionInfo.downloads.readme;
-
-        // Load manifest for detailed info
-        const manifestResponse = await fetch(versionInfo.downloads.manifest);
-        const manifest = await manifestResponse.json();
-
-        // Update build info
-        document.getElementById('infoVersion').textContent = version;
-        document.getElementById('infoBuildDate').textContent = formatDate(manifest.buildDate);
-        document.getElementById('infoCommit').textContent = manifest.shortCommit;
-        document.getElementById('infoBinSize').textContent = manifest.binarySizeKB;
-
-        // Estimate file sizes (could fetch actual sizes via HEAD requests if needed)
-        document.getElementById('sizeBin').textContent = `~${manifest.binarySizeKB} KB`;
-        document.getElementById('sizeElf').textContent = `~${Math.round(manifest.binarySizeKB * 1.5)} KB`;
-        document.getElementById('sizeHex').textContent = `~${Math.round(manifest.binarySizeKB * 1.2)} KB`;
-        document.getElementById('sizeIcp').textContent = `~${manifest.binarySizeKB} KB`;
+        // Load downloads for the selected firmware type
+        updateDownloadLinks(data, currentFirmwareType);
 
       } catch (error) {
         console.error('Failed to load firmware info:', error);
@@ -307,6 +364,50 @@ sha256sum -c SHA256SUMS.txt</pre>
           '<strong style="color: #ff6b6b;">⚠️ Unable to load firmware information</strong><br>Please refresh the page or contact support@droidtech.ai';
         document.getElementById('latestVersion').textContent = 'Error loading';
         document.getElementById('buildDate').textContent = '';
+      }
+    }
+
+    async function updateDownloadLinks(data, firmwareType) {
+      try {
+        const versionInfo = data.versions[0];
+        const downloads = versionInfo[firmwareType];  // Access hardware or qemu object
+
+        if (!downloads) {
+          throw new Error(`No ${firmwareType} firmware available`);
+        }
+
+        // Update bundle download
+        document.getElementById('bundleDownload').href = downloads.bundle;
+
+        // Update individual file downloads
+        document.getElementById('dlElf').href = downloads.elf;
+        document.getElementById('dlBin').href = downloads.bin;
+        document.getElementById('dlHex').href = downloads.hex;
+        document.getElementById('dlIcp').href = downloads.icp;
+        document.getElementById('dlChecksums').href = downloads.checksums;
+        document.getElementById('dlReadme').href = downloads.readme;
+
+        // Load manifest for detailed info
+        const manifestResponse = await fetch(downloads.manifest);
+        const manifest = await manifestResponse.json();
+
+        // Update build info
+        const version = data.latestStable || data.latest;
+        document.getElementById('infoVersion').textContent = firmwareType === 'qemu' ? `${version}-qemu` : version;
+        document.getElementById('infoBuildDate').textContent = formatDate(manifest.buildDate);
+        document.getElementById('infoCommit').textContent = manifest.shortCommit;
+        document.getElementById('infoBinSize').textContent = manifest.binarySizeKB;
+
+        // Estimate file sizes
+        document.getElementById('sizeBin').textContent = `~${manifest.binarySizeKB} KB`;
+        document.getElementById('sizeElf').textContent = `~${Math.round(manifest.binarySizeKB * 1.5)} KB`;
+        document.getElementById('sizeHex').textContent = `~${Math.round(manifest.binarySizeKB * 1.2)} KB`;
+        document.getElementById('sizeIcp').textContent = `~${manifest.binarySizeKB} KB`;
+
+      } catch (error) {
+        console.error(`Failed to load ${firmwareType} firmware info:`, error);
+        document.querySelector('.alert').innerHTML =
+          `<strong style="color: #ff6b6b;">⚠️ Unable to load ${firmwareType} firmware</strong><br>Please try the other firmware type or contact support@droidtech.ai`;
       }
     }
   </script>
