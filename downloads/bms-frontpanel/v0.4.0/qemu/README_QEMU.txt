@@ -24,20 +24,20 @@ Memory Layout:
 
 Files Included:
 ---------------
-- frontpanel_app.elf        : QEMU executable with debug symbols
-- frontpanel_app.bin        : Raw binary for QEMU memory loading
-- frontpanel_app.hex        : Intel HEX format
-- frontpanel_app_icp.bin    : ICP format
-- SHA256SUMS_QEMU.txt       : Checksums for verification
-- manifest_qemu.json        : Build metadata with emulation flag
+- frontpanel_app_qemu.elf        : QEMU executable with debug symbols
+- frontpanel_app_qemu.bin        : Raw binary for QEMU memory loading
+- frontpanel_app_qemu.hex        : Intel HEX format
+- frontpanel_app_qemu_icp.bin    : ICP format (Note: "_qemu" suffix to prevent confusion with hardware)
+- SHA256SUMS_QEMU.txt            : Checksums for verification
+- manifest_qemu.json             : Build metadata with emulation flag
 
 Running in QEMU:
 ----------------
-qemu-system-arm -M nuvoton-m480 -kernel frontpanel_app.elf -nographic
+qemu-system-arm -M nuvoton-m480 -kernel frontpanel_app_qemu.elf -nographic
 
 With GDB debugging:
-qemu-system-arm -M nuvoton-m480 -kernel frontpanel_app.elf -s -S
-arm-none-eabi-gdb frontpanel_app.elf
+qemu-system-arm -M nuvoton-m480 -kernel frontpanel_app_qemu.elf -s -S
+arm-none-eabi-gdb frontpanel_app_qemu.elf
 (gdb) target remote :1234
 
 Data Injection via GDB:
