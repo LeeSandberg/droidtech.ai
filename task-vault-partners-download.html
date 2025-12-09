@@ -247,12 +247,13 @@ task-vault-mcp --version</pre>
           el.textContent = `${version} • Latest Alpha`;
         });
 
-        // Update download links using data from versions.json
-        document.getElementById('dl-win').href = versionInfo.downloads.windows;
-        document.getElementById('dl-mac-arm').href = versionInfo.downloads.macosArm64;
-        document.getElementById('dl-mac-x64').href = versionInfo.downloads.macosX64;
-        document.getElementById('dl-linux-x64').href = versionInfo.downloads.linuxX64;
-        document.getElementById('dl-linux-arm64').href = versionInfo.downloads.linuxArm64;
+        // Use /latest/ URLs so download buttons always point to the newest stable release
+        const baseUrl = 'https://www.droidtech.ai/downloads/task-vault-mcp/latest';
+        document.getElementById('dl-win').href = `${baseUrl}/task-vault-mcp-win-x64.exe`;
+        document.getElementById('dl-mac-arm').href = `${baseUrl}/task-vault-mcp-macos-arm64`;
+        document.getElementById('dl-mac-x64').href = `${baseUrl}/task-vault-mcp-macos-x64`;
+        document.getElementById('dl-linux-x64').href = `${baseUrl}/task-vault-mcp-linux-x64`;
+        document.getElementById('dl-linux-arm64').href = `${baseUrl}/task-vault-mcp-linux-arm64`;
 
         // Update changelog based on version
         let changelogContent = '';
@@ -291,20 +292,20 @@ task-vault-mcp --version</pre>
         document.getElementById('changelog').innerHTML = changelogContent;
       } catch (error) {
         console.error('Failed to load version info:', error);
-        // Fallback to latest known version if fetch fails
-        const version = 'v0.1.0-alpha';
+        // Fallback to /latest/ URLs if fetch fails
         document.querySelectorAll('[id^="version-"]').forEach(el => {
-          el.textContent = `${version} • Latest Alpha`;
+          el.textContent = 'Latest Stable';
         });
-        document.getElementById('dl-win').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-win-x64.exe`;
-        document.getElementById('dl-mac-arm').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-macos-arm64`;
-        document.getElementById('dl-mac-x64').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-macos-x64`;
-        document.getElementById('dl-linux-x64').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-linux-x64`;
-        document.getElementById('dl-linux-arm64').href = `https://droidtech.ai/downloads/task-vault-mcp/${version}/task-vault-mcp-linux-arm64`;
+        const baseUrl = 'https://www.droidtech.ai/downloads/task-vault-mcp/latest';
+        document.getElementById('dl-win').href = `${baseUrl}/task-vault-mcp-win-x64.exe`;
+        document.getElementById('dl-mac-arm').href = `${baseUrl}/task-vault-mcp-macos-arm64`;
+        document.getElementById('dl-mac-x64').href = `${baseUrl}/task-vault-mcp-macos-x64`;
+        document.getElementById('dl-linux-x64').href = `${baseUrl}/task-vault-mcp-linux-x64`;
+        document.getElementById('dl-linux-arm64').href = `${baseUrl}/task-vault-mcp-linux-arm64`;
 
         document.getElementById('changelog').innerHTML = `
-          <strong>${version}</strong><br><br>
-          Initial alpha release for partner testing.
+          <strong>Latest Stable Release</strong><br><br>
+          Task Vault MCP with task-based credential management for AI coding assistants.
         `;
       }
     }
