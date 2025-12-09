@@ -254,19 +254,41 @@ task-vault-mcp --version</pre>
         document.getElementById('dl-linux-x64').href = versionInfo.downloads.linuxX64;
         document.getElementById('dl-linux-arm64').href = versionInfo.downloads.linuxArm64;
 
-        // Update changelog
-        document.getElementById('changelog').innerHTML = `
-          <strong>${version}</strong><br><br>
-          AI-powered task-based credential management for Claude Code.<br><br>
-          <strong>Features:</strong><br>
-          • Task-based credential access<br>
-          • Multi-tenant organization support<br>
-          • Keygen license integration<br>
-          • Role-based access control<br>
-          • Audit logging<br>
-          • Ephemeral credentials<br>
-          • MCP protocol integration
-        `;
+        // Update changelog based on version
+        let changelogContent = '';
+        if (version.includes('typescript-migration')) {
+          changelogContent = `
+            <strong>${version}</strong> — TypeScript Migration Release<br><br>
+            <strong>🎉 Major Improvements:</strong><br>
+            • Complete TypeScript migration (4,334 JS → 4,975 TS lines)<br>
+            • Enhanced CI/CD with license compliance checking<br>
+            • TypeScript linting with security plugins<br>
+            • All 18 integration tests passing<br>
+            • Cross-platform binary builds (5 platforms)<br>
+            • Improved type safety and developer experience<br><br>
+            <strong>Core Features:</strong><br>
+            • Task-based credential access<br>
+            • Multi-tenant organization support<br>
+            • Keygen license integration<br>
+            • Role-based access control<br>
+            • Audit logging & ephemeral credentials<br>
+            • MCP protocol integration
+          `;
+        } else {
+          changelogContent = `
+            <strong>${version}</strong><br><br>
+            AI-powered task-based credential management for Claude Code.<br><br>
+            <strong>Features:</strong><br>
+            • Task-based credential access<br>
+            • Multi-tenant organization support<br>
+            • Keygen license integration<br>
+            • Role-based access control<br>
+            • Audit logging<br>
+            • Ephemeral credentials<br>
+            • MCP protocol integration
+          `;
+        }
+        document.getElementById('changelog').innerHTML = changelogContent;
       } catch (error) {
         console.error('Failed to load version info:', error);
         // Fallback to latest known version if fetch fails
