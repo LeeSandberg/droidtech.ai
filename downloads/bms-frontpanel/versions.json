@@ -1,29 +1,29 @@
 {
-  "latest": "v0.4.0",
-  "latestStable": "v0.4.0",
+  "latest": "v0.4.1",
+  "latestStable": "v0.4.1",
   "versions": [
     {
-      "version": "v0.4.0",
-      "date": "2025-12-08T12:42:24Z",
+      "version": "v0.4.1",
+      "date": "2025-12-09T05:08:43Z",
       "hardware": {
-        "bundle": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/bms-frontpanel-complete-v0.4.0.zip",
-        "elf": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/frontpanel_app.elf",
-        "bin": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/frontpanel_app.bin",
-        "hex": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/frontpanel_app.hex",
-        "icp": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/frontpanel_app_icp.bin",
-        "checksums": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/SHA256SUMS.txt",
-        "readme": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/README.txt",
-        "manifest": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/hardware/manifest.json"
+        "bundle": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/bms-frontpanel-complete-v0.4.1.zip",
+        "elf": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/frontpanel_app.elf",
+        "bin": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/frontpanel_app.bin",
+        "hex": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/frontpanel_app.hex",
+        "icp": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/frontpanel_app_icp.bin",
+        "checksums": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/SHA256SUMS.txt",
+        "readme": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/README.txt",
+        "manifest": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/hardware/manifest.json"
       },
       "qemu": {
-        "bundle": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/bms-frontpanel-qemu-v0.4.0.zip",
-        "elf": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/frontpanel_app_qemu.elf",
-        "bin": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/frontpanel_app_qemu.bin",
-        "hex": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/frontpanel_app_qemu.hex",
-        "icp": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/frontpanel_app_qemu_icp.bin",
-        "checksums": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/SHA256SUMS_QEMU.txt",
-        "readme": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/README_QEMU.txt",
-        "manifest": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.0/qemu/manifest_qemu.json"
+        "bundle": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/bms-frontpanel-qemu-v0.4.1.zip",
+        "elf": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/frontpanel_app_qemu.elf",
+        "bin": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/frontpanel_app_qemu.bin",
+        "hex": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/frontpanel_app_qemu.hex",
+        "icp": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/frontpanel_app_qemu_icp.bin",
+        "checksums": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/SHA256SUMS_QEMU.txt",
+        "readme": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/README_QEMU.txt",
+        "manifest": "https://droidtech.ai/downloads/bms-frontpanel/v0.4.1/qemu/manifest_qemu.json"
       }
     }
   ]

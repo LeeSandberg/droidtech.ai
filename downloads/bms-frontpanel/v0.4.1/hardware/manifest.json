@@ -1,0 +1,22 @@
+{
+  "version": "v0.4.1",
+  "buildDate": "2025-12-09T05:07:19Z",
+  "commit": "bd08779bcbb89cc6e4e4a6307f6b7d703466b417",
+  "shortCommit": "bd08779",
+  "binarySizeKB": 181,
+  "target": "Nuvoton M483 MCP",
+  "emulation": false,
+  "files": {
+    "application": {
+      "elf": "frontpanel_app.elf",
+      "bin": "frontpanel_app.bin",
+      "hex": "frontpanel_app.hex",
+      "icp": "frontpanel_app_icp.bin"
+    },
+    "bootloader": {
+      "elf": "../build-bootloader/front_panel_bl",
+      "bin": "../build-bootloader/front_panel_bl.bin",
+      "hex": "../build-bootloader/front_panel_bl.hex"
+    }
+  }
+}

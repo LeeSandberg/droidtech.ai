@@ -1,0 +1,17 @@
+{
+  "version": "v0.4.1-qemu",
+  "buildDate": "2025-12-09T05:07:19Z",
+  "commit": "bd08779bcbb89cc6e4e4a6307f6b7d703466b417",
+  "shortCommit": "bd08779",
+  "binarySizeKB": 183,
+  "target": "QEMU ARM (qemu-system-arm)",
+  "emulation": true,
+  "files": {
+    "application": {
+      "elf": "frontpanel_app_qemu.elf",
+      "bin": "frontpanel_app_qemu.bin",
+      "hex": "frontpanel_app_qemu.hex",
+      "icp": "frontpanel_app_qemu_icp.bin"
+    }
+  }
+}
