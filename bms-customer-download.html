@@ -340,7 +340,7 @@ sha256sum -c SHA256SUMS.txt</pre>
     async function loadLatestRelease() {
       try {
         // Fetch latest version from versions.json
-        const response = await fetch('https://droidtech.ai/downloads/bms-frontpanel/versions.json');
+        const response = await fetch('/downloads/bms-frontpanel/versions.json');
         const data = await response.json();
         versionData = data;
 
