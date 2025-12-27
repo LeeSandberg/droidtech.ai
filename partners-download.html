@@ -146,18 +146,46 @@
         </div>
       </div>
 
+      <!-- MCP Installation Instructions -->
       <div class="info-box">
-        <h3>⚙️ MCP Installation Instructions</h3>
-        <p><strong>1. Download</strong> the ProbeCodex MCP binary for your platform above.</p>
-        <p><strong>2. Make executable</strong> (macOS/Linux):</p>
-        <pre class="mono">chmod +x probecodex-mcp-*</pre>
-        <p><strong>3. Configure Claude Code</strong> — Create <code style="background:#050a18;padding:2px 6px;border-radius:4px">.mcp.json</code> in your project folder:</p>
+        <h3>⚙️ MCP Installation</h3>
 
-        <p style="margin-top:15px"><strong>macOS/Linux Example:</strong></p>
+        <h4 style="color:var(--accent);margin-top:20px">🪟 Windows</h4>
+        <pre class="mono"># 1. Move binary to a permanent location
+mkdir C:\Tools\ProbeCodex
+move probecodex-mcp-win-x64.exe C:\Tools\ProbeCodex\
+
+# 2. (Optional) Add to PATH for easy access
+setx PATH "%PATH%;C:\Tools\ProbeCodex"</pre>
+
+        <h4 style="color:var(--accent);margin-top:20px">🍎 macOS</h4>
+        <pre class="mono"># 1. Make executable
+chmod +x probecodex-mcp-macos-*
+
+# 2. Move to local bin (Apple Silicon)
+sudo mv probecodex-mcp-macos-arm64 /usr/local/bin/probecodex-mcp
+
+# Or for Intel Mac:
+sudo mv probecodex-mcp-macos-x64 /usr/local/bin/probecodex-mcp
+
+# 3. Remove quarantine attribute (if needed)
+xattr -d com.apple.quarantine /usr/local/bin/probecodex-mcp</pre>
+
+        <h4 style="color:var(--accent);margin-top:20px">🐧 Linux</h4>
+        <pre class="mono"># 1. Make executable
+chmod +x probecodex-mcp-linux-x64
+
+# 2. Move to local bin
+sudo mv probecodex-mcp-linux-x64 /usr/local/bin/probecodex-mcp</pre>
+
+        <h4 style="color:var(--text);margin-top:25px">Configure Claude Code</h4>
+        <p>Create <code style="background:#050a18;padding:2px 6px;border-radius:4px">.mcp.json</code> in your project folder:</p>
+
+        <p style="margin-top:15px"><strong>macOS/Linux:</strong></p>
         <pre class="mono">{
   "mcpServers": {
     "probecodex": {
-      "command": "/usr/local/bin/probecodex-mcp-macos-arm64",
+      "command": "/usr/local/bin/probecodex-mcp",
       "args": [],
       "env": {
         "OPENOCD_PATH": "/opt/homebrew/bin/openocd",
@@ -169,11 +197,11 @@
   }
 }</pre>
 
-        <p style="margin-top:15px"><strong>Windows Example:</strong></p>
+        <p style="margin-top:15px"><strong>Windows:</strong></p>
         <pre class="mono">{
   "mcpServers": {
     "probecodex": {
-      "command": "C:\\\\Tools\\\\probecodex-mcp-win-x64.exe",
+      "command": "C:\\\\Tools\\\\ProbeCodex\\\\probecodex-mcp-win-x64.exe",
       "args": [],
       "env": {
         "OPENOCD_PATH": "C:\\\\OpenOCD\\\\bin\\\\openocd.exe",
@@ -184,10 +212,28 @@
     }
   }
 }</pre>
-
-        <p style="margin-top:15px;font-size:14px;color:var(--muted)">Place this file in your firmware project root directory (same folder as your build scripts). Claude Code will automatically detect and load it when you open the project.</p>
       </div>
 
+      <!-- MCP Uninstallation -->
+      <div class="info-box" style="border-left-color:#ef4444">
+        <h3>🗑️ MCP Uninstallation</h3>
+
+        <h4 style="color:#ef4444;margin-top:15px">🪟 Windows</h4>
+        <pre class="mono"># Remove binary
+del C:\Tools\ProbeCodex\probecodex-mcp-win-x64.exe
+rmdir C:\Tools\ProbeCodex
+
+# Remove from PATH (optional, via System Properties > Environment Variables)</pre>
+
+        <h4 style="color:#ef4444;margin-top:15px">🍎 macOS / 🐧 Linux</h4>
+        <pre class="mono"># Remove binary
+sudo rm /usr/local/bin/probecodex-mcp
+
+# Remove project config (per project)
+rm .mcp.json</pre>
+      </div>
+
+      <!-- Agent Installation -->
       <div class="info-box" style="border-left-color:#8b5cf6">
         <h3>🤖 Agent Installation (One-Click)</h3>
         <p>The ProbeCodex Agent provides:</p>
@@ -197,9 +243,82 @@
           <li><strong>System Service</strong> — Auto-start on boot</li>
           <li><strong>Rapid Testing</strong> — Test MCP commands without AI</li>
         </ul>
-        <p style="margin-top:15px"><strong>Quick Install:</strong></p>
-        <pre class="mono">./probecodex-agent install</pre>
-        <p style="font-size:13px;color:var(--muted)">This will walk you through authentication, VPN setup, and service installation.</p>
+
+        <h4 style="color:#8b5cf6;margin-top:20px">🪟 Windows</h4>
+        <pre class="mono"># 1. Open PowerShell as Administrator
+# 2. Navigate to download folder and run:
+.\probecodex-agent-win-x64.exe install
+
+# Options:
+.\probecodex-agent-win-x64.exe install --no-service  # Skip Windows Task Scheduler
+.\probecodex-agent-win-x64.exe install --offline     # Skip authentication</pre>
+
+        <h4 style="color:#8b5cf6;margin-top:20px">🍎 macOS</h4>
+        <pre class="mono"># 1. Make executable
+chmod +x probecodex-agent-macos-*
+
+# 2. Run installer (Apple Silicon)
+./probecodex-agent-macos-arm64 install
+
+# Or for Intel Mac:
+./probecodex-agent-macos-x64 install
+
+# Options:
+./probecodex-agent-macos-* install --no-service  # Skip launchd service
+./probecodex-agent-macos-* install --no-vpn      # Skip VPN setup</pre>
+
+        <h4 style="color:#8b5cf6;margin-top:20px">🐧 Linux</h4>
+        <pre class="mono"># 1. Make executable
+chmod +x probecodex-agent-linux-x64
+
+# 2. Run installer
+./probecodex-agent-linux-x64 install
+
+# Options:
+./probecodex-agent-linux-x64 install --no-service  # Skip systemd service
+./probecodex-agent-linux-x64 install --no-deps     # Skip dependency installation</pre>
+
+        <p style="margin-top:15px;font-size:13px;color:var(--muted)">The installer will guide you through authentication, VPN setup, dependency installation (WireGuard, wstunnel), and system service configuration.</p>
+      </div>
+
+      <!-- Agent Uninstallation -->
+      <div class="info-box" style="border-left-color:#ef4444">
+        <h3>🗑️ Agent Uninstallation</h3>
+
+        <h4 style="color:#ef4444;margin-top:15px">🪟 Windows</h4>
+        <pre class="mono"># Full uninstall
+.\probecodex-agent-win-x64.exe uninstall
+
+# Keep configuration files
+.\probecodex-agent-win-x64.exe uninstall --keep-config
+
+# Keep VPN configuration
+.\probecodex-agent-win-x64.exe uninstall --keep-vpn</pre>
+
+        <h4 style="color:#ef4444;margin-top:15px">🍎 macOS</h4>
+        <pre class="mono"># Full uninstall
+./probecodex-agent-macos-* uninstall
+
+# Keep configuration
+./probecodex-agent-macos-* uninstall --keep-config
+
+# Manual cleanup (if needed)
+launchctl unload ~/Library/LaunchAgents/com.probecodex.agent.plist
+rm ~/Library/LaunchAgents/com.probecodex.agent.plist
+rm -rf ~/.probecodex</pre>
+
+        <h4 style="color:#ef4444;margin-top:15px">🐧 Linux</h4>
+        <pre class="mono"># Full uninstall
+./probecodex-agent-linux-x64 uninstall
+
+# Keep configuration
+./probecodex-agent-linux-x64 uninstall --keep-config
+
+# Manual cleanup (if needed)
+systemctl --user stop probecodex-agent
+systemctl --user disable probecodex-agent
+rm ~/.config/systemd/user/probecodex-agent.service
+rm -rf ~/.probecodex</pre>
       </div>
 
       <div class="info-box" style="background:rgba(239,68,68,.05);border-left-color:#ef4444">
