@@ -1,0 +1,12 @@
+# Binary releases - built by CI, not tracked in git
+*.pkg
+*.dmg
+*.zip
+*.tar.gz
+*.exe
+
+# macOS
+.DS_Store
+
+# Node
+node_modules/
