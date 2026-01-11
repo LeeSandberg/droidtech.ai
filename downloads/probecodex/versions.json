@@ -1,20 +1,21 @@
 {
-  "latest": "v0.2.0-alpha.11",
+  "latest": "v0.2.0-alpha.12",
   "latestStable": "",
-  "updated": "2026-01-02T09:16:37Z",
+  "updated": "2026-01-11T10:16:41Z",
   "repository": "https://github.com/LeeSandberg/mcp-arm-debug",
   "installScript": "https://droidtech.ai/downloads/probecodex/install.sh",
   "versions": [
     {
-      "tag": "v0.2.0-alpha.11",
-      "date": "2026-01-02T09:16:37Z",
+      "tag": "v0.2.0-alpha.12",
+      "date": "2026-01-11T10:16:41Z",
       "prerelease": true,
+      "macosSigned": false,
       "downloads": {
-        "macosArm64": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-macos-arm64.pkg",
-        "macosX64": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-macos-x64.pkg",
-        "linux": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-linux-x64.tar.gz",
-        "windows": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-win-x64.zip",
-        "checksums": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/SHA256SUMS.txt"
+        "macosArm64": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.12/probecodex-macos-arm64-unsigned.tar.gz",
+        "macosX64": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.12/probecodex-macos-x64-unsigned.tar.gz",
+        "linux": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.12/probecodex-linux-x64.tar.gz",
+        "windows": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.12/probecodex-win-x64.zip",
+        "checksums": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.12/SHA256SUMS.txt"
       }
     }
   ]
