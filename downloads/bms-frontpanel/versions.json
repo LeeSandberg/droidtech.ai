@@ -1,31 +1,31 @@
 {
-  "latest": "v0.4.6",
-  "latestStable": "v0.4.6",
-  "githubRelease": "https://github.com/LeeSandberg/BMS-front-panel/releases/tag/v0.4.6",
+  "latest": "v0.4.7",
+  "latestStable": "v0.4.7",
+  "githubRelease": "https://github.com/LeeSandberg/BMS-front-panel/releases/tag/v0.4.7",
   "versions": [
     {
-      "version": "v0.4.6",
-      "date": "2025-12-11T11:27:23Z",
-      "githubRelease": "https://github.com/LeeSandberg/BMS-front-panel/releases/tag/v0.4.6",
+      "version": "v0.4.7",
+      "date": "2026-02-11T13:04:57Z",
+      "githubRelease": "https://github.com/LeeSandberg/BMS-front-panel/releases/tag/v0.4.7",
       "hardware": {
-        "bundle": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/bms-frontpanel-complete-v0.4.6.zip",
-        "elf": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app.elf",
-        "bin": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app.bin",
-        "hex": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app.hex",
-        "icp": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app_icp.bin",
-        "checksums": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/SHA256SUMS.txt",
-        "readme": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/README.txt",
-        "manifest": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/manifest.json"
+        "bundle": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/bms-frontpanel-complete-v0.4.7.zip",
+        "elf": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app.elf",
+        "bin": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app.bin",
+        "hex": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app.hex",
+        "icp": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app_icp.bin",
+        "checksums": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/SHA256SUMS.txt",
+        "readme": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/README.txt",
+        "manifest": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/manifest.json"
       },
       "qemu": {
-        "bundle": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/bms-frontpanel-qemu-v0.4.6.zip",
-        "elf": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app_qemu.elf",
-        "bin": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app_qemu.bin",
-        "hex": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app_qemu.hex",
-        "icp": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/frontpanel_app_qemu_icp.bin",
-        "checksums": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/SHA256SUMS_QEMU.txt",
-        "readme": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/README_QEMU.txt",
-        "manifest": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.6/manifest_qemu.json"
+        "bundle": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/bms-frontpanel-qemu-v0.4.7.zip",
+        "elf": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app_qemu.elf",
+        "bin": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app_qemu.bin",
+        "hex": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app_qemu.hex",
+        "icp": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/frontpanel_app_qemu_icp.bin",
+        "checksums": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/SHA256SUMS_QEMU.txt",
+        "readme": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/README_QEMU.txt",
+        "manifest": "https://github.com/LeeSandberg/BMS-front-panel/releases/download/v0.4.7/manifest_qemu.json"
       }
     }
   ]
