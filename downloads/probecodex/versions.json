@@ -1,0 +1,21 @@
+{
+  "latest": "v0.2.0-alpha.11",
+  "latestStable": "",
+  "updated": "2026-01-02T09:16:37Z",
+  "repository": "https://github.com/LeeSandberg/mcp-arm-debug",
+  "installScript": "https://droidtech.ai/downloads/probecodex/install.sh",
+  "versions": [
+    {
+      "tag": "v0.2.0-alpha.11",
+      "date": "2026-01-02T09:16:37Z",
+      "prerelease": true,
+      "downloads": {
+        "macosArm64": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-macos-arm64.pkg",
+        "macosX64": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-macos-x64.pkg",
+        "linux": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-linux-x64.tar.gz",
+        "windows": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/probecodex-win-x64.zip",
+        "checksums": "https://droidtech.ai/downloads/probecodex/v0.2.0-alpha.11/SHA256SUMS.txt"
+      }
+    }
+  ]
+}

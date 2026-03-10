@@ -1,0 +1,4 @@
+faacb2b2daf9376b64fef2648c98d746e9dbcca9d340d2d208d5d7888905a38b  probecodex-macos-arm64.zip
+d63d1b69a57ece69521006229b2fda16b67e9afd8b91c844b8504b45dc4fc1a3  probecodex-macos-x64.zip
+6365fe5ca2f2114890f85b7fcf51c5d74a9fb027c8af0e7b41ece01b6188fb7b  probecodex-win-x64.zip
+99e2457c4341a25b34746f59bdcb0d9278c96321b3721daec515fe1398a9b7f6  probecodex-linux-x64.tar.gz
