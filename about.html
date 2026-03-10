@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About — Droidtech 42 AI Labs</title>
+  <meta name="description" content="The story of Droidtech 42 AI Labs — from Transputers and subsumption architecture in 1992 to agentic AI and robotics today.">
+  <meta property="og:title" content="About Droidtech 42 AI Labs">
+  <meta property="og:description" content="From Transputers and Occam in 1992 to agentic AI — our 30-year journey in robotics and intelligent systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://droidtech.ai/about.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%96%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg:#0b1020;--panel:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--accent:#22d3ee;--stroke:#1f2a44;
+      --radius:22px;--shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;background:linear-gradient(180deg,var(--bg),#020617);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;line-height:1.6;letter-spacing:.1px}
+    a{color:var(--accent);text-decoration:none}a:hover{filter:brightness(1.1)}
+    .wrap{max-width:1100px;margin:0 auto;padding:clamp(16px,3vw,28px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px;font-size:clamp(14px,2vw,16px)}
+    .brand-badge{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#06b6d4,#22d3ee);box-shadow:var(--shadow);}
+    .brand-badge span{font-weight:900;color:#00131a}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:clamp(10px,2vw,12px) clamp(14px,2.5vw,18px);border-radius:14px;border:1px solid var(--stroke);background:#0b1224;color:var(--text);box-shadow:var(--shadow);font-weight:600;font-size:clamp(14px,2vw,16px);min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+    .btn.primary{background:linear-gradient(135deg,#0891b2,#06b6d4);color:#00131a;border:none}
+    .btn.ghost{background:transparent}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--text);font-size:24px;z-index:1001}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;transition:all 0.3s}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+    @media(max-width:768px){
+      .hamburger{display:block}
+      .cta{position:fixed;top:0;right:0;background:var(--panel);width:min(300px,80vw);height:100vh;flex-direction:column;padding:80px 24px 24px;transform:translateX(100%);transition:transform 0.3s;box-shadow:var(--shadow);border-left:1px solid var(--stroke);z-index:1000}
+      .cta.active{transform:translateX(0)}
+      .cta .btn{width:100%;justify-content:center}
+    }
+    .card{background:linear-gradient(180deg,var(--panel),#0b1224);padding:clamp(20px,4vw,32px);border-radius:var(--radius);border:1px solid var(--stroke);box-shadow:var(--shadow);margin-bottom:clamp(16px,3vw,24px)}
+    h1{font-size:clamp(28px,4vw,48px);line-height:1.12;margin:18px 0 8px}
+    h2{font-size:clamp(22px,2.8vw,28px);margin:32px 0 12px;color:var(--accent)}
+    h3{font-size:clamp(18px,2.4vw,22px);margin:24px 0 8px}
+    p{font-size:clamp(15px,2vw,17px);color:var(--muted);max-width:840px}
+    p.lead{font-size:clamp(16px,2.2vw,20px);color:var(--text)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);color:var(--muted);font-size:clamp(11px,1.8vw,12px);margin-right:6px;margin-bottom:6px}
+    .tagline{opacity:.9;font-size:clamp(11px,1.8vw,12px)!important}
+    footer{border-top:1px solid var(--stroke);margin-top:40px;padding:24px 0;color:var(--muted);font-size:clamp(13px,2vw,14px)}
+
+    /* About page specific */
+    .hero-about{padding:clamp(30px,6vw,60px) 0 clamp(20px,4vw,40px)}
+    .timeline{position:relative;padding-left:32px}
+    .timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--accent),#0891b2,var(--stroke))}
+    .timeline-item{position:relative;margin-bottom:clamp(28px,4vw,40px)}
+    .timeline-item::before{content:'';position:absolute;left:-28px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);box-shadow:0 0 12px rgba(34,211,238,.4)}
+    .timeline-year{font-size:clamp(13px,2vw,15px);font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+    .timeline-item h3{margin-top:0}
+    .img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(12px,2vw,16px);margin:16px 0}
+    .img-grid.two{grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr))}
+    .img-card{border-radius:16px;overflow:hidden;border:1px solid var(--stroke);background:#050a18}
+    .img-grid.single{max-width:520px}
+    .img-card img{width:100%;height:auto;display:block}
+    .img-card .caption{padding:10px 14px;font-size:clamp(12px,1.8vw,14px);color:var(--muted)}
+    .highlight{color:var(--text);font-weight:600}
+    .quote-block{border-left:3px solid var(--accent);padding:12px 20px;margin:16px 0;background:rgba(34,211,238,.04);border-radius:0 12px 12px 0}
+    .quote-block p{color:var(--text);font-style:italic;margin:0}
+    .now-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:16px}
+    .now-card{background:linear-gradient(135deg,#0b1224,#0f172a);padding:20px;border-radius:16px;border:1px solid var(--stroke)}
+    .now-card h3{margin-top:0;color:var(--accent)}
+    @media(max-width:480px){
+      .brand>div>div:first-child{font-size:14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="index.html" class="brand" style="text-decoration:none;color:var(--text)">
+        <div class="brand-badge"><span>DT</span></div>
+        <div>
+          <div>Droidtech 42 AI Labs</div>
+          <div class="tagline" style="color:var(--muted)">AI &bull; Robotics &bull; Embedded &bull; Energy</div>
+        </div>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="cta" id="menu">
+        <a class="btn ghost" href="index.html">Home</a>
+        <a class="btn ghost" href="pricing.html">Pricing</a>
+        <a class="btn ghost" href="investors.html">Investors</a>
+        <a class="btn ghost" href="join.html">Join Us</a>
+        <a class="btn primary" href="index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <header class="hero-about">
+      <h1>From Transputers to Transfer Oracles</h1>
+      <p class="lead">
+        It started in 1977 &mdash; an 11-year-old building a mobile robot inspired by the earliest
+        autonomous machines in history. From hand-wired computers and photocell robots to Transputers,
+        parallel AI, and agentic systems &mdash; this is a story that spans nearly five decades.
+      </p>
+      <p style="color:var(--muted);font-size:clamp(14px,2vw,16px);max-width:840px">
+        Everything you see here was designed, built, and debugged without AI assistants,
+        without Google, without Stack Overflow &mdash; most of it before the internet
+        existed outside universities. Schematics were drawn by hand, components sourced
+        in person from physical shops. The earliest programs were entered in raw binary
+        via toggle switches with only a hex LED for output &mdash; no compiler, no
+        assembler, no screen.
+      </p>
+    </header>
+
+    <!-- 1978: The Very Beginning -->
+    <section class="card">
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-year">1977 &mdash; Where It All Started</div>
+          <h3>A Robot Inspired by the Earliest Autonomous Machines</h3>
+          <p>
+            At age 11, Lee built his first mobile robot &mdash; inspired by
+            <span class="highlight">W. Grey Walter's "Tortoise"</span> robots from 1948&ndash;1949,
+            among the very first electronic autonomous machines ever created. Walter, a neuroscientist
+            at the Burden Neurological Institute in Bristol, built these robots to prove that complex
+            behaviour could emerge from just a few "brain cells." They navigated using a single
+            rotating photocell for sight and a contact switch for touch &mdash; no programming, just
+            analogue electronics producing remarkably lifelike behaviour.
+          </p>
+          <p>
+            Lee's version followed the same principle: a <span class="highlight">photocell</span>
+            mounted on the front steering-wheel axis, so the robot would steer itself toward light
+            sources &mdash; the same elegant trick Walter had used three decades earlier. A child's
+            first robot, built from the same ideas that launched the entire field of autonomous
+            mobile robotics.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1978&ndash;1979 &mdash; First Computer</div>
+          <h3>The COSMAC Elf &mdash; Hand-Wired from a Magazine Schematic</h3>
+          <p>
+            Around the same time, Lee built a <span class="highlight">COSMAC Elf</span> computer
+            &mdash; wired by hand from a schematic published in the August 1976 issue of
+            <em>Popular Electronics</em> magazine. Designed by Joseph Weisbecker of RCA, the Elf
+            used the <span class="highlight">RCA CDP1802</span> microprocessor &mdash; the same
+            chip that would later fly on the Galileo spacecraft. Programs were entered one byte at
+            a time via toggle switches, with output on a hexadecimal LED display. For a 12-year-old
+            in the late 1970s, this was the gateway into computing.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1981 &mdash; Commodore VIC-20</div>
+          <h3>A Home Computer Connected to Robots</h3>
+          <p>
+            Lee got a <span class="highlight">Commodore VIC-20</span> and connected it to
+            his robot experiments &mdash; one of the first affordable home computers being
+            used not just for games or BASIC, but as a controller for physical hardware.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">Early 1980s &mdash; Online Before the Internet</div>
+          <h3>Running a BBS on a Z80 CP/M Kit</h3>
+          <p>
+            Lee ran his own <span class="highlight">BBS</span> (Bulletin Board System) on a
+            <span class="highlight">Z80 CP/M kit</span> &mdash; two bare PCBs in a rack frame,
+            bought from a small Swedish designer. 256&nbsp;KB of banked memory (four 64K banks
+            multiplexed), two floppy drives, a hard disk, two RS-232 ports, and two modems.
+            No brand, no case &mdash; just boards, wires, and dial-in access for anyone with
+            a modem and a phone line.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1984&ndash;1986 &mdash; Swedish Robot Society</div>
+          <h3>Co-Founding a Robot Community</h3>
+          <p>
+            In 1984, Lee and a colleague co-founded the
+            <span class="highlight">Swedish Robot Society</span>. Lee designed
+            <span class="highlight">robot controller cards</span> for the members &mdash;
+            hand-designed and hand-etched PCBs for driving motors, reading sensors, and
+            interfacing with the microcomputers of the era. Through friends who were
+            students and staff at <span class="highlight">KTH</span> (Royal Institute of
+            Technology) in Stockholm, Lee was already immersed in the university's
+            computer science environment &mdash; some of those friends later went on to work at
+            <span class="highlight">SANS</span> (Studies of Artificial Neural Systems),
+            KTH's pioneering neural network research group. In 1988 &mdash; the year
+            <span class="highlight">SUNET</span> launched with KTH as its central node &mdash;
+            Lee got online, using email and Usenet newsgroups to access robotics research
+            databases years before the World Wide Web existed.
+          </p>
+          <div class="img-grid single">
+            <div class="img-card">
+              <img src="images/about/Swedish-Robot-Society-Robot-PCBs-by-Lee-and-Eddie.webp" alt="Custom PCBs designed by Lee and Eddie for Swedish Robot Society" loading="lazy" width="1200" height="1600">
+              <div class="caption">Hand-designed PCBs by Lee and Eddie for the Swedish Robot Society &mdash; component board (top) and etched circuit boards for robot controller systems.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1992: Transputers -->
+    <section class="card">
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-year">1992 &mdash; Transputers</div>
+          <h3>Transputers, Occam, and Subsumption Architecture</h3>
+          <p>
+            In 1992, Lee began studying at <span class="highlight">KTH</span> (Royal Institute of
+            Technology) in Stockholm, later continuing in 1994 at
+            <span class="highlight">H&ouml;gskolan i Sk&ouml;vde</span>.
+            The university years crystallised a radical idea: build truly parallel autonomous robots using
+            <span class="highlight">Inmos Transputers</span> &mdash; processors designed from the ground up for
+            concurrent computation. We began programming in <span class="highlight">Occam</span>, a language
+            built specifically for the Transputer's hardware parallelism, before moving to Parallel C
+            for more flexibility.
+          </p>
+          <p>
+            The architecture was inspired by Rodney Brooks' <span class="highlight">subsumption architecture</span>
+            from MIT &mdash; where independent behaviour layers run in parallel, each capable of
+            subsuming lower-priority behaviours. Our key innovation: on the Transputer, any behaviour
+            could be <span class="highlight">swapped out at runtime</span>. We built batch tools
+            that took standard C process code and automatically injected the scaffolding needed
+            to make it a dynamic process &mdash; so any developer could write a normal C behaviour
+            and have it become a hot-swappable parallel module. The system's dynamically
+            reconfigurable processes meant the AI architecture was inherently fault-tolerant
+            and adaptive &mdash; it would continue operating with whatever hardware modules
+            were available.
+          </p>
+          <div class="img-grid two">
+            <div class="img-card">
+              <img src="images/about/Droidtechs-Robot-ICU2-Transputer-Parallel-C-and-Occam.webp" alt="Inmos Transputer development kits with Occam and Parallel C floppy disks" loading="lazy" width="1200" height="900">
+              <div class="caption">Our original Inmos Transputer development kits &mdash; Occam and Parallel C on floppy disk, still on the shelf.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/Book-Minimalist-Mobile-Robotics-MIT.webp" alt="Minimalist Mobile Robotics book by Jonathan H. Connell, MIT Press" loading="lazy" width="1200" height="1600">
+              <div class="caption">"Minimalist Mobile Robotics" by Jonathan H. Connell (MIT Press) &mdash; colony-style subsumption architecture that influenced our design.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1992&ndash;1994 &mdash; Robot ICU2</div>
+          <h3>Building a Competition Robot in Sweden</h3>
+          <p>
+            We built <span class="highlight">ICU2</span> &mdash; essentially a
+            <span class="highlight">miniaturized MIT Herbert robot</span>, but with a fundamentally
+            different brain. Where Herbert used 24 single-chip computer cards running static,
+            hard-wired behaviours, ICU2's behaviours were
+            <span class="highlight">fully dynamically interchangeable parallel C processes</span>
+            distributed across multiple Transputers &mdash; both onboard the robot and off-board.
+          </p>
+          <p>
+            This meant behaviours could be loaded, replaced, and recombined at runtime across
+            the Transputer network. The robot competed at <span class="highlight">Lausanne</span>
+            through the Swedish Robot Society, where the task involved autonomously locating and
+            collecting wooden cylinder objects. A dome-shaped platform packed with servos, optical
+            encoders, batteries, and a custom timing-belt drive &mdash; all controlled by a
+            distributed parallel architecture with no central controller.
+          </p>
+          <p>
+            Remember: this was before "add to basket" existed on the internet. Every component
+            was sourced in person from physical shops or through company contacts. Lee secured a
+            <span class="highlight">$25,000 sponsorship</span> for the robot project &mdash;
+            serious money for a student-led robotics effort in early-1990s Sweden.
+          </p>
+          <div class="img-grid">
+            <div class="img-card">
+              <img src="images/about/Droidtechs-Robot-ICU2-Base2.webp" alt="Droidtech ICU2 robot - front view with DROIDTECH label" loading="lazy" width="1200" height="1600">
+              <div class="caption">ICU2 front view showing the "DROIDTECH" label, dome body, timing belt drive, and head turret.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/Droidtechs-Robot-ICU2-Base.webp" alt="Droidtech ICU2 robot - top view showing internals" loading="lazy" width="1200" height="1600">
+              <div class="caption">ICU2 from above &mdash; servos, optical encoders, batteries, and wiring inside the transparent dome.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/Droidtechs-Robot-ICU2-Competion-task-Lusanne.webp" alt="Wooden cylinder competition objects for Lausanne robot competition" loading="lazy" width="1200" height="1600">
+              <div class="caption">The competition task objects &mdash; wooden cylinders with rubber end caps that ICU2 had to locate and collect.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/ICU2-Mobile-Robot-and-Transputer-Boards.webp" alt="ICU2 mobile robot with Transputer boards laid out on table" loading="lazy" width="1200" height="1600">
+              <div class="caption">ICU2 with its Transputer boards &mdash; the robot's head turret with sonar ring, and the multi-Transputer processor cards that powered the parallel architecture.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1991&ndash;1992 &mdash; Perception</div>
+          <h3>Custom 3D Laser Scanner</h3>
+          <p>
+            For robot perception, we designed and built a <span class="highlight">miniaturized custom 3D laser range scanner</span>
+            from scratch &mdash; a miniaturization of the same laser scanning system used on
+            <span class="highlight">MIT's Herbert robot</span>, compact enough to mount directly on ICU2. A Class 3A laser with a narrow-band
+            interference filter, stepper-motor mirror scanning 100 steps in each direction, and a Transputer
+            processing the range data in real-time via hardware link connections.
+          </p>
+          <p>
+            All the electronics &mdash; from the laser driver circuits to the Transputer interface boards &mdash;
+            were hand-designed and hand-etched PCBs. The work earned Lee a
+            <span class="highlight">stipendium from &Aring;s&ouml; Tekniska Gymnasium</span> in Stockholm.
+          </p>
+          <div class="img-grid single">
+            <div class="img-card">
+              <img src="images/about/3D-laser-scanner.webp" alt="Custom 3D laser scanner with interference filter and stepper motor" loading="lazy" width="1200" height="1600">
+              <div class="caption">Our custom laser scanner &mdash; stepper-motor mirror, interference filter lens, and "Varning Laserstrålning" safety label.</div>
+            </div>
+          </div>
+          <div class="img-grid">
+            <div class="img-card">
+              <img src="images/about/3D-Laser-Scanner-Setup-Diagram.webp" alt="Hand-drawn Transputer system diagram for laser scanner" loading="lazy" width="1200" height="1600">
+              <div class="caption">System architecture &mdash; hand-drawn diagram showing the Transputer (CO11), link connections, laser ranger data circuit, and PC interface.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/3D-Laser-Skanner-Circuit1.webp" alt="Transputer CO11 circuit schematic" loading="lazy" width="1200" height="1600">
+              <div class="caption">Transputer CO11 circuit design &mdash; crystal oscillator, link in/out connections, and power regulation.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/3D-Laser-scanner1.webp" alt="Mirror stepper motor circuit documentation" loading="lazy" width="1200" height="900">
+              <div class="caption">Mirror control documentation &mdash; the stepper motor circuit using 74191 binary counters for 100-step bidirectional scanning.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1992&ndash;1994 &mdash; Inspiration</div>
+          <h3>MIT's Herbert and the Subsumption Philosophy</h3>
+          <p>
+            Our work was deeply inspired by the robots coming out of MIT's AI Lab &mdash; particularly
+            <span class="highlight">Herbert</span>, the can-collecting robot built by Jonathan Connell.
+            Herbert used a subsumption architecture with no central model of the world: each behaviour
+            layer (wander, avoid, detect, grab, deposit) operated independently with its own sensors.
+          </p>
+          <p>
+            We took this philosophy further with the Transputer's true hardware parallelism.
+            Herbert's 24 single-chip computers each ran one fixed behaviour &mdash; static and
+            unchangeable. ICU2's Transputer network ran fully dynamic parallel C processes that
+            could be swapped, recombined, and redistributed across processors both on and off
+            the robot at runtime, with hardware communication links between them.
+          </p>
+          <div class="img-grid two">
+            <div class="img-card">
+              <img src="images/about/MIT-Robot-Herbert.webp" alt="MIT Herbert robot documentation" loading="lazy" width="1200" height="900">
+              <div class="caption">MIT's Herbert robot &mdash; the can-collecting subsumption architecture robot that inspired our approach.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/MIT-Herbert-Robot-Setup-Results.webp" alt="MIT Herbert robot 3D scan results and setup" loading="lazy" width="1200" height="1600">
+              <div class="caption">Herbert's sensor setup and 3D range scan results &mdash; early spatial perception from laser scanning.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">Late 1990s &mdash; Landmark Learning</div>
+          <h3>A Virtual Robot Twin &mdash; Before "Digital Twins" Existed</h3>
+          <p>
+            Towards the end of the 1990s, Lee added a <span class="highlight">landmark learning
+            and recognition system</span> to ICU2 &mdash; allowing the robot to build spatial
+            memory by identifying and remembering distinctive features in its environment.
+            This led to novel ideas about <span class="highlight">when and how behaviours
+            should be reconfigured</span> during navigation, and a
+            <span class="highlight">path planning system</span> built entirely from
+            experience rather than pre-programmed maps. We can't disclose all the details
+            here &mdash; the core architecture remains unpublished intellectual property.
+          </p>
+          <p>
+            Lee also explored models for <span class="highlight">empathy</span> and
+            <span class="highlight">symbol grounding</span> &mdash; how an autonomous agent
+            could connect abstract symbols to real sensory experience, and how modelling
+            another agent's state could improve cooperative behaviour.
+          </p>
+          <p>
+            Then came a step remarkably ahead of its time: Lee introduced a
+            <span class="highlight">virtual copy of the robot</span> into the system, complete
+            with its own landmark recognition system. This simulated twin could learn in parallel
+            with the physical robot &mdash; an early form of what the industry would later call
+            <span class="highlight">digital twins</span> and <span class="highlight">sim-to-real
+            transfer</span>.
+          </p>
+          <p>
+            The work built on and improved techniques from a professor of robotics in England,
+            and was intended as Lee's BA thesis at the <span class="highlight">Cognitive Science
+            Programme at Sk&ouml;vde University</span>, where Lee had studied for three years.
+            Despite five resubmissions, the university declined the paper &mdash; first citing
+            lack of resources to assist with formatting, and later stating they hadn't taught
+            the techniques used and therefore couldn't approve the work.
+          </p>
+          <p>
+            Lee eventually secured a <span class="highlight">Ph.D position in Cognitive Science
+            at BTH University in Ronneby</span> (GSIL), where his experience in building mobile
+            robots and computer games was a prerequisite for the role. He planned to work with
+            an American professor there. However, after just three months the professor left the
+            university without notice, and with no supervisor or research group of interest
+            remaining, Lee left the position and returned to Stockholm. The academic path had
+            closed, but the ideas and engineering experience lived on in Droidtech's architecture.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2009 &mdash; Recognition at Last</div>
+          <h3>Gwangju, South Korea</h3>
+          <p>
+            Lee submitted a shorter form of his BA work &mdash; covering the extended
+            landmark recognition system &mdash; to the
+            <span class="highlight">Ubiquitous Robotics AI Conference in Gwangju, South Korea</span>
+            in 2009, and was invited to present. After five rejections at Sk&ouml;vde, the work was
+            finally recognized by the international robotics community. The full BA paper with
+            the novel navigation architecture was never published.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">Late 1990s &mdash; KTH</div>
+          <h3>Mobile Robotics Research at KTH CAS</h3>
+          <p>
+            Lee worked at the <span class="highlight">Centre for Autonomous Systems (CAS) at KTH</span>,
+            Stockholm's Royal Institute of Technology, where he ported a control system for a
+            <span class="highlight">Puma robot arm on a Nomad mobile robot</span> from DOS to the
+            QNX real-time operating system.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1997 &mdash; The Pause</div>
+          <h3>SGS-Thomson Discontinues the Transputer</h3>
+          <p>
+            In 1997, SGS-Thomson (which had acquired Inmos in 1989) announced the last-time-buy
+            for all Transputer products &mdash; orders by February, final shipments by June.
+            The hardware platform vanished. The parallel subsumption architecture &mdash; with its
+            hot-swappable behaviours and fault-tolerant design &mdash; was ahead of what commodity
+            hardware could deliver. But the skills went elsewhere.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1996 &mdash; 3D Before 3D Cards</div>
+          <h3>Swedish Robot Society, Simulators, and Software 3D</h3>
+          <p>
+            AI and robotics jobs were rare in Sweden. Lee channelled his skills into
+            <span class="highlight">3D simulators written in C</span> &mdash; including a
+            robot 3D simulator for PC built for the
+            <span class="highlight">Swedish Robot Society</span>. Back then there were no 3D
+            graphics cards in PCs &mdash; everything was software-rendered.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1998&ndash;2005 &mdash; GPU Pioneer</div>
+          <h3>From Riva 128 to Hardware Occlusion Queries</h3>
+          <p>
+            In 1998, Lee got an <span class="highlight">NVIDIA Riva 128</span> card and rewrote
+            his 3D engine with DirectX 5. He began attending every NVIDIA developer conference
+            &mdash; up to three times a year at different GDCs.
+          </p>
+          <p>
+            By 2005, Lee had added <span class="highlight">hardware occlusion queries</span> to
+            the open-source 3D engine <span class="highlight">Ogre</span> and written extensive
+            3D engine code, middleware for optimizing indoor and outdoor scenes in simulators and
+            games, and <span class="highlight">AI middleware for massive crowd simulations</span>
+            accelerated with general-purpose GPU programming using OpenGL and DirectX &mdash;
+            before compute shaders or NVIDIA CUDA existed.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1992 &mdash; Parallel Computing</div>
+          <h3>Speaking at Rutherford Appleton Laboratory</h3>
+          <p>
+            Lee attended the <span class="highlight">parallel computing conference</span> at
+            <span class="highlight">Rutherford Appleton Laboratory</span> in England &mdash;
+            the UK hub for Transputer research and the home of the Transputer Consortium
+            secretariat &mdash; and got the opportunity to present his Transputer-based robot work.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2005+ &mdash; International Speaker</div>
+          <h3>Seoul, Liverpool, Perth, and the Games Industry</h3>
+          <p>
+            In 2005, Lee was invited as a <span class="highlight">guest technical speaker in
+            Seoul, South Korea</span>, presenting his work on accelerating indoor and outdoor
+            scenes in 3D engines for dynamic environments. He was invited back twice more to
+            talk about his work as a technical artist lead, helping game companies optimize
+            performance in Unreal Engine and other engines.
+          </p>
+          <p>
+            Lee was also invited to speak at a <span class="highlight">game conference in
+            Liverpool</span>, and in 2006/2007 was invited to present at the
+            <span class="highlight">Game Developers conference in Perth, Australia</span>.
+          </p>
+          <p>
+            Over the following years, Lee worked extensively in simulators and computer games,
+            and taught game development and 3D programming at schools.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2023&ndash;2025 &mdash; AI in Production</div>
+          <h3>From Polished APIs to Raw Models</h3>
+          <p>
+            Lee worked with <span class="highlight">AI in games using JSON calls to OpenAI's APIs</span>,
+            then went deeper &mdash; using <span class="highlight">Qwen 3B</span> to generate training
+            data for a small text model targeting mobile phones and web browsers. That's where the
+            real lessons hit: a polished API like OpenAI's spoils you rotten. When you need to
+            generate training data with a raw 3B parameter model, you discover just how much work
+            the big providers hide from you. The gap between a hosted API and an unpolished
+            open-weight model is where most teams fail &mdash; and where real experience matters.
+          </p>
+          <p>
+            Then came <span class="highlight">Claude Code and agentic engineering</span>. Over the
+            past year, Lee went deep into agentic AI workflows &mdash; not just prompting, but
+            building with AI as a true engineering partner. That shift changed everything.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">June 2025 &mdash; Back to Embedded</div>
+          <h3>A BMS System with Only Claude Code</h3>
+          <p>
+            In June 2025, Lee returned to embedded programming &mdash; consulting on a
+            <span class="highlight">Battery Management System (BMS)</span> for a company
+            in Germany, programming their firmware using <span class="highlight">only Claude
+            Code</span>. No IDE, no traditional debugging tools. Just an AI coding agent
+            and a firmware codebase.
+          </p>
+          <p>
+            He quickly realized that Claude Code needed to be able to
+            <span class="highlight">debug embedded systems directly</span> to be truly
+            effective. So he built one: an MCP interface that lets AI agents look inside
+            embedded processors, debug firmware, and run tests in real-time.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2025&ndash;2026 &mdash; The Return</div>
+          <h3>Agentic AI Turns the Page</h3>
+          <p>
+            That MCP became <span class="highlight"><a href="https://probecodex.com">ProbeCodex</a></span>
+            &mdash; an AI-powered debugging platform for embedded systems, now in public beta.
+            The robotics work evolved into
+            <span class="highlight"><a href="https://transferoracle.ai">TransferOracle.ai</a></span>
+            for AI model validation and
+            <span class="highlight"><a href="https://operator.droidtech.ai">operator.droidtech.ai</a></span>,
+            a franchise platform for robotics and autonomous systems.
+          </p>
+          <p>
+            The same principles that drove the 1992 Transputer architecture &mdash; independent
+            parallel agents, dynamic reconfiguration, fault tolerance, adaptive behaviour &mdash;
+            are now achievable through agentic AI and modern compute.
+          </p>
+          <p style="font-size:clamp(17px,2.4vw,22px);color:var(--text);margin-top:16px">
+            You've seen what we built with no compiler &mdash; just machine code, toggle switches,
+            and a hex display. No internet, no AI, no shortcuts. Now imagine what we do with
+            agentic AI that codes, designs, tests, and ships alongside us.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Where we are now -->
+    <section class="card" style="border:2px solid var(--accent)">
+      <h2 style="margin-top:0">Where That Journey Led</h2>
+      <div class="now-grid">
+        <div class="now-card">
+          <h3>TransferOracle.ai</h3>
+          <p style="color:var(--text)">
+            AI-powered model validation before deployment. The Transfer Oracle audits whether
+            machine learning models will perform reliably when moved from training to production
+            &mdash; catching distribution drift, structural gaps, and at-risk classes before
+            they reach the real world.
+          </p>
+          <a class="btn" href="https://transferoracle.ai" target="_blank" style="margin-top:12px">Visit TransferOracle.ai</a>
+        </div>
+        <div class="now-card">
+          <h3>operator.droidtech.ai</h3>
+          <p style="color:var(--text)">
+            The operational platform for robotics and embedded systems. Where the subsumption
+            architecture's fault-tolerant, adaptive behaviour philosophy meets modern agentic AI
+            &mdash; managing fleets, firmware, and autonomous systems at scale.
+          </p>
+          <a class="btn" href="https://operator.droidtech.ai" target="_blank" style="margin-top:12px">Visit Operator</a>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <span class="pill">1992 &rarr; 2026</span>
+        <span class="pill">Transputers &rarr; Agentic AI</span>
+        <span class="pill">Occam &rarr; Python &amp; TypeScript</span>
+        <span class="pill">Subsumption &rarr; Transfer Oracles</span>
+        <span class="pill">Stockholm, Sweden</span>
+      </div>
+    </section>
+
+    <section class="card" style="border:2px solid #10b981">
+      <h2 style="margin-top:0;color:#10b981">Join the Journey</h2>
+      <p style="color:var(--text);font-size:clamp(16px,2.2vw,19px)">
+        After 30+ years of building robots, 3D engines, GPU middleware, and AI systems,
+        we're at an inflection point. Lee is looking for <span class="highlight">co-founders</span>
+        who share the vision, and <span class="highlight">investors</span> ready to back the
+        next chapter of agentic AI for robotics and embedded systems.
+      </p>
+      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn primary" href="investors.html">Investor Information</a>
+        <a class="btn" href="join.html">Join Us</a>
+        <a class="btn ghost" href="index.html#contact">Get in Touch</a>
+      </div>
+    </section>
+
+    <footer>
+      <div style="margin-bottom: 12px;">
+        <a href="privacy-policy.html" style="margin-right: 16px;">Privacy Policy</a>
+        <a href="terms.html" style="margin-right: 16px;">Terms & Conditions</a>
+        <a href="cookie-policy.html" style="margin-right: 16px;">Cookie Policy</a>
+        <a href="dpa-template.html">DPA</a>
+      </div>
+      &copy; 2025 Droidtech 42 AI Labs AB. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("menu");
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      menu.classList.toggle("active");
+    });
+    menu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        menu.classList.remove("active");
+      });
+    });
+    document.addEventListener("click", (e) => {
+      if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+        hamburger.classList.remove("active");
+        menu.classList.remove("active");
+      }
+    });
+  </script>
+</body>
+</html>
