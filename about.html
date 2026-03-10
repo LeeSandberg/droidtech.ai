@@ -205,9 +205,58 @@
       </div>
     </section>
 
-    <!-- 1992: Transputers -->
+    <!-- 1986+: 3D and Transputers -->
     <section class="card">
       <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-year">1986 &mdash; 3D Before 3D Cards</div>
+          <h3>Software-Rendered 3D Simulators</h3>
+          <p>
+            Lee channelled his skills into
+            <span class="highlight">3D simulators written in C</span> &mdash; including a
+            robot 3D simulator for PC built for the
+            <span class="highlight">Swedish Robot Society</span>. Back then there were no 3D
+            graphics cards in PCs &mdash; everything was software-rendered.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1991&ndash;1992 &mdash; Perception</div>
+          <h3>Custom 3D Laser Scanner</h3>
+          <p>
+            For robot perception, we designed and built a <span class="highlight">miniaturized custom 3D laser range scanner</span>
+            from scratch &mdash; a miniaturization of the same laser scanning system used on
+            <span class="highlight">MIT's Herbert robot</span>, compact enough to mount directly on ICU2. A Class 3A laser with a narrow-band
+            interference filter, stepper-motor mirror scanning 100 steps in each direction, and a Transputer
+            processing the range data in real-time via hardware link connections.
+          </p>
+          <p>
+            All the electronics &mdash; from the laser driver circuits to the Transputer interface boards &mdash;
+            were hand-designed and hand-etched PCBs. The work earned Lee a
+            <span class="highlight">stipendium from &Aring;s&ouml; Tekniska Gymnasium</span> in Stockholm.
+          </p>
+          <div class="img-grid single">
+            <div class="img-card">
+              <img src="images/about/3D-laser-scanner.webp" alt="Custom 3D laser scanner with interference filter and stepper motor" loading="lazy" width="1200" height="1600">
+              <div class="caption">Our custom laser scanner &mdash; stepper-motor mirror, interference filter lens, and "Varning Laserstrålning" safety label.</div>
+            </div>
+          </div>
+          <div class="img-grid">
+            <div class="img-card">
+              <img src="images/about/3D-Laser-Scanner-Setup-Diagram.webp" alt="Hand-drawn Transputer system diagram for laser scanner" loading="lazy" width="1200" height="1600">
+              <div class="caption">System architecture &mdash; hand-drawn diagram showing the Transputer (CO11), link connections, laser ranger data circuit, and PC interface.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/3D-Laser-Skanner-Circuit1.webp" alt="Transputer CO11 circuit schematic" loading="lazy" width="1200" height="1600">
+              <div class="caption">Transputer CO11 circuit design &mdash; crystal oscillator, link in/out connections, and power regulation.</div>
+            </div>
+            <div class="img-card">
+              <img src="images/about/3D-Laser-scanner1.webp" alt="Mirror stepper motor circuit documentation" loading="lazy" width="1200" height="900">
+              <div class="caption">Mirror control documentation &mdash; the stepper motor circuit using 74191 binary counters for 100-step bidirectional scanning.</div>
+            </div>
+          </div>
+        </div>
 
         <div class="timeline-item">
           <div class="timeline-year">1992 &mdash; Transputers</div>
@@ -244,6 +293,17 @@
               <div class="caption">"Minimalist Mobile Robotics" by Jonathan H. Connell (MIT Press) &mdash; colony-style subsumption architecture that influenced our design.</div>
             </div>
           </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1992 &mdash; Parallel Computing</div>
+          <h3>Speaking at Rutherford Appleton Laboratory</h3>
+          <p>
+            Lee attended the <span class="highlight">parallel computing conference</span> at
+            <span class="highlight">Rutherford Appleton Laboratory</span> in England &mdash;
+            the UK hub for Transputer research and the home of the Transputer Consortium
+            secretariat &mdash; and got the opportunity to present his Transputer-based robot work.
+          </p>
         </div>
 
         <div class="timeline-item">
@@ -286,44 +346,7 @@
             </div>
             <div class="img-card">
               <img src="images/about/ICU2-Mobile-Robot-and-Transputer-Boards.webp" alt="ICU2 mobile robot with Transputer boards laid out on table" loading="lazy" width="1200" height="1600">
-              <div class="caption">ICU2 with its Transputer boards &mdash; the robot's head turret with sonar ring, and the multi-Transputer processor cards that powered the parallel architecture.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">1991&ndash;1992 &mdash; Perception</div>
-          <h3>Custom 3D Laser Scanner</h3>
-          <p>
-            For robot perception, we designed and built a <span class="highlight">miniaturized custom 3D laser range scanner</span>
-            from scratch &mdash; a miniaturization of the same laser scanning system used on
-            <span class="highlight">MIT's Herbert robot</span>, compact enough to mount directly on ICU2. A Class 3A laser with a narrow-band
-            interference filter, stepper-motor mirror scanning 100 steps in each direction, and a Transputer
-            processing the range data in real-time via hardware link connections.
-          </p>
-          <p>
-            All the electronics &mdash; from the laser driver circuits to the Transputer interface boards &mdash;
-            were hand-designed and hand-etched PCBs. The work earned Lee a
-            <span class="highlight">stipendium from &Aring;s&ouml; Tekniska Gymnasium</span> in Stockholm.
-          </p>
-          <div class="img-grid single">
-            <div class="img-card">
-              <img src="images/about/3D-laser-scanner.webp" alt="Custom 3D laser scanner with interference filter and stepper motor" loading="lazy" width="1200" height="1600">
-              <div class="caption">Our custom laser scanner &mdash; stepper-motor mirror, interference filter lens, and "Varning Laserstrålning" safety label.</div>
-            </div>
-          </div>
-          <div class="img-grid">
-            <div class="img-card">
-              <img src="images/about/3D-Laser-Scanner-Setup-Diagram.webp" alt="Hand-drawn Transputer system diagram for laser scanner" loading="lazy" width="1200" height="1600">
-              <div class="caption">System architecture &mdash; hand-drawn diagram showing the Transputer (CO11), link connections, laser ranger data circuit, and PC interface.</div>
-            </div>
-            <div class="img-card">
-              <img src="images/about/3D-Laser-Skanner-Circuit1.webp" alt="Transputer CO11 circuit schematic" loading="lazy" width="1200" height="1600">
-              <div class="caption">Transputer CO11 circuit design &mdash; crystal oscillator, link in/out connections, and power regulation.</div>
-            </div>
-            <div class="img-card">
-              <img src="images/about/3D-Laser-scanner1.webp" alt="Mirror stepper motor circuit documentation" loading="lazy" width="1200" height="900">
-              <div class="caption">Mirror control documentation &mdash; the stepper motor circuit using 74191 binary counters for 100-step bidirectional scanning.</div>
+              <div class="caption">ICU2 with its Transputer boards &mdash; the robot's head turret with IR distance sensors, and the multi-Transputer processor cards that powered the parallel architecture.</div>
             </div>
           </div>
         </div>
@@ -354,6 +377,47 @@
               <div class="caption">Herbert's sensor setup and 3D range scan results &mdash; early spatial perception from laser scanning.</div>
             </div>
           </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1997 &mdash; The Pause</div>
+          <h3>SGS-Thomson Discontinues the Transputer</h3>
+          <p>
+            In 1997, SGS-Thomson (which had acquired Inmos in 1989) announced the last-time-buy
+            for all Transputer products &mdash; orders by February, final shipments by June.
+            The hardware platform vanished. The parallel subsumption architecture &mdash; with its
+            hot-swappable behaviours and fault-tolerant design &mdash; was ahead of what commodity
+            hardware could deliver. But the skills went elsewhere.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1997&ndash;2005 &mdash; GPU Pioneer</div>
+          <h3>From Riva 128 to Hardware Occlusion Queries</h3>
+          <p>
+            In 1997, Lee got an <span class="highlight">NVIDIA Riva 128</span> card and rewrote
+            his 3D engine with DirectX 5. He began attending every NVIDIA developer conference
+            &mdash; up to three times a year at different GDCs.
+          </p>
+          <p>
+            By 2005, Lee had added <span class="highlight">hardware occlusion queries</span> to
+            the open-source 3D engine <span class="highlight">Ogre</span> and written extensive
+            3D engine code, middleware for optimizing indoor and outdoor scenes in simulators and
+            games, and <span class="highlight">AI middleware for massive crowd simulations</span>
+            accelerated with general-purpose GPU programming using OpenGL and DirectX &mdash;
+            before compute shaders or NVIDIA CUDA existed.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">Late 1990s &mdash; KTH</div>
+          <h3>Mobile Robotics Research at KTH CAS</h3>
+          <p>
+            Lee worked at the <span class="highlight">Centre for Autonomous Systems (CAS) at KTH</span>,
+            Stockholm's Royal Institute of Technology, where he ported a control system for a
+            <span class="highlight">Puma robot arm on a Nomad mobile robot</span> from DOS to the
+            QNX real-time operating system.
+          </p>
         </div>
 
         <div class="timeline-item">
@@ -403,83 +467,6 @@
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-year">2009 &mdash; Recognition at Last</div>
-          <h3>Gwangju, South Korea</h3>
-          <p>
-            Lee submitted a shorter form of his BA work &mdash; covering the extended
-            landmark recognition system &mdash; to the
-            <span class="highlight">Ubiquitous Robotics AI Conference in Gwangju, South Korea</span>
-            in 2009, and was invited to present. After five rejections at Sk&ouml;vde, the work was
-            finally recognized by the international robotics community. The full BA paper with
-            the novel navigation architecture was never published.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">Late 1990s &mdash; KTH</div>
-          <h3>Mobile Robotics Research at KTH CAS</h3>
-          <p>
-            Lee worked at the <span class="highlight">Centre for Autonomous Systems (CAS) at KTH</span>,
-            Stockholm's Royal Institute of Technology, where he ported a control system for a
-            <span class="highlight">Puma robot arm on a Nomad mobile robot</span> from DOS to the
-            QNX real-time operating system.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">1997 &mdash; The Pause</div>
-          <h3>SGS-Thomson Discontinues the Transputer</h3>
-          <p>
-            In 1997, SGS-Thomson (which had acquired Inmos in 1989) announced the last-time-buy
-            for all Transputer products &mdash; orders by February, final shipments by June.
-            The hardware platform vanished. The parallel subsumption architecture &mdash; with its
-            hot-swappable behaviours and fault-tolerant design &mdash; was ahead of what commodity
-            hardware could deliver. But the skills went elsewhere.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">1996 &mdash; 3D Before 3D Cards</div>
-          <h3>Swedish Robot Society, Simulators, and Software 3D</h3>
-          <p>
-            AI and robotics jobs were rare in Sweden. Lee channelled his skills into
-            <span class="highlight">3D simulators written in C</span> &mdash; including a
-            robot 3D simulator for PC built for the
-            <span class="highlight">Swedish Robot Society</span>. Back then there were no 3D
-            graphics cards in PCs &mdash; everything was software-rendered.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">1998&ndash;2005 &mdash; GPU Pioneer</div>
-          <h3>From Riva 128 to Hardware Occlusion Queries</h3>
-          <p>
-            In 1998, Lee got an <span class="highlight">NVIDIA Riva 128</span> card and rewrote
-            his 3D engine with DirectX 5. He began attending every NVIDIA developer conference
-            &mdash; up to three times a year at different GDCs.
-          </p>
-          <p>
-            By 2005, Lee had added <span class="highlight">hardware occlusion queries</span> to
-            the open-source 3D engine <span class="highlight">Ogre</span> and written extensive
-            3D engine code, middleware for optimizing indoor and outdoor scenes in simulators and
-            games, and <span class="highlight">AI middleware for massive crowd simulations</span>
-            accelerated with general-purpose GPU programming using OpenGL and DirectX &mdash;
-            before compute shaders or NVIDIA CUDA existed.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">1992 &mdash; Parallel Computing</div>
-          <h3>Speaking at Rutherford Appleton Laboratory</h3>
-          <p>
-            Lee attended the <span class="highlight">parallel computing conference</span> at
-            <span class="highlight">Rutherford Appleton Laboratory</span> in England &mdash;
-            the UK hub for Transputer research and the home of the Transputer Consortium
-            secretariat &mdash; and got the opportunity to present his Transputer-based robot work.
-          </p>
-        </div>
-
-        <div class="timeline-item">
           <div class="timeline-year">2005+ &mdash; International Speaker</div>
           <h3>Seoul, Liverpool, Perth, and the Games Industry</h3>
           <p>
@@ -497,6 +484,19 @@
           <p>
             Over the following years, Lee worked extensively in simulators and computer games,
             and taught game development and 3D programming at schools.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2009 &mdash; Recognition at Last</div>
+          <h3>Gwangju, South Korea</h3>
+          <p>
+            Lee submitted a shorter form of his BA work &mdash; covering the extended
+            landmark recognition system &mdash; to the
+            <span class="highlight">Ubiquitous Robotics AI Conference in Gwangju, South Korea</span>
+            in 2009, and was invited to present. After five rejections at Sk&ouml;vde, the work was
+            finally recognized by the international robotics community. The full BA paper with
+            the novel navigation architecture was never published.
           </p>
         </div>
 
