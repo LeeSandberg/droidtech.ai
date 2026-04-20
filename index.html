@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Droidtech 42 AI Labs — Robotics, Embedded Systems & AI</title>
-  <meta name="description" content="Droidtech 42 AI Labs AB — consulting and product development in AI, robotics, embedded systems, UAVs, and energy tech.">
-  <meta property="og:title" content="Droidtech 42 AI Labs">
-  <meta property="og:description" content="Consulting & products in AI, robotics, embedded systems, UAVs, and energy.">
+  <title>Droidtech 42 AI Labs — AI Infrastructure, Model Safety & Edge Intelligence</title>
+  <meta name="description" content="Droidtech 42 AI Labs AB — AI tools and APIs for model auditing, edge intelligence, embedded development, and insured AI deployments. From RTOS to cloud.">
+  <meta property="og:title" content="Droidtech 42 AI Labs — AI Infrastructure Company">
+  <meta property="og:description" content="AI tools and APIs for model safety, edge intelligence, and insured AI deployments. Transfer Oracle + ProbeCodex.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://droidtech.ai/">
   <meta name="theme-color" content="#0f172a">
@@ -57,13 +57,12 @@
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);color:var(--muted);font-size:clamp(11px,1.8vw,12px);margin-right:6px;margin-bottom:6px}
     .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:clamp(12px,2vw,13px);color:#cbd5e1}
     footer{border-top:1px solid var(--stroke);margin-top:40px;padding:24px 0;color:var(--muted);font-size:clamp(13px,2vw,14px)}
-    .kbd{border:1px solid var(--stroke);border-bottom-width:3px;border-radius:8px;padding:2px 6px;font-weight:700;background:#050a18}
-    form{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    input[type=email]{flex:1;min-width:min(180px,100%);padding:12px 14px;border-radius:12px;border:1px solid var(--stroke);background:#050a18;color:var(--text);font-size:16px;min-height:48px}
-    .note{font-size:clamp(11px,2vw,12px);color:var(--muted)}
-    .tagline{opacity:.9;font-size:clamp(11px,1.8vw,12px)!important}
     .logo-grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center;opacity:.85}
     .logo{padding:8px 12px;border:1px dashed var(--stroke);border-radius:10px;font-size:clamp(11px,1.8vw,12px);color:var(--muted)}
+    .note{font-size:clamp(11px,2vw,12px);color:var(--muted)}
+    .tagline{opacity:.9;font-size:clamp(11px,1.8vw,12px)!important}
+    form{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    input[type=email]{flex:1;min-width:min(180px,100%);padding:12px 14px;border-radius:12px;border:1px solid var(--stroke);background:#050a18;color:var(--text);font-size:16px;min-height:48px}
     @media(max-width:480px){
       .brand>div>div:first-child{font-size:14px}
       ul.clean{padding-left:12px}
@@ -78,7 +77,7 @@
     "name": "Droidtech 42 AI Labs AB",
     "url": "https://droidtech.ai",
     "sameAs": ["https://github.com/LeeSandberg"],
-    "description": "Consulting and products in AI, robotics, embedded systems, UAVs, and energy tech."
+    "description": "AI infrastructure company building tools and APIs for model safety, edge intelligence, embedded development, and insured AI deployments."
   }
   </script>
 </head>
@@ -89,7 +88,7 @@
         <div class="brand-badge"><span>DT</span></div>
         <div>
           <div>Droidtech 42 AI Labs</div>
-          <div class="tagline" style="color:var(--muted)">AI • Robotics • Embedded • Energy</div>
+          <div class="tagline" style="color:var(--muted)">AI Infrastructure &bull; Model Safety &bull; Edge Intelligence</div>
         </div>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -99,153 +98,167 @@
       </button>
       <div class="cta" id="menu">
         <a class="btn ghost" href="about.html">About</a>
+        <a class="btn ghost" href="https://transferoracle.ai/investors" target="_blank">Investors</a>
+        <a class="btn ghost" href="https://transferoracle.ai/join" target="_blank">Join Us</a>
         <a class="btn ghost" href="#contact">Contact</a>
-        <a class="btn ghost" href="pricing.html">Pricing</a>
-        <a class="btn ghost" href="investors.html">Investors</a>
-        <a class="btn ghost" href="join.html">Join Us</a>
-        <a class="btn primary" href="#projects">See Projects</a>
+        <a class="btn primary" href="#products">Our Products</a>
       </div>
     </nav>
 
     <header class="hero">
-      <h1>We build intelligent systems — from firmware to fleets.</h1>
+      <h1>AI tools and APIs &mdash; from edge devices to cloud models.</h1>
       <p class="lead">
-        Swedish engineering studio delivering <strong>AI‑powered robotics</strong>, <strong>embedded firmware</strong>, and <strong>energy systems</strong>.
-        We partner with industry to ship production‑grade software & hardware—fast, safe, and measurable.
+        We help companies <strong>audit, verify, and insure AI models and data</strong> across the full stack &mdash;
+        from RTOS on embedded hardware to large-scale models in the cloud. Our APIs and open-source plugins
+        integrate into the tools engineers already use: NVIDIA, AMD, MLflow, and more.
       </p>
       <div class="grid">
         <section class="card span-8">
-          <h2>What we do</h2>
+          <h2>What we build</h2>
           <ul class="clean">
-            <li><strong>Embedded & firmware:</strong> ARM/Nuvoton, FreeRTOS, I²C/SPI/CAN, SD logging, bootloaders, safety.</li>
-            <li><strong>Robotics & mechatronics:</strong> perception, control, actuator design, UAV/UGV, simulation.</li>
-            <li><strong>AI systems:</strong> on‑device inference, tool‑using agents, data pipelines, observability.</li>
-            <li><strong>Energy tech:</strong> solar, storage, BMS, telemetry, dashboards, predictive maintenance.</li>
+            <li><strong>Model safety &amp; auditing:</strong> Structural transfer verification, tamper-proof audit certificates, compliance-ready reporting for EU AI Act, FDA, NIST.</li>
+            <li><strong>Edge &amp; embedded AI:</strong> AI-powered debugging for ARM Cortex-M, RTOS analysis, real-time firmware testing via MCP protocol.</li>
+            <li><strong>Data &amp; model insurance:</strong> Verifiable audit trails that enable third-party insurance of AI model deployments and data pipelines.</li>
+            <li><strong>Developer APIs:</strong> 71+ endpoints, 9 open-source plugins, free tier for developers, enterprise tiers for regulated industries.</li>
           </ul>
           <div style="margin-top:10px" class="logo-grid">
-            <div class="logo">C/C++ · HLSL · Python</div>
-            <div class="logo">FreeRTOS · TinyUSB</div>
-            <div class="logo">Unity · DOTS · Burst</div>
-            <div class="logo">Docker · CI/CD</div>
-            <div class="logo">Git · SVN</div>
-            <div class="logo">AWS · GCP</div>
+            <div class="logo">Python &bull; FastAPI &bull; NumPy</div>
+            <div class="logo">TypeScript &bull; Next.js</div>
+            <div class="logo">NVIDIA &bull; AMD &bull; MLflow</div>
+            <div class="logo">ARM &bull; FreeRTOS &bull; MCP</div>
+            <div class="logo">Docker &bull; PostgreSQL</div>
           </div>
         </section>
         <section class="card span-4">
-          <h2>Currently</h2>
+          <h2>Right now</h2>
           <ul class="clean">
-            <li>Optimizing battery‑management firmware for mobile & industrial use.</li>
-            <li>Prototyping UAV autonomy and ultra‑light actuator concepts.</li>
-            <li>Building AI assistants for testing, logging, and anomaly detection.</li>
+            <li><strong style="color:#a78bfa">Raising pre-seed</strong> &mdash; &euro;500K for Transfer Oracle go-to-market.</li>
+            <li>9 open-source plugins shipping across NVIDIA, AMD, and MLflow ecosystems.</li>
+            <li>Tamper-proof audit certificates live in production.</li>
+            <li>EU AI Act compliance deadline: Aug 2026.</li>
           </ul>
-          <p class="note">Stockholm, Sweden · Remote friendly</p>
+          <p class="note" style="margin-top:10px">Stockholm, Sweden &bull; Remote friendly</p>
         </section>
       </div>
     </header>
 
+    <!-- ── PRODUCTS ── -->
     <section id="products" style="margin-top:28px">
       <h2 style="font-size:clamp(26px,3.5vw,36px);margin-bottom:4px;text-align:center">Our Products</h2>
-      <p style="text-align:center;color:var(--muted);margin-bottom:clamp(16px,3vw,24px)">Three platforms. One mission: make intelligent systems safer, faster, and more observable.</p>
+      <p style="text-align:center;color:var(--muted);margin-bottom:clamp(16px,3vw,24px)">AI infrastructure for model safety, embedded intelligence, and insured deployments.</p>
 
-      <!-- ProbeCodex -->
-      <div class="card" style="background:linear-gradient(135deg,#0b1224,#0f172a);border:2px solid var(--accent);position:relative;overflow:hidden;margin-bottom:clamp(12px,2vw,18px)">
-        <div style="position:absolute;top:16px;right:16px;background:linear-gradient(135deg,#10b981,#059669);color:white;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Beta Available</div>
-        <h3 style="font-size:clamp(22px,3vw,30px);margin:0 0 8px">ProbeCodex</h3>
+      <!-- Transfer Oracle — PRIMARY -->
+      <div class="card" style="background:linear-gradient(135deg,#0b1224,#0f0b24);border:2px solid #a78bfa;position:relative;overflow:hidden;margin-bottom:clamp(12px,2vw,18px)">
+        <div style="position:absolute;top:16px;right:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:linear-gradient(135deg,#10b981,#059669);color:white;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Live</span>
+          <span style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:white;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Pre-seed round under way</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,30px);margin:0 0 8px;color:#a78bfa">Transfer Oracle</h3>
         <p class="lead" style="max-width:100%;font-size:clamp(16px,2.2vw,20px)">
-          AI-powered debugging for embedded systems. Connect your hardware probe and let AI help you debug,
-          flash, analyze RTOS tasks, and test firmware in real-time &mdash; all from Claude Code.
+          Model safety infrastructure for production ML. Structural transfer auditing with tamper-proof
+          certificates &mdash; know if quantization, fine-tuning, or distillation broke your model before it reaches production.
+          Compliance-ready for EU AI Act, FDA, and NIST AI RMF.
         </p>
         <div style="margin-top:12px">
-          <span class="pill">ARM Cortex-M</span>
-          <span class="pill">FreeRTOS</span>
-          <span class="pill">90+ MCP Tools</span>
-          <span class="pill">Real-time Analysis</span>
-          <span class="pill">Claude Code Integration</span>
+          <span class="pill">71+ API Endpoints</span>
+          <span class="pill">9 Open-Source Plugins</span>
+          <span class="pill">NVIDIA &bull; AMD &bull; MLflow</span>
+          <span class="pill">Audit Certificates</span>
+          <span class="pill">Patent Pending</span>
+        </div>
+        <div style="margin:16px 0;padding:16px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);border-radius:14px">
+          <div style="display:flex;gap:clamp(16px,4vw,32px);flex-wrap:wrap;font-size:clamp(13px,2vw,15px)">
+            <div><strong style="color:#a78bfa">TAM:</strong> <span style="color:var(--text)">$6&ndash;10B</span> <span style="color:var(--muted)">(2025)</span></div>
+            <div><strong style="color:#a78bfa">SAM:</strong> <span style="color:var(--text)">~$1.5&ndash;2B</span></div>
+            <div><strong style="color:#a78bfa">Raising:</strong> <span style="color:var(--text)">&euro;500K</span> <span style="color:var(--muted)">at &euro;2.5M pre-money</span></div>
+          </div>
         </div>
         <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-          <a class="btn primary" href="https://probecodex.com" target="_blank">Visit ProbeCodex.com</a>
-          <a class="btn" href="https://probecodex.com/portal/downloads" target="_blank" style="background:#10b981;color:white;border:none">Download Free Beta</a>
-          <a class="btn ghost" href="https://probecodex.com/docs" target="_blank">Docs</a>
+          <a class="btn" href="https://transferoracle.ai" target="_blank" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:white;border:none;font-weight:700">TransferOracle.ai</a>
+          <a class="btn primary" href="https://transferoracle.ai/investors" target="_blank">Investor Info</a>
+          <a class="btn ghost" href="https://transferoracle.ai/growt/docs" target="_blank">API Docs</a>
+          <a class="btn ghost" href="https://transferoracle.ai/growt/demo" target="_blank">Live Demo</a>
+          <a class="btn ghost" href="https://transferoracle.ai/growt/plugins" target="_blank">Plugins</a>
         </div>
       </div>
 
-      <!-- Operator Portal -->
+      <!-- ProbeCodex + Operator Portal -->
       <div class="grid" style="margin-top:0">
+        <div class="card span-6" style="background:linear-gradient(135deg,#0b1224,#0f172a);border:2px solid var(--accent);position:relative;overflow:hidden">
+          <div style="position:absolute;top:16px;right:16px;background:linear-gradient(135deg,#10b981,#059669);color:white;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Beta</div>
+          <h3 style="font-size:clamp(20px,2.8vw,26px);margin:0 0 8px">ProbeCodex</h3>
+          <p style="color:var(--muted);font-size:clamp(15px,2vw,17px)">
+            AI-powered debugging for embedded systems. Connect your hardware probe and let AI debug,
+            flash, analyze RTOS tasks, and test firmware &mdash; directly from Claude Code.
+            90+ MCP tools for ARM Cortex-M development.
+          </p>
+          <div style="margin-top:12px">
+            <span class="pill">ARM Cortex-M</span>
+            <span class="pill">90+ MCP Tools</span>
+            <span class="pill">FreeRTOS &bull; Zephyr</span>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn primary" href="https://probecodex.com" target="_blank">ProbeCodex.com</a>
+            <a class="btn ghost" href="https://probecodex.com/docs" target="_blank">Docs</a>
+          </div>
+        </div>
+
         <div class="card span-6" style="background:linear-gradient(135deg,#0b1224,#101828);border:2px solid #f59e0b;position:relative;overflow:hidden">
           <div style="position:absolute;top:16px;right:16px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#1a1a1a;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Live</div>
-          <h3 style="font-size:clamp(20px,2.8vw,26px);margin:0 0 8px;color:#fbbf24">Operator Portal</h3>
+          <h3 style="font-size:clamp(20px,2.8vw,26px);margin:0 0 8px;color:#fbbf24">Operator Platform</h3>
           <p style="color:var(--muted);font-size:clamp(15px,2vw,17px)">
-            The central hub for managing ProbeCodex licenses, downloads, devices, and team access.
-            Monitor your fleet of debug sessions, manage API keys, and track usage &mdash; all in one place.
+            Multi-tenant franchise platform. Operators deploy their own branded instance of Transfer Oracle
+            with custom domains, Stripe billing, automated provisioning, and 70/30 revenue split.
           </p>
           <div style="margin-top:12px">
-            <span class="pill">License Management</span>
-            <span class="pill">Device Fleet</span>
-            <span class="pill">Team Access</span>
+            <span class="pill">Multi-Tenant</span>
+            <span class="pill">White-Label</span>
+            <span class="pill">Stripe Billing</span>
+            <span class="pill">Franchise Model</span>
           </div>
           <div style="margin-top:20px">
-            <a class="btn" href="https://operator.droidtech.ai" target="_blank" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#1a1a1a;border:none;font-weight:700">Open Operator Portal</a>
-            <a class="btn ghost" href="docs/Growt_Operator_Franchise.pdf" target="_blank" style="margin-left:8px;color:#fbbf24;border-color:#f59e0b">Download Deck (PDF)</a>
-          </div>
-        </div>
-
-        <!-- Transfer Oracle -->
-        <div class="card span-6" style="background:linear-gradient(135deg,#0b1224,#0f0b24);border:2px solid #a78bfa;position:relative;overflow:hidden">
-          <div style="position:absolute;top:16px;right:16px;background:linear-gradient(135deg,#a78bfa,#7c3aed);color:white;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Coming Soon</div>
-          <h3 style="font-size:clamp(20px,2.8vw,26px);margin:0 0 8px;color:#a78bfa">Transfer Oracle</h3>
-          <p style="color:var(--muted);font-size:clamp(15px,2vw,17px)">
-            Validate ML models before deployment. Transfer Oracle audits your training&ndash;deployment gap,
-            detects distribution shift, flags undertrained classes, and gives a clear
-            SAFE / RED FLAG / BAD MODEL diagnosis &mdash; before your model reaches production.
-          </p>
-          <div style="margin-top:12px">
-            <span class="pill">Model Validation</span>
-            <span class="pill">Distribution Shift</span>
-            <span class="pill">Deploy Confidence</span>
-          </div>
-          <div style="margin-top:20px">
-            <a class="btn" href="https://transferoracle.ai" target="_blank" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:white;border:none;font-weight:700">Visit TransferOracle.ai</a>
-            <a class="btn ghost" href="docs/Growt_Operator_Franchise.pdf" target="_blank" style="margin-left:8px;color:#a78bfa;border-color:#a78bfa">Download Deck (PDF)</a>
+            <a class="btn" href="https://transferoracle.ai/operator" target="_blank" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#1a1a1a;border:none;font-weight:700">Become an Operator</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="grid">
+    <!-- ── MARKET VALIDATION ── -->
+    <section class="grid" id="validation" style="margin-top:28px">
       <div class="card span-6">
-        <h2>Selected work</h2>
+        <h2>Category validation</h2>
         <ul class="clean">
-          <li><strong>Front‑panel firmware:</strong> dual‑stream SD logger, daily rotation, queue‑based buffering, metrics.</li>
-          <li><strong>I²C master/target stack:</strong> ISR‑driven, robust error handling, modbus‑like state machines.</li>
-          <li><strong>Safety review:</strong> fault detection/handling, graceful hard‑off sequencing, test benches.</li>
+          <li><strong>Robust Intelligence</strong> &mdash; acquired by Cisco (2024)</li>
+          <li><strong>WhyLabs</strong> &mdash; acquired by Apple (2025)</li>
+          <li><strong>Arize AI</strong> &mdash; $131M raised, Series C (Feb 2025)</li>
+          <li><strong>Arthur AI</strong> &mdash; $63M raised</li>
         </ul>
+        <p class="note" style="margin-top:10px">Large platforms are buying model safety capability. We&rsquo;re building it natively.</p>
       </div>
       <div class="card span-6">
-        <h2>Engagement models</h2>
+        <h2>Regulatory tailwind</h2>
         <ul class="clean">
-          <li>Pilot sprint: 2–4 weeks to de‑risk a core problem.</li>
-          <li>Dedicated team: embedded + AI + frontend for productization.</li>
-          <li>Advisory: architecture, performance, CI/CD, incident review.</li>
+          <li><strong>EU AI Act:</strong> High-risk conformity assessments mandatory <strong>August 2, 2026</strong>.</li>
+          <li><strong>FDA:</strong> 1,250+ AI/ML medical devices authorized. Each change requires re-validation.</li>
+          <li><strong>NIST AI RMF:</strong> Referenced by FTC, SEC, CFPB in enforcement actions.</li>
+          <li><strong>Global:</strong> 75% of world economies will regulate AI by 2030 (Gartner).</li>
         </ul>
       </div>
     </section>
 
+    <!-- ── CONTACT ── -->
     <section id="contact" class="card" style="margin-top:18px">
       <h2>Get in touch</h2>
-      <p>Tell us about your project. We usually reply within one business day.</p>
+      <p>Interested in our products, investing, or joining the team? We usually reply within one business day.</p>
       <form id="contactForm">
         <input type="email" id="email" placeholder="Your email (e.g., you@company.com)" required>
         <button class="btn primary" type="submit">Request intro</button>
       </form>
       <p class="mono" id="status"></p>
-    </section>
-
-    <section id="contact" class="card" style="margin-top:18px">
-      <div class="card span-6">
-        <h2>Support</h2>
-        <ul class="clean">
-          <li>+46 (0)762981255</li>
-        </ul>      
+      <div style="margin-top:16px;display:flex;gap:24px;flex-wrap:wrap;font-size:clamp(13px,2vw,15px)">
+        <div><strong>Email:</strong> <a href="mailto:lee@droidtech.ai">lee@droidtech.ai</a></div>
+        <div><strong>Phone:</strong> +46 (0)76 298 1255</div>
+        <div><strong>Location:</strong> Stockholm, Sweden</div>
       </div>
     </section>
 
@@ -256,7 +269,21 @@
         <a href="cookie-policy.html" style="margin-right: 16px;">Cookie Policy</a>
         <a href="dpa-template.html">DPA</a>
       </div>
-      © 2025 Droidtech 42 AI Labs AB, 559534-0745. Stockholm. All rights reserved.
+      &copy; 2026 Droidtech 42 AI Labs AB, 559534-0745. Stockholm. All rights reserved.
+      <div style="margin-top: 24px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <img src="images/qr/qr-droidtech.webp" alt="QR code for droidtech.ai" width="100" height="100" style="border-radius: 8px;" />
+          <div style="font-size: 11px; margin-top: 4px; opacity: 0.6;">droidtech.ai</div>
+        </div>
+        <div style="text-align: center;">
+          <img src="images/qr/qr-transferoracle.webp" alt="QR code for transferoracle.ai" width="100" height="100" style="border-radius: 8px;" />
+          <div style="font-size: 11px; margin-top: 4px; opacity: 0.6;">transferoracle.ai</div>
+        </div>
+        <div style="text-align: center;">
+          <img src="images/qr/qr-benchmark-central.webp" alt="QR code for Benchmark Central" width="100" height="100" style="border-radius: 8px;" />
+          <div style="font-size: 11px; margin-top: 4px; opacity: 0.6;">Benchmark Central</div>
+        </div>
+      </div>
     </footer>
   </div>
 
@@ -286,8 +313,7 @@
       }
     });
 
-    // --- Minimal inbox hook: replace CONTACT_TO with your real address or a form backend ---
-    const CONTACT_TO = "lee@droidtech.ai"; // TODO: set to your real inbox or a form endpoint
+    const CONTACT_TO = "lee@droidtech.ai";
     const form = document.getElementById("contactForm");
     const status = document.getElementById("status");
     form.addEventListener("submit", (e) => {
@@ -295,7 +321,6 @@
       const email = document.getElementById("email").value.trim();
       status.textContent = "";
       if(!email) return;
-      // Option A: simple mailto
       window.location.href = `mailto:${CONTACT_TO}?subject=Intro%20request%20from%20${encodeURIComponent(email)}&body=Hi%20Droidtech%2C%0A%0AI'm%20interested%20in...%0A%0A—%20${encodeURIComponent(email)}`;
       status.textContent = "Opening your mail app…";
     });
